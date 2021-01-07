@@ -7,14 +7,14 @@ import helmet from 'helmet';
 import hpp from 'hpp';
 import logger from 'morgan';
 
-// import Routes from './interfaces/routes.interface';
-// import errorMiddleware from './middlewares/error.middleware';
-//
-// import IndexRoute from './routes/index.route';
-// import UsersRoute from './routes/users.route';
-// import AuthRoute from './routes/auth.route';
+import Routes from './interfaces/routes.interface';
+import errorMiddleware from './middlewares/error.middleware';
 
-export default class Host {
+import IndexRoute from './routes/index.route';
+import UsersRoute from './routes/users.route';
+import AuthRoute from './routes/auth.route';
+
+export class Host {
   public app: express.Application;
   public io: SocketIO.Server;
   public port: (string | number);
@@ -44,16 +44,18 @@ export default class Host {
 
   public listen() {
 
-    for (const gateway of this.gateways) {
-      gateway.init(this.io)
+    if (this.gateways) {
+      for (const gateway of this.gateways) {
+        gateway.init(this.io)
+      }
     }
 
-    this.connectToDatabase();
+    this.subscribe();
     this.initializeMiddlewares();
     this.initializeRoutes([
-      // new IndexRoute(),
-      // new UsersRoute(),
-      // new AuthRoute(),
+      new IndexRoute(),
+      new UsersRoute(),
+      new AuthRoute(),
     ]);
     this.initializeErrorHandling();
 
@@ -82,9 +84,12 @@ export default class Host {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
 
-    for (const middleware of this.middlewares) {
-      this.app.use(middleware);
+    if (this.middlewares) {
+      for (const middleware of this.middlewares) {
+        this.app.use(middleware);
+      }
     }
+
 
   }
 
