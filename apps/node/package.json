@@ -1,0 +1,21 @@
+{
+  "name": "node",
+  "version": "0.0.1",
+  "description": "Node Boilerplate",
+  "main": "dist",
+  "types": "dist",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist"
+  },
+  "author": "equaliser0",
+  "license": "MIT",
+  "dependencies": {
+    "@scale/core": "file:../../packages/core",
+    "@scale/database": "file:../../packages/database",
+    "@scale/utils": "file:../../packages/utils"
+  }
+}
