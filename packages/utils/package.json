@@ -5,13 +5,17 @@
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/scale#readme",
   "license": "MIT",
-  "main": "src",
+  "main": "dist/index",
+  "types": "dist/index",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "src": "src"
   },
   "files": [
-    "lib"
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -20,14 +24,14 @@
     "type": "git",
     "url": "git+https://github.com/AwesomeEcosystem/scale.git"
   },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
   "bugs": {
     "url": "https://github.com/AwesomeEcosystem/scale/issues"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
     "envalid": "^6.0.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^3.0.0"
   }
 }

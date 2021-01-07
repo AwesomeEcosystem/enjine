@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 
-export function mkdir(path) {
+export function mkdir(path: string) {
   let string = './';
   let dirs: string[] = path.split('/').map((item: string) => item.trim()); // TODO secure enough? (ranomdly switch Dir Names without index)
   for (let dir of dirs) {
