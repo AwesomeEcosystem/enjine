@@ -14,5 +14,5 @@
     "incremental": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "__test__", "**/*test.ts"]
+  "exclude": ["node_modules", "dist", "test", "**/*test.ts", "**/*specs.ts"]
 }
