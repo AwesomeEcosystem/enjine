@@ -1,4 +1,4 @@
-import * as uniqid from 'uniqid';
+import uniqid from 'uniqid';
 
 export class Model {
   _id: string;

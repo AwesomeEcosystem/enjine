@@ -14,10 +14,10 @@ export class Database extends Levelts {
   }
 
   async post(data: any): Promise<any> {
-    return await this.put(data.id, data);
+    return await this.put(data._id, data);
   }
 
-  async remove(id) {
+  async remove(id: string) {
     return await this.del(id);
   }
 }
