@@ -27,6 +27,7 @@
     "url": "https://github.com/AwesomeEcosystem/scale/issues"
   },
   "dependencies": {
+    "@scale/utils": "file:../utils",
     "level-ts": "^2.0.6",
     "uniqid": "^5.2.0"
   }
