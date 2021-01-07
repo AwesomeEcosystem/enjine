@@ -1,3 +1,9 @@
+# @ecosis Data
+**/dist
+dist
+.db
+.database
+
 # Logs
 logs
 *.log
