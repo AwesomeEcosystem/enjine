@@ -13,7 +13,7 @@ class DatabaseModel extends Model { // TODO too ugly - Declaration Dilemma
 
 export class Manager extends Database {
   path: string;
-  cryto: any; // TODO Option for Crypto-Path & Crypto-Data (name = key)
+  cryto: any; // TODO Option for Crypto-Path & Crypto-Data
   constructor(name: string) {
     super(name)
     this.path = name + '/'
