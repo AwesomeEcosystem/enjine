@@ -19,7 +19,7 @@ export class Host {
   public io: SocketIO.Server;
   public port: (string | number);
   public env: boolean;
-  public gateways: any; // TODO Type Gateways
+  public instances: any; // TODO Type Gateways
   public middlewares: any; // TODO Type Middlewares
   public config: any; // TODO Type Config
 
@@ -27,15 +27,15 @@ export class Host {
     this.app = express();
     this.io = SocketIO.listen();
 
-    this.config = config;
+    this.config = config || null;
 
     this.port = process.env.PORT || config.port || 9090;
     this.env = process.env.NODE_ENV === 'production' ? true : false;
 
   }
 
-  public add(gateways: any) {
-    this.gateways = gateways;
+  public add(instances: any) {
+    this.instances = instances;
   }
 
   public use(middleware: any) {
@@ -43,12 +43,6 @@ export class Host {
   }
 
   public listen() {
-
-    if (this.gateways) {
-      for (const gateway of this.gateways) {
-        gateway.init(this.io)
-      }
-    }
 
     this.subscribe();
     this.initializeMiddlewares();
@@ -62,7 +56,12 @@ export class Host {
     const http = this.app.listen(this.port, () => {
       console.log(`🚀 App listening on the port ${this.port}`);
     });
-    this.io.attach(http);
+
+    if (this.instances) {
+      for (const instance of this.instances) {
+        instance.init(this.io, http, this.config)
+      }
+    }
   }
 
   public getServer() {
@@ -74,10 +73,10 @@ export class Host {
       this.app.use(hpp());
       this.app.use(helmet());
       this.app.use(logger('combined'));
-      this.app.use(cors(this.config.cors || { origin: '*', credentials: true }));
+      this.app.use(cors({ origin: '*', credentials: false }));
     } else {
       this.app.use(logger('dev'));
-      this.app.use(cors({ origin: true, credentials: true }));
+      this.app.use(cors({ origin: '*', credentials: false }));
     }
 
     this.app.use(express.json());

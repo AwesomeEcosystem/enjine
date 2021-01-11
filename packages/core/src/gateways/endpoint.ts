@@ -4,5 +4,6 @@ export class Endpoint {
   constructor(name: string, fn: any) {
     this.name = name;
     this.fn = fn;
+    console.log(`Endpoint '${this.name}' initialized`);
   }
 }

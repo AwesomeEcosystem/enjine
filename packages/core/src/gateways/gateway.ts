@@ -6,18 +6,20 @@ export class Gateway {
   public name: string;
   private endpoints: any; // TODO Type Endpoints
   private auth: AuthService = new AuthService();
-  private connections: { [id: string] : Socket; } = {};
-  private pendingConnections: { [id: string] : Socket; } = {};
+  private connections: { [ id: string ] : Socket; } = {};
+  private pendingConnections: { [ id: string ] : Socket; } = {};
   private io: Server;
 
   constructor(name: string, endpoints: any) {
     this.name = name;
+    this.endpoints = endpoints;
   }
 
   public init(io: Server){
     this.io = io;
     this.io.of(this.name).on('connection', (event: Socket) => this.onConnection(event));
     this.io.of(this.name).on('disconnect', (event: Socket) => this.onDisconnect(event));
+    console.log(`Gateway '${this.name}' initialized`);
   }
 
   private async onConnection(socket: Socket){
