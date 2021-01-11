@@ -2,30 +2,28 @@ import { io } from 'socket.io-client'
 import { EventEmitter } from 'events';
 
 export class Session extends EventEmitter {
-  url: string;
-  path: string;
+  // url: string;
+  config: any;
   token: string;
   socket: any;
   // feeds: Feed[] = [];
-  constructor(path: string) {
+  constructor(config: any) { // TODO Config Interface
     super()
-    this.path = path || ''
+    this.config = config
 
-    if (localStorage) {
-      this.url = localStorage.access_url
-      if (localStorage.access_token) {
-        this.token = localStorage.access_token
-        console.log('access_token', localStorage.access_token);
-      }
-    }
+    // if (localStorage) {
+    //   this.url = localStorage.access_url
+    //   if (localStorage.access_token) {
+    //     this.token = localStorage.access_token
+    //     console.log('access_token', localStorage.access_token);
+    //   }
+    // }
 
     // Instance Connection
-    console.log(`Connecting to '${this.url + this.path}'`);
+    console.log(`Connecting`);
 
-    this.socket = io(this.url + this.path, {
-      query: {
-        token: localStorage.access_token
-      }
+    this.socket = io(this.config.host + '/' + this.config.gateway || '', {
+      path: this.config.instance
     })
 
     this.socket.on('connect', () => {
@@ -41,7 +39,6 @@ export class Session extends EventEmitter {
     this.socket.on('disconnect', (res: any) => {
       if (res) {
         console.log(res);
-        // TODO this.emit('error', err)
       }
     })
   }
