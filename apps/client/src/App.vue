@@ -2,6 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button @click="check()">Check</button>
   </div>
 </template>
 
@@ -23,7 +24,12 @@ export default {
     //   instance: 'dev',
     //   gateway: 'playground'
     // })
-    this.session = io('ws://localhost:9090')
+    this.session = io('ws://localhost:9090/')
+  },
+  methods: {
+    check() {
+      this.session.emit('check', 'Check!')
+    }
   },
   components: {
     HelloWorld
