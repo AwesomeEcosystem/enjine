@@ -1,4 +1,4 @@
 export * from './host'
-export * from './gateways/gateway'
-export * from './gateways/endpoint'
-export * from './gateways/instance'
+export * from './core/gateway'
+export * from './core/endpoint'
+export * from './core/instance'
