@@ -1,8 +1,7 @@
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
-import http from 'http';
-import SocketIO  from 'socket.io';
+import { createServer } from 'http';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import logger from 'morgan';
@@ -16,7 +15,6 @@ import AuthRoute from './routes/auth.route';
 
 export class Host {
   public app: express.Application;
-  public io: SocketIO.Server;
   public port: (string | number);
   public env: boolean;
   public instances: any; // TODO Type Gateways
@@ -25,7 +23,6 @@ export class Host {
 
   constructor(config: any) {
     this.app = express();
-    this.io = SocketIO.listen();
 
     this.config = config || null;
 
@@ -47,21 +44,23 @@ export class Host {
     this.subscribe();
     this.initializeMiddlewares();
     this.initializeRoutes([
-      new IndexRoute(),
-      new UsersRoute(),
-      new AuthRoute(),
+      // new IndexRoute(),
+      // new UsersRoute(),
+      // new AuthRoute(),
     ]);
     this.initializeErrorHandling();
 
-    const http = this.app.listen(this.port, () => {
-      console.log(`🚀 App listening on the port ${this.port}`);
-    });
+    const http = createServer();
 
     if (this.instances) {
       for (const instance of this.instances) {
-        instance.init(this.io, http, this.config)
+        instance.init(http, this.config)
       }
-    }
+    };
+
+    http.listen(this.port, () => {
+      console.log(`🚀 App listening on the port ${this.port}`);
+    });
   }
 
   public getServer() {

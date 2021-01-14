@@ -1,4 +1,4 @@
-
+import { Server, Socket } from 'socket.io';
 
 export class Instance {
   public name: string;
@@ -9,11 +9,13 @@ export class Instance {
     this.name = name;
     this.gateways = gateways;
   }
+  public init(http: any) {
 
-  public init(io: any, server: any, config: any) {
-    this.io = io;
-    this.io.path(this.name);
-    this.io.attach(server, config);
+    this.io = new Server(http, {
+      cors: {
+        origin: '*'
+      }
+    });
 
     for (const gateway of this.gateways) {
       gateway.init(this.io);

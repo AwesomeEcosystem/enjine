@@ -23,7 +23,7 @@ export class Gateway {
   }
 
   private async onConnection(socket: Socket){
-    console.log('onConnect', socket.conn.request._query);
+    console.log('New Client ', socket.id);
 
     if (socket.conn.request._query['token']) {
       //if token specified, authenticate onConnect and listen to connection

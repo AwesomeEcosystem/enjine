@@ -7,7 +7,8 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import { Session } from '@scale/session'
+// import { Session } from '@scale/session'
+import io from 'socket.io-client'
 
 export default {
   name: 'App',
@@ -17,11 +18,12 @@ export default {
     }
   },
   mounted() {
-    this.session = new Session({
-      host: 'ws://localhost:9090',
-      instance: 'dev',
-      gateway: 'playground'
-    })
+    // this.session = new Session({
+    //   host: 'ws://localhost:9090',
+    //   instance: 'dev',
+    //   gateway: 'playground'
+    // })
+    this.session = io('ws://localhost:9090')
   },
   components: {
     HelloWorld

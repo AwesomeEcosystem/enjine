@@ -6,8 +6,8 @@ const host = new Host({
 })
 
 host.add([
-  new Instance('dev', [
-    new Gateway('playground', [
+  new Instance('', [
+    new Gateway('', [
       new Endpoint('check', (id: any, data: any) => {
         console.log(id, data);
       })
