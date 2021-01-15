@@ -6,13 +6,6 @@ import helmet from 'helmet';
 import hpp from 'hpp';
 import logger from 'morgan';
 
-import Routes from './interfaces/routes.interface';
-import errorMiddleware from './middlewares/error.middleware';
-
-import IndexRoute from './routes/index.route';
-import UsersRoute from './routes/users.route';
-import AuthRoute from './routes/auth.route';
-
 export class Host {
   public port: (string | number);
   public env: boolean;

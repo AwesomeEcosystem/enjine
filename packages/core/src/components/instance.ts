@@ -4,8 +4,8 @@ const { Server, Socket } = SocketIO
 
 export class Instance {
   public name: string;
-  public io: SocketIO;
-  public gateways: any; // TODO Type Gateways
+  public io: any; // TODO SocketIO Interface
+  public gateways: any; // TODO Gateways Interface
 
   constructor(name: string, gateways: any) {
     this.name = name;
