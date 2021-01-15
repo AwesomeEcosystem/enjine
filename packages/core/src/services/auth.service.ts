@@ -10,14 +10,14 @@ export class AuthService {
   public users = manager.create('users');
   public sessions = manager.create('sessions');
 
-  public async login(loginData: any, ip: any) { // TODO Interfaces
-    const user: any = this.users.find((u: any) => u.username === loginData.username)
+  public async login(credentials: any, ip: any) { // TODO Interfaces
+    const user: any = this.users.find((u: any) => u.username === credentials.username)
     if (!user) {
-      throw new Exception(401, 'Username or Password is wrong');
+      throw new Exception(401, 'Username or Password is incorrect');
     }
-    const matched = await compareCrypto(loginData.password, user.password.hash)
+    const matched = await compareCrypto(credentials.password, user.password.hash)
     if (!matched) {
-      throw new Exception(401, 'Username or Password is wrong');
+      throw new Exception(401, 'Username or Password is incorrect');
     }
     return await this.createSessionToken(user, ip)
   }

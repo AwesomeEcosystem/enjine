@@ -33,6 +33,10 @@ export class Gateway {
 
   private async connection(socket: Socket){
     console.log('New Client ', socket.id);
+
+    for (const endpoint of this.endpoints) {
+      endpoint.initialize(socket)
+    }
   }
 
   private disconnection(socket: Socket){
