@@ -8,8 +8,7 @@
   "main": "dist/index",
   "types": "dist/index",
   "scripts": {
-    "build": "tsc",
-    "test": "jest"
+    "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "directories": {
     "src": "src"
@@ -24,10 +23,10 @@
     "type": "git",
     "url": "git+https://github.com/AwesomeEcosystem/scale.git"
   },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
   "bugs": {
     "url": "https://github.com/AwesomeEcosystem/scale/issues"
+  },
+  "dependencies": {
+    "@scale/common": "file:../common"
   }
 }
