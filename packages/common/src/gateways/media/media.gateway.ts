@@ -1,4 +1,4 @@
-import { Gateway, Endpoint } from '@scale/core';
+import { Gateway } from '@scale/core';
 import { upload, stream } from './media.endpoints';
 
 export class MediaGateway extends Gateway {

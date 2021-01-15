@@ -1,4 +1,4 @@
-import { Gateway, Endpoint } from '@scale/core';
+import { Gateway } from '@scale/core';
 import { post, update, get, find, filter, remove } from './data.endpoints';
 
 export class DataGateway extends Gateway {

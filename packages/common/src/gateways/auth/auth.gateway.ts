@@ -1,4 +1,4 @@
-import { Gateway, Endpoint } from '@scale/core';
+import { Gateway } from '@scale/core';
 import { login, auth } from './auth.endpoints';
 
 export class AuthGateway extends Gateway {
