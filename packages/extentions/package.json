@@ -1,0 +1,33 @@
+{
+  "name": "@scale/extentions",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
+  "homepage": "https://github.com/AwesomeEcosystem/scale#readme",
+  "license": "MIT",
+  "main": "dist/index",
+  "types": "dist/index",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AwesomeEcosystem/scale.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/AwesomeEcosystem/scale/issues"
+  }
+}
