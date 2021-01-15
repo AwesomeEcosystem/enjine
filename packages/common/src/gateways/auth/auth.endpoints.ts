@@ -1,12 +1,23 @@
-import { Manager } from '@scale/database';
+import { AuthService } from '@scale/core';
 
-const manager = new Manager('.database')
-const users = manager.open('users')
+const authService = new AuthService()
 
-export async function login(credentials: any) { // TODO Credentials Interface
+// NOTE: Just a Prototype
 
+export async function login(socket: any, event: any, callback: any) { // TODO Credentials Interface
+  try {
+    const auth = await authService.login(event.credentials, event.ip)
+    callback(null, auth)
+  } catch (err) {
+    callback(err, null)
+  }
 }
 
-export async function auth(credentials: any) { // TODO Credentials Interface
-
+export async function auth(socket: any, event: any, callback: any) { // TODO Credentials Interface
+  try {
+    const auth = await authService.validateToken(event.token, event.user_id, event.ip)
+    callback(null, auth)
+  } catch (err) {
+    callback(err, null)
+  }
 }
