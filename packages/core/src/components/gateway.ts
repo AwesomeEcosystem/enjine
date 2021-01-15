@@ -34,6 +34,8 @@ export class Gateway {
   private async connection(socket: Socket){
     console.log('New Client ', socket.id);
 
+    // TODO Push Client into Connections
+
     for (const endpoint of this.endpoints) {
       endpoint.initialize(socket)
     }
