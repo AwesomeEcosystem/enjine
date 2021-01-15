@@ -1,18 +1,32 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { DataStoredInToken, TokenData, SessionTokenData } from '../interfaces/auth.interface';
-import { User } from '../interfaces/users.interface';
-import manager from '../database'; // TODO Root Database
+import { Exception } from '../exceptions/exception';
+import { Manager} from '@scale/database'; // TODO Root Database
+import { compareCrypto } from '@scale/utils';
 
-export default class AuthService {
+const manager = new Manager('.database')
+
+export class AuthService {
   public users = manager.create('users');
-  public authToken = manager.create('sessions');
+  public sessions = manager.create('sessions');
 
-  public async createSessionToken(user: User, ip: string){
+  public async login(loginData: any, ip: any) { // TODO Interfaces
+    const user: any = this.users.find((u: any) => u.username === loginData.username)
+    if (!user) {
+      throw new Exception(401, 'Username or Password is wrong');
+    }
+    const matched = await compareCrypto(loginData.password, user.password.hash)
+    if (!matched) {
+      throw new Exception(401, 'Username or Password is wrong');
+    }
+    return await this.createSessionToken(user, ip)
+  }
+
+  public async createSessionToken(user: any, ip: string) { // TODO User Interface
     const now = new Date().getTime();
-    const token = await bcrypt.hash(`${user._id}_${user.emails[0]}_${ip}_${now}`, 10);
+    const token = await bcrypt.hash(`${user._id}_${user.username}_${ip}_${now}`, 10);
     const expiresAt = now + (2 * 60 * 1000);
-    const authToken: SessionTokenData = await this.authToken.post({
+    const authToken = await this.sessions.post({
       token,
       expiresAt,
       ip,
@@ -21,27 +35,26 @@ export default class AuthService {
     return authToken;
   }
 
-  public async validateToken(token: string, userid: string, ip: string) {
-    const authToken: SessionTokenData = await this.authToken.find((auth: any) => {
-      return auth.token === token && auth._id === userid + '=' + ip && auth.ip === ip && auth.expiresAt > new Date().getTime(); // TODO Use Iteration
+  public async validateToken(token: string, user_id: string, ip: string) {
+    const authToken: any = await this.sessions.find((auth: any) => { // TODO AuthToken Interface
+      return auth.token === auth.token && auth._id === user_id + '=' + ip && auth.ip === ip && auth.expiresAt > new Date().getTime(); // TODO Use Iteration
     });
-    // const authToken: SessionTokenData = await this.authToken.findOne({ token: token, userId: userid, ip: ip, expiresAt: { $gt: (new Date()).getTime()} })
     if (!authToken) {
       console.log('Token not found', token)
       throw new Error('Token not found');
     }
-    return this.users.get(authToken.userId);
+    return this.users.get(authToken.user_id);
   }
 
-  public createToken(user: User): TokenData {
-    const dataStoredInToken: DataStoredInToken = { _id: user._id, email: user.emails[0] };
+  public createToken(user: any): any { // TODO User Interface, TokenData,
+    const dataStoredInToken = { _id: user._id, username: user.username }; // TODO dataStoredInTokenInterface
     const secret: string = process.env.JWT_SECRET;
     const expiresIn: number = 60 * 60;
 
     return { expiresIn, token: jwt.sign(dataStoredInToken, secret, { expiresIn }) };
   }
 
-  public createCookie(tokenData: TokenData): string {
+  public createCookie(tokenData: any): string { // TODO TokenData Interface
     return `Authorization=${tokenData.token}; HttpOnly; Max-Age=${tokenData.expiresIn};`;
   }
 }
