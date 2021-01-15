@@ -36,9 +36,16 @@ export class Gateway {
 
     // TODO Push Client into Connections
 
-    for (const endpoint of this.endpoints) {
-      endpoint.initialize(socket)
+    if (typeof this.endpoints === 'array') {
+      for (const endpoint of this.endpoints) {
+        endpoint.initialize(socket)
+      }
+    } else if (typeof this.endpoints === 'object') {
+      for (const endpoint in this.endpoints) {
+        endpoint.initialize(socket)
+      }
     }
+
   }
 
   private disconnection(socket: Socket){
