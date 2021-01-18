@@ -9,8 +9,8 @@ export class Endpoint {
 
   initialize(socket: any) {
 
-    socket.on(this.name, (data: any, callback: any) => {
-      this.fn(socket, data, callback)
+    socket.on(this.name, async (data: any, callback: any) => {
+      await this.fn(socket, data, callback)
     })
 
     console.log(`Endpoint '${this.name}' initialized`);

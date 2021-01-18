@@ -17,7 +17,9 @@ export class Instance {
     this.io = new Server(http, config);
 
     for (const gateway of this.gateways) {
-      gateway.initialize(this.io);
+      // gateway.initialize(this.io);
+      console.log(gateway);
+
     };
 
     console.log(`Instance '${this.name}' initialized`);

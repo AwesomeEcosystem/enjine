@@ -4,7 +4,7 @@ import { Exception } from '../exceptions/exception';
 
 const authService = new AuthService()
 
-export default async function authMiddleware(socket: any, next: any) {
+export async function authMiddleware(socket: any, next: any) {
   if (!socket.handshake.query.token && socket.handshake.query.login) {
 
     const loginData = socket.handshake.query.login

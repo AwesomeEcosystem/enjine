@@ -1,4 +1,5 @@
-import { Host, Instance, Gateway, Endpoint } from '@scale/core';
+import { Host, Instance, Gateway, authMiddleware } from '@scale/core';
+import { AuthGateway, UserGateway, DataGateway, MediaGateway } from '@scale/common';
 
 const host = new Host({
   cors: { origin: '*', credentials: false },
@@ -7,12 +8,11 @@ const host = new Host({
 
 host.add([
   new Instance('', [
-    new Gateway('', [
-      new Endpoint('check', (id: any, data: any) => {
-        console.log(id, data);
-      })
-    ])
+    new AuthGateway(), 
+    new UserGateway(), 
+    new DataGateway(), 
+    new MediaGateway()
   ])
 ])
 
-host.listen()
+host.listen(9090)

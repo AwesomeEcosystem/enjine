@@ -8,7 +8,7 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-// import { Session } from '@scale/session'
+// import { Connection, Session } from '@scale/session'
 import io from 'socket.io-client'
 
 export default {
@@ -19,9 +19,14 @@ export default {
     }
   },
   mounted() {
-    // this.session = new Session({
+    // this.connection = new Connection({
     //   host: 'ws://localhost:9090',
-    //   instance: 'dev',
+    //   credentials: {
+    //     username: 'admin',
+    //     password: 'admin'
+    //   }
+    // })
+    // this.session = new Session(connection, {
     //   gateway: 'playground'
     // })
     this.session = io('ws://localhost:9090/')

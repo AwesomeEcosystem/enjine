@@ -4,12 +4,13 @@ import { AuthService } from '../services/auth.service';
 export class Gateway {
   public name: string;
   private io: Server;
-  private middlewares: any; // TODO Interface Middlewares
+  private middlewares: any[]; // TODO Interface Middlewares
   private endpoints: any; // TODO Interface Endpoints
   private connections: { [ id: string ] : Socket; } = {};
 
   constructor(name: string, endpoints: any) {
     this.name = name;
+    this.middlewares = [];
     this.endpoints = endpoints;
   }
 
@@ -36,14 +37,8 @@ export class Gateway {
 
     // TODO Push Client into Connections
 
-    if (typeof this.endpoints === 'array') {
-      for (const endpoint of this.endpoints) {
-        endpoint.initialize(socket)
-      }
-    } else if (typeof this.endpoints === 'object') {
-      for (const endpoint in this.endpoints) {
-        endpoint.initialize(socket)
-      }
+    for (const endpoint of this.endpoints) {
+      socket.on(endpoint.name, endpoint)
     }
 
   }
@@ -51,5 +46,4 @@ export class Gateway {
   private disconnection(socket: Socket){
     console.log('SocketIO onDisconnect', socket.id);
   }
-
 }

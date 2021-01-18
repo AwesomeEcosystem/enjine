@@ -8,7 +8,9 @@
   "main": "dist/index",
   "types": "dist/index",
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "jest"
   },
   "directories": {
     "src": "src"

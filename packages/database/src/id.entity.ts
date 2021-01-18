@@ -6,7 +6,7 @@ export class Identity extends Model {
 
   constructor(data: any) {
     (data.prefix) ? super(data.prefix) : super('');
-
+    
     (async () => {
       this.password = await createCrypto(data.password)
     })()

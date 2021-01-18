@@ -8,6 +8,7 @@
   "main": "dist",
   "types": "dist",
   "scripts": {
+    "dev": "tsc -w",
     "build": "tsc",
     "test": "jest"
   },

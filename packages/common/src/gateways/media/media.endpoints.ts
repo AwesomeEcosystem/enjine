@@ -8,6 +8,6 @@ export async function upload(socket: any, data: any, callback: any) { // TODO Cr
   callback(null, data)
 }
 
-export async function stream(socket: any, data: any) { // TODO Credentials Interface
-
+export async function stream(socket: any, data: any, callback: any) { // TODO Credentials Interface
+  callback(null, data)
 }
