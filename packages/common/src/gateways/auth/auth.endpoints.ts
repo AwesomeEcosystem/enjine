@@ -2,22 +2,23 @@ import { AuthService } from '@scale/core';
 
 const authService = new AuthService()
 
-// NOTE: Just a Prototype
+export async function endpoints(socket: any) {
 
-export async function login(socket: any, event: any, callback: any) { // TODO Credentials Interface
-  try {
-    const auth = await authService.login(event.credentials, event.ip)
-    callback(null, auth)
-  } catch (err) {
-    callback(err, null)
-  }
-}
+  socket.on('login', async (data: any, callback: any) => {
+    try {
+      const auth = await authService.login(data.credentials, data.ip)
+      callback(null, auth)
+    } catch (err) {
+      callback(err, null)
+    }
+  })
 
-export async function auth(socket: any, event: any, callback: any) { // TODO Credentials Interface
-  try {
-    const auth = await authService.validateToken(event.token, event.user_id, event.ip)
-    callback(null, auth)
-  } catch (err) {
-    callback(err, null)
-  }
+  socket.on('auth', async (data: any, callback: any) => {
+    try {
+      const auth = await authService.validateToken(data.token, data.user_id, data.ip)
+      callback(null, auth)
+    } catch (err) {
+      callback(err, null)
+    }
+  })
 }

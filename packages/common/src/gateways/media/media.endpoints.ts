@@ -3,11 +3,14 @@ import { Manager } from '@scale/database';
 const manager = new Manager('.database')
 const media = manager.create('media')
 
-export async function upload(socket: any, data: any, callback: any) { // TODO Credentials Interface
-  console.log(socket.id);
-  callback(null, data)
-}
+export async function endpoints(socket: any) {
 
-export async function stream(socket: any, data: any, callback: any) { // TODO Credentials Interface
-  callback(null, data)
+  socket.on('upload', async (data: any, callback: any) => {
+    console.log(socket.id);
+    callback(null, data)
+  })
+
+  socket.on('stream', async (data: any, callback: any) => {
+    callback(null, data)
+  })
 }

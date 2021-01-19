@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Exception } from '../exceptions/exception';
-import { Manager} from '@scale/database'; // TODO Root Database
+import { Manager } from '@scale/database'; // TODO Root Database
 import { compareCrypto } from '@scale/utils';
 
 const manager = new Manager('.database')
@@ -21,7 +21,7 @@ export class AuthService {
     }
     return await this.createSessionToken(user, ip)
   }
-
+  
   public async createSessionToken(user: any, ip: string) { // TODO User Interface
     const now = new Date().getTime();
     const token = await bcrypt.hash(`${user._id}_${user.username}_${ip}_${now}`, 10);

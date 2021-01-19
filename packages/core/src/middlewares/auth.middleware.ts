@@ -16,18 +16,20 @@ export async function authMiddleware(socket: any, next: any) {
       const error = new Exception(403, 'Not Authenticated!')
       next(error)
     }
-
     next()
-  } else {
+
+  } else if (socket.handshake.query.token) {
 
     const { token, userid } = socket.handshake.query
     const ip = socket.handshake.adress
+
     const validated = await authService.validateToken(token, userid, ip)
+    
     if (!validated) {
       const error = new Exception(403, 'Not Authenticated!')
       next(error)
     }
-
     next()
+
   }
 }

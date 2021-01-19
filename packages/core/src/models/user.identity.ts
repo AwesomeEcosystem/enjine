@@ -1,13 +1,16 @@
-import { Identity } from '@scale/database';
+import { Model } from '@scale/database';
+import { createCrypto } from '@scale/utils';
 
-export class User extends Identity {
+export class User extends Model {
   username: string;
+  password: any; // TODO Password Interface
 
-  constructor(data: any) {
-    super({
-      prefix: 'user' + '=' + data.username,
-      password: data.password
-    })
-    this.username = data.username
+  constructor(username: any) {
+    super('user' + '=' + username)
+    this.username = username
+  }
+
+  async init(password: string) {
+    this.password = await createCrypto(password)
   }
 }
