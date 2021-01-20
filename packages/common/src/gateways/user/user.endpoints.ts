@@ -1,15 +1,14 @@
 import { Manager } from '@scale/database';
 import { User } from '@scale/core';
 
-const manager = new Manager('.database')
-const users = manager.create('users')
+export async function endpoints(context: any) {
 
-export async function endpoints(socket: any) {
+  const { socket, database } = context;
 
   socket.on('post', async (data: any, callback: any) => {
     const user = new User(data)
     try {
-      const res = await users.post(user)
+      const res = await database.post(user)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -18,7 +17,7 @@ export async function endpoints(socket: any) {
 
   socket.on('update', async (doc: any, callback: any) => {
     try {
-      const res = await users.put(doc._id, doc)
+      const res = await database.put(doc._id, doc)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -27,7 +26,7 @@ export async function endpoints(socket: any) {
 
   socket.on('get', async (id: any, callback: any) => {
     try {
-      const res = await users.get(id)
+      const res = await database.get(id)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -36,7 +35,7 @@ export async function endpoints(socket: any) {
 
   socket.on('find', async (fn: any, callback: any) => {
     try {
-      const res = await users.find(fn)
+      const res = await database.find(fn)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -45,7 +44,7 @@ export async function endpoints(socket: any) {
 
   socket.on('filter', async (fn: any, callback: any) => {
     try {
-      const res = await users.filter(fn)
+      const res = await database.filter(fn)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -54,7 +53,7 @@ export async function endpoints(socket: any) {
 
   socket.on('remove', async (id: string, callback: any) => {
     try {
-      const res = await users.remove(id)
+      const res = await database.remove(id)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)

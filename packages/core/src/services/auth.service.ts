@@ -7,21 +7,27 @@ import { compareCrypto } from '@scale/utils';
 const manager = new Manager('.database')
 
 export class AuthService {
-  public users = manager.create('users');
-  public sessions = manager.create('sessions');
+  public users: any;
+  public sessions: any;
+
+  constructor(users: any, sessions: any) { // TODO Interfaces
+    this.users = users;
+    this.sessions = sessions
+  }
 
   public async login(credentials: any, ip: any) { // TODO Interfaces
-    const user: any = this.users.find((u: any) => u.username === credentials.username)
+    console.log(credentials.username);
+    const user: any = await this.users.find((u: any) => u.username === credentials.username)
     if (!user) {
-      throw new Exception(401, 'Username or Password is incorrect');
+      throw new Exception(401, 'Username is incorrect');
     }
     const matched = await compareCrypto(credentials.password, user.password.hash)
     if (!matched) {
-      throw new Exception(401, 'Username or Password is incorrect');
+      throw new Exception(401, ' Password is incorrect');
     }
     return await this.createSessionToken(user, ip)
   }
-  
+
   public async createSessionToken(user: any, ip: string) { // TODO User Interface
     const now = new Date().getTime();
     const token = await bcrypt.hash(`${user._id}_${user.username}_${ip}_${now}`, 10);

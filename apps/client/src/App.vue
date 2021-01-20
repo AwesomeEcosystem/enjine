@@ -29,7 +29,7 @@ export default {
     // this.session = new Session(connection, {
     //   gateway: 'playground'
     // })
-    this.session = io('ws://localhost:9090/', {
+    this.session = io('ws://localhost:9090/data', {
       query: {
         login: { username: 'admin', password: 'admin' }
       }

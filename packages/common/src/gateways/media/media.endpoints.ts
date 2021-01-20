@@ -1,9 +1,8 @@
 import { Manager } from '@scale/database';
 
-const manager = new Manager('.database')
-const media = manager.create('media')
+export async function endpoints(context: any) {
 
-export async function endpoints(socket: any) {
+  const { socket, database } = context;
 
   socket.on('upload', async (data: any, callback: any) => {
     console.log(socket.id);

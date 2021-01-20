@@ -3,8 +3,40 @@ import { AuthGateway, UserGateway, DataGateway, MediaGateway } from '@scale/comm
 import { Manager } from '@scale/database';
 
 
+const database = new Manager('.database')
 
-const users = new Manager('./.database/users');
+const users = database.create('user')
+const datas = database.create('data')
+const medias = database.create('media')
+
+
+const auth = new AuthGateway(database)
+const user = new UserGateway(users)
+const data = new DataGateway(datas)
+const media = new MediaGateway(medias)
+
+user.use(authMiddleware),
+data.use(authMiddleware),
+media.use(authMiddleware)
+
+
+const host = new Host({
+  cors: { origin: '*', credentials: false },
+  transports: ['websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling', 'polling']
+});
+
+host.add([
+  new Instance('', [
+    auth,
+    user,
+    data,
+    media
+  ])
+]);
+
+host.listen(9090);
+
+
 
 const bootstrap = async () => {
   let user: any = await users.find(u => u.username === 'admin')
@@ -14,36 +46,7 @@ const bootstrap = async () => {
     await users.post(admin)
     user = admin
   }
-  console.log(user);
-
-
-  const host = new Host({
-    cors: { origin: '*', credentials: false },
-    transports: ['websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling', 'polling']
-  });
-
-
-  const auth = new AuthGateway()
-  const user = new UserGateway()
-  const data = new DataGateway()
-  const media = new MediaGateway()
-
-
-  user.use(authMiddleware),
-  data.use(authMiddleware),
-  media.use(authMiddleware)
-
-
-  host.add([
-    new Instance('', [
-      auth,
-      user,
-      data,
-      media
-    ])
-  ]);
-
-  host.listen(9090);
+  console.log(user)
 };
 
 bootstrap()

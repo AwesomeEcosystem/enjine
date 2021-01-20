@@ -1,8 +1,13 @@
 import { AuthService } from '@scale/core';
 
-const authService = new AuthService()
+export async function endpoints(context: any) { // context Interface
 
-export async function endpoints(socket: any) {
+  const { socket, database } = context; // TODO Sesion DB
+
+  const users = database.create('users');
+  const sessions = database.create('sessions');
+
+  const authService = new AuthService(users, sessions)
 
   socket.on('login', async (data: any, callback: any) => {
     try {

@@ -3,12 +3,14 @@ import { AuthService } from '../services/auth.service';
 
 export class Gateway {
   public name: string;
+  public database: any;
   public middlewares: any[] = []; // TODO Interface Middlewares
   public endpoints: any; // TODO Interface Endpoints
   public connections: { [ id: string ] : Socket; } = {};
 
-  constructor(name: string, endpoints: any) {
+  constructor(name: string, db: any, endpoints: any) { // TODO DB Interface
     this.name = name;
+    this.database = db;
     this.endpoints = endpoints;
   }
 
@@ -33,7 +35,8 @@ export class Gateway {
     console.log('New Client ', socket.id);
 
     // TODO Push Client into Connections
-    this.endpoints(socket)
+
+    this.endpoints({ socket, database: this.database })
   }
 
   private disconnection(socket: Socket){

@@ -6,7 +6,7 @@ import { Exception } from '../exceptions/exception';
 const manager = new Manager('.database')
 
 export default class UserService {
-  public users = manager.create('users');
+  public users = manager.create('user');
 
   public async all(): Promise<any[]> {
     const users: any[] = await this.users.all();
