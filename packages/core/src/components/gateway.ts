@@ -32,7 +32,7 @@ export class Gateway {
   }
 
   private async connection(socket: Socket){
-    console.log('New Client ', socket.id);
+    console.log(`New Client connected to Gateway '${this.name}'`, socket.id);
 
     // TODO Push Client into Connections
 
