@@ -8,7 +8,7 @@
     "dist/"
   ],
   "scripts": {
-    "dev":  "nodemon --watch '*.ts' --exec 'ts-node' src/index.ts",
+    "dev":  "npm run build && nodemon --watch '*.ts' --exec 'ts-node' src/index.ts",
     "build": "tsc",
     "start": "node dist"
   },

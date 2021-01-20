@@ -8,7 +8,7 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-// import { Connection, Session } from '@scale/session'
+import { Connection, Session } from '@scale/session'
 import io from 'socket.io-client'
 
 export default {
@@ -29,7 +29,7 @@ export default {
     // this.session = new Session(connection, {
     //   gateway: 'playground'
     // })
-    this.session = io('ws://localhost:9090/data', {
+    this.session = io('ws://localhost:9090/auth', {
       query: {
         login: { username: 'admin', password: 'admin' }
       }
