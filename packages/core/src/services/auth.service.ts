@@ -1,10 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Exception } from '../exceptions/exception';
-import { Manager } from '@scale/database'; // TODO Root Database
 import { compareCrypto } from '@scale/utils';
-
-const manager = new Manager('.database')
 
 export class AuthService {
   public users: any;
@@ -16,14 +13,15 @@ export class AuthService {
   }
 
   public async login(credentials: any, ip: any) { // TODO Interfaces
-    console.log(credentials.username);
     const user: any = await this.users.find((u: any) => u.username === credentials.username)
+
     if (!user) {
-      throw new Exception(401, 'Username is incorrect');
+      throw new Exception(401, 'Username or Password is incorrect');
     }
     const matched = await compareCrypto(credentials.password, user.password.hash)
+
     if (!matched) {
-      throw new Exception(401, ' Password is incorrect');
+      throw new Exception(401, ' Username or Password is incorrect');
     }
     return await this.createSessionToken(user, ip)
   }

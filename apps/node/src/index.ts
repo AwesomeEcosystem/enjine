@@ -6,13 +6,12 @@ import { Manager } from '@scale/database';
 const database = new Manager('.database')
 
 const users = database.create('user')
-const datas = database.create('data')
 const medias = database.create('media')
 
-
 const auth = new AuthGateway(database)
+const data = new DataGateway(database)
+
 const user = new UserGateway(users)
-const data = new DataGateway(datas)
 const media = new MediaGateway(medias)
 
 user.use(authMiddleware),

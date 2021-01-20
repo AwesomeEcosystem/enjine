@@ -2,42 +2,48 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <button @click="check()">Check</button>
+    <button @click="all()">Check</button>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import { Connection, Session } from '@scale/session'
-import io from 'socket.io-client'
+import { Authentification, Session } from '@scale/session'
 
 export default {
   name: 'App',
   data() {
     return {
-      session: null
+      session: null,
+      databases: []
     }
   },
-  mounted() {
-    // this.connection = new Connection({
-    //   host: 'ws://localhost:9090',
-    //   credentials: {
-    //     username: 'admin',
-    //     password: 'admin'
-    //   }
-    // })
-    // this.session = new Session(connection, {
-    //   gateway: 'playground'
-    // })
-    this.session = io('ws://localhost:9090/auth', {
-      query: {
-        login: { username: 'admin', password: 'admin' }
-      }
-    })
+  async mounted() {
+    try {
+      const auth = new Authentification({
+        host: 'ws://localhost:9090',
+        gateway: 'auth'
+      })
+
+      const token = await auth.login({ username: 'admin', password: 'admin' })
+
+      this.session = new Session({
+        host: 'ws://localhost:9090',
+        gateway: 'data',
+        auth: token
+      })
+
+    } catch (e) {
+      console.log(e);
+    }
+
   },
   methods: {
-    check() {
-      this.session.emit('check', 'Check!')
+    async all() {
+      this.session.emit('all', async (err, res) => {
+        if (err) return console.log(err);
+        this.databases = res;
+      })
     }
   },
   components: {

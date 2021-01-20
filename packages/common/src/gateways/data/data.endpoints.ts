@@ -4,6 +4,15 @@ export async function endpoints(context: any) {
 
   const { socket, database } = context;
 
+  socket.on('all', async (callback: any) => {
+    try {
+      const res = await database.all()
+      callback(null, res)
+    } catch (err) {
+      callback(new Error(err), null)
+    }
+  })
+
   socket.on('post', async (data: any, callback: any) => {
     const doc = new Model(data)
     try {

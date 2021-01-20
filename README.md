@@ -2,6 +2,8 @@
 
 > Progressive Interoperable Full Stack Application Data Management Framework
 
+> Lets build a digital global data flow infrastructure for an open, tranparent and effecient future!
+
 # Concept
 
 Parts of a full *data management backend* with implemented *authentication* are designed into classes for scalable architecture, which safes much time!
