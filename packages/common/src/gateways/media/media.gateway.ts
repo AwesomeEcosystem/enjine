@@ -1,5 +1,5 @@
 import { Gateway, authMiddleware } from '@scale/core';
-import * as endpoints from './media.endpoints';
+import { endpoints } from './media.endpoints';
 
 export class MediaGateway extends Gateway {
   constructor(db: any) {
