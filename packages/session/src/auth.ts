@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client'
 
-export class Authentification {
+export class Auth {
   public credentials: string
   public host: string;
   public gateway: string;
