@@ -8,9 +8,7 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
     this.config = config
 
     this.socket = io(`${config.host}/${config.gateway}`, {
-      query: {
-        auth: config.auth
-      }
+      auth: config.auth
     })
   }
 

@@ -18,16 +18,23 @@ export class Gateway {
     this.middlewares.push(middleware)
   }
 
-  public initialize(io: Server){
+  public initialize(io: Server) {
+
+    const namespace = io.of(this.name)
 
     if (this.middlewares) {
       for (const middleware of this.middlewares) {
-        io.use(middleware)
+        console.log('middleware of middwares', middleware);
+
+        namespace.use((socket: any, next: any) => middleware(socket, next))
       }
+      // TODO Real Passport Session
+      // io.use(wrap(passport.initialize()));
+      // io.use(wrap(passport.session()));
     }
 
-    io.of(this.name).on('connection', (event: Socket) => this.connection(event));
-    io.of(this.name).on('disconnect', (event: Socket) => this.disconnection(event));
+    namespace.on('connection', (event: Socket) => this.connection(event));
+    namespace.on('disconnect', (event: Socket) => this.disconnection(event));
     console.log(`Gateway '${this.name}' initialized`);
   }
 

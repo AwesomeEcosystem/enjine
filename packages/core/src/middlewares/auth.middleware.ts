@@ -11,20 +11,29 @@ const sessions = database.create('session');
 
 const authService: any = new AuthService(users, sessions)
 
+// io.use(wrap(passport.initialize()));
+// io.use(wrap(passport.session()));
+
 export async function authMiddleware(socket: any, next: any) {
+  try {
+    console.log('token',  socket.handshake);
 
-  console.log(socket.handshake.query.auth);
+    const { token, _id }: any = socket.handshake.auth
+    const ip = socket.handshake.adress
 
-  const { token, _id } = socket.handshake.query.auth
-  const ip = socket.handshake.adress
+    const validated = await authService.validateToken(token, _id, ip)
 
-  const validated = await authService.validateToken(token, _id, ip)
-
-  if (!validated) {
-    const error = new Exception(403, 'Not Authenticated!')
+    if (!validated) {
+      const error = new Exception(403, 'Not Authenticated!')
+      console.log('Not Authenticated!');
+      next(error)
+    }
+    console.log(`${socket.id} authenticated!`);
+    next()
+  } catch (error) {
     next(error)
   }
-  next()
+
 }
 //
 // if (!socket.handshake.query.token && socket.handshake.query.login) {

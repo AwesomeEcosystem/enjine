@@ -7,22 +7,24 @@ export async function endpoints(context: any) {
 
   socket.on('all', async (callback: any) => {
     try {
-      const res = await database.all()
+      const res: any = await database.all()
+
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
     }
-  })
+  });
 
   socket.on('post', async (data: any, callback: any) => {
-    const doc = new Document('data', 'admin', data)
+    const doc: any = new Document('data', 'admin', data)
     try {
-      const res = await database.post(doc)
+      const res: any = await database.post(doc)
+      
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
     }
-  })
+  });
 
   socket.on('update', async (doc: any, callback: any) => {
     try {
@@ -31,41 +33,41 @@ export async function endpoints(context: any) {
     } catch (err) {
       callback(new Error(err), null)
     }
-  })
+  });
 
   socket.on('get', async (id: any, callback: any) => {
     try {
-      const res = await database.get(id)
+      const res: any = await database.get(id)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
     }
-  })
+  });
 
   socket.on('find', async (fn: any, callback: any) => {
     try {
-      const res = await database.find(fn)
+      const res: any = await database.find(fn)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
     }
-  })
+  });
 
   socket.on('filter', async (fn: any, callback: any) => {
     try {
-      const res = await database.filter(fn)
+      const res: any = await database.filter(fn)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
     }
-  })
+  });
 
   socket.on('remove', async (id: string, callback: any) => {
     try {
-      const res = await database.remove(id)
+      const res: any = await database.remove(id)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
     }
-  })
+  });
 }

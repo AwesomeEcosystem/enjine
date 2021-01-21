@@ -4,7 +4,7 @@
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <button @click="all()">Check</button>
     <button @click="post()">Post</button>
-    {{ databases }}
+    {{ data }}
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   data() {
     return {
       session: null,
-      databases: []
+      data: []
     }
   },
   async mounted() {
@@ -29,10 +29,12 @@ export default {
 
       const ticket = await auth.login({ username: 'admin', password: 'admin' })
 
+      console.log(ticket);
+
       this.session = new Session({
         host: 'ws://localhost:9090',
-        gateway: 'data',
-        auth: ticket
+        gateway: 'user',
+        auth: 'ticket'
       })
 
     } catch (e) {
@@ -42,15 +44,19 @@ export default {
   },
   methods: {
     async all() {
-      this.session.emit('all', async (err, res) => {
+      this.session.socket.emit('all', (err, res) => {
         if (err) return console.log(err);
-        this.databases = res;
+        this.data = res;
       })
+      // this.session.emit('all', async (err, res) => {
+      //   if (err) return console.log(err);
+      //   this.data = res;
+      // })
     },
     async post() {
-      this.session.emit('post', 'data', async (err, res) => {
+      this.session.emit('post', { username: 'admin', password: 'admin' }, async (err, res) => {
         if (err) return console.log(err);
-        this.databases = res;
+        this.data = res;
       })
     }
   },
