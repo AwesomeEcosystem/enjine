@@ -4,10 +4,12 @@ import { Model } from '@scale/database';
 
 export class Document extends Model {
   author: string;
+  data: any;
 
-  constructor(kind: string, author: string) {
+  constructor(kind: string, author: string, data: any) {
     super(kind)
-    
+
     this.author = author;
+    this.data = data;
   }
 }

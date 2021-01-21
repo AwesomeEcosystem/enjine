@@ -1,4 +1,5 @@
 import { Manager, Model } from '@scale/database';
+import { Document } from '../../models/document.model';
 
 export async function endpoints(context: any) {
 
@@ -14,7 +15,7 @@ export async function endpoints(context: any) {
   })
 
   socket.on('post', async (data: any, callback: any) => {
-    const doc = new Model(data)
+    const doc = new Document('data', 'admin', data)
     try {
       const res = await database.post(doc)
       callback(null, res)

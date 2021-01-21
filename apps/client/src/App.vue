@@ -3,12 +3,14 @@
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <button @click="all()">Check</button>
+    <button @click="post()">Post</button>
+    {{ databases }}
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import { Authentification, Session } from '@scale/session'
+import { Auth, Session } from '@scale/session'
 
 export default {
   name: 'App',
@@ -20,17 +22,17 @@ export default {
   },
   async mounted() {
     try {
-      const auth = new Authentification({
+      const auth = new Auth({
         host: 'ws://localhost:9090',
         gateway: 'auth'
       })
 
-      const token = await auth.login({ username: 'admin', password: 'admin' })
+      const ticket = await auth.login({ username: 'admin', password: 'admin' })
 
       this.session = new Session({
         host: 'ws://localhost:9090',
         gateway: 'data',
-        auth: token
+        auth: ticket
       })
 
     } catch (e) {
@@ -41,6 +43,12 @@ export default {
   methods: {
     async all() {
       this.session.emit('all', async (err, res) => {
+        if (err) return console.log(err);
+        this.databases = res;
+      })
+    },
+    async post() {
+      this.session.emit('post', 'data', async (err, res) => {
         if (err) return console.log(err);
         this.databases = res;
       })

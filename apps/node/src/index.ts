@@ -3,26 +3,28 @@ import { AuthGateway, UserGateway, DataGateway, MediaGateway } from '@scale/comm
 import { Manager } from '@scale/database';
 
 
-const database = new Manager('.database')
+const database = new Manager('.database'),
 
-const users = database.create('user')
-const medias = database.create('media')
+      users = database.create('user'),
+      medias = database.create('media'),
 
-const auth = new AuthGateway(database)
-const data = new DataGateway(database)
+      auth = new AuthGateway(database),
+      data = new DataGateway(database),
 
-const user = new UserGateway(users)
-const media = new MediaGateway(medias)
+      user = new UserGateway(users),
+      media = new MediaGateway(medias),
 
-user.use(authMiddleware),
-data.use(authMiddleware),
-media.use(authMiddleware)
+      host = new Host({
+        cors: { origin: '*', credentials: false },
+        transports: ['websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling', 'polling']
+      });
 
 
-const host = new Host({
-  cors: { origin: '*', credentials: false },
-  transports: ['websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling', 'polling']
-});
+// data.use(authMiddleware);
+
+// user.use(authMiddleware);
+// media.use(authMiddleware);
+
 
 host.add([
   new Instance('', [
@@ -34,18 +36,3 @@ host.add([
 ]);
 
 host.listen(9090);
-
-
-
-const bootstrap = async () => {
-  let user: any = await users.find(u => u.username === 'admin')
-  if (!user) {
-    const admin: any = new User('admin')
-    await admin.init('admin')
-    await users.post(admin)
-    user = admin
-  }
-  console.log(user)
-};
-
-bootstrap()

@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client'
 
-export class Session {
+export class Session { // TODO Exent EventErmitter or SocketIO Manager
   public config: any;
   public socket: any; // Interfaces
 
@@ -12,10 +12,13 @@ export class Session {
         auth: config.auth
       }
     })
-
-    this.socket.on('connect', () => {
-
-    })
   }
 
+  public async emit(name: any, data: any, callback: any) { // TODO Interfaces
+    this.socket.emit(name, data, callback)
+  }
+
+  public async on(name: any, data: any, callback: any) { // TODO Interfaces
+    this.socket.on(name, data, callback)
+  }
 }
