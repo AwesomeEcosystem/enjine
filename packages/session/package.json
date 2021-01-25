@@ -26,6 +26,7 @@
     "url": "https://github.com/AwesomeEcosystem/scale/issues"
   },
   "dependencies": {
+    "async-constructor": "^0.4.5",
     "axios": "^0.21.1",
     "socket.io-client": "^3.0.5"
   }

@@ -1,4 +1,4 @@
-import { Socket, Server }  from 'socket.io';
+// import { any, any }  from 'socket.io';
 import { AuthService } from '../services/auth.service';
 
 export class Gateway {
@@ -6,7 +6,8 @@ export class Gateway {
   public database: any;
   public middlewares: any[] = []; // TODO Interface Middlewares
   public endpoints: any; // TODO Interface Endpoints
-  public connections: { [ id: string ] : Socket; } = {};
+  public connections: { [ id: string ] : any; } = {};
+  public namespace: any;
 
   constructor(name: string, db: any, endpoints: any) { // TODO DB Interface
     this.name = name;
@@ -18,27 +19,27 @@ export class Gateway {
     this.middlewares.push(middleware)
   }
 
-  public initialize(io: Server) {
+  public initialize(io: any) {
 
-    const namespace = io.of(this.name)
+    this.namespace = io.of(this.name)
 
     if (this.middlewares) {
       for (const middleware of this.middlewares) {
         console.log('middleware of middwares', middleware);
 
-        namespace.use((socket: any, next: any) => middleware(socket, next))
+        this.namespace.use((socket: any, next: any) => middleware(socket, next))
       }
       // TODO Real Passport Session
       // io.use(wrap(passport.initialize()));
       // io.use(wrap(passport.session()));
     }
 
-    namespace.on('connection', (event: Socket) => this.connection(event));
-    namespace.on('disconnect', (event: Socket) => this.disconnection(event));
+    this.namespace.on('connection', (event: any) => this.connection(event));
+    this.namespace.on('disconnect', (event: any) => this.disconnection(event));
     console.log(`Gateway '${this.name}' initialized`);
   }
 
-  private async connection(socket: Socket){
+  private async connection(socket: any){
     console.log(`New Client connected to Gateway '${this.name}'`, socket.id);
 
     // TODO Push Client into Connections
@@ -46,7 +47,7 @@ export class Gateway {
     this.endpoints({ socket, database: this.database })
   }
 
-  private disconnection(socket: Socket){
+  private disconnection(socket: any){
     console.log('SocketIO onDisconnect', socket.id);
   }
 }

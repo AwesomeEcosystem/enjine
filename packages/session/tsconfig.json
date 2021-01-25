@@ -1,9 +1,8 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "esnext",
-    "lib": ["es6", "dom"],
+    "module": "es6",
+    "target": "es6",
     "rootDir": "src",
     "declaration": true,
     "declarationMap": false,

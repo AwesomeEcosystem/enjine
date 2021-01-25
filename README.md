@@ -4,7 +4,11 @@
 
 > Lets build a digital global data flow infrastructure for an open, tranparent and effecient future!
 
+**scale** is a real time data management framework. 
+
 # Concept
+
+> Lets build Data Cities with links which are like streets :)
 
 Parts of a full *data management backend* with implemented *authentication* are designed into classes for scalable architecture, which safes much time!
 

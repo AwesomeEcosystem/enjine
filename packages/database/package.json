@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@scale/utils": "file:../utils",
+    "async-constructor": "^0.4.5",
     "level-ts": "^2.0.6",
     "uniqid": "^5.2.0"
   },

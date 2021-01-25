@@ -5,7 +5,7 @@ export class Bot extends Identity {
 
   constructor(data: any) {
     super({
-      prefix: 'user' + '=' + data.username,
+      prefix: 'bot' + '=' + data.username,
       password: data.password
     })
     this.username = data.username

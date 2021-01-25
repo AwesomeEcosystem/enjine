@@ -19,7 +19,7 @@ export async function endpoints(context: any) {
     const doc: any = new Document('data', 'admin', data)
     try {
       const res: any = await database.post(doc)
-      
+
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)

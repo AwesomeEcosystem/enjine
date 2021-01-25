@@ -4,6 +4,7 @@ export class Auth {
   public credentials: string
   public host: string;
   public gateway: string;
+  public socket: any;
 
   constructor(instance: any) { // TODO credentials Interface
     this.host = instance.host
@@ -11,10 +12,10 @@ export class Auth {
   }
 
   public async login(credentials: any) { // TODO Creds Interface
-    const socket = io(`${this.host}/${this.gateway}`)
+    this.socket = io(`${this.host}/${this.gateway}`)
 
     return new Promise((resolve: any, reject: any) => {
-      socket.emit('login', credentials, async (err: any, res: any) => {
+      this.socket.emit('login', credentials, async (err: any, res: any) => {
         if (err) return reject(err);
 
         this.credentials = res;

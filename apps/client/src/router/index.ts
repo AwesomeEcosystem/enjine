@@ -3,12 +3,24 @@ import { RouteRecordRaw } from 'vue-router';
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '',
-    redirect: '/folder/Inbox'
+    path: '/',
+    redirect: '/Apps'
   },
   {
-    path: '/folder/:id',
-    component: () => import ('../views/Folder.vue')
+    path: '/Apps',
+    component: () => import ('../views/Apps.vue')
+  },
+  {
+    path: '/Settings',
+    component: () => import ('../views/Settings.vue')
+  },
+  {
+    path: '/Users',
+    component: () => import ('../views/Users.vue')
+  },
+  {
+    path: '/Databases',
+    component: () => import ('../views/Databases.vue')
   }
 ]
 
