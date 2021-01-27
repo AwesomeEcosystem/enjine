@@ -2,9 +2,9 @@
 
 > Progressive Interoperable Full Stack Application Data Management Framework
 
-> Lets build a digital global data flow infrastructure for an open, tranparent and effecient future!
+> Lets build a digital global data flow infrastructure for an open, transparent and efficient future!
 
-**scale** is a real time data management framework. 
+**scale** is a real time data management framework.
 
 # Concept
 
