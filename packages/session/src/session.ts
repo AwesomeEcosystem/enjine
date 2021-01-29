@@ -6,32 +6,23 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
 
   constructor(config: any) { // TODO Config Interface
     this.config = config
-    this.socket = config
-    this.socket = io(`${config.host}/${config.gateway}`, {
-      query: {
-        auth: config.auth
-      }
-    });
-
-    this.socket.on('connect', (socket: any) => {
-      console.log(socket.id);
-    });
-
-    this.socket.on('error', (err: any) => {
-      console.log(err);
-    });
-
-    this.socket.on('connect_error', (err: any) => {
-      console.log(err);
-    })
-
+    this.socket = io(`${config.host}/${config.gateway}`);
   }
 
-  public async emit(name: any, data: any, callback: any) { // TODO Interfaces
-    this.socket.emit(name, data, callback)
+  public async emit(name: any) { // TODO Interfaces
+    return new Promise((resolve: any, reject: any) => {
+      this.socket.emit(name, async (err: any, res: any) => {
+        if (err) return reject(err);
+        resolve(res);
+      })
+    });
   }
 
-  public async on(name: any, data: any, callback: any) { // TODO Interfaces
-    this.socket.on(name, data, callback)
-  }
+  // public async emit(name: any, data: any, callback: any) { // TODO Interfaces
+  //   this.socket.emit(name, data, callback)
+  // }
+
+  // public async on(name: any, data: any, callback: any) { // TODO Interfaces
+  //   this.socket.on(name, data, callback)
+  // }
 }
