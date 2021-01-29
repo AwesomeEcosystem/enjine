@@ -32,45 +32,35 @@
 </template>
 
 <script lang="ts">
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardContent, IonCol, IonGrid, IonRow } from '@ionic/vue';
-import { Session } from '@scale/session'
-
-export default {
+import { defineComponent } from 'vue';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardContent } from '@ionic/vue';
+import { Auth } from '@scale/session'
+// IonCol, IonGrid, IonRow
+export default defineComponent({
   name: 'Folder',
-  // data() {
-  //   return {
-  //     session: null,
-  //     database: null
-  //   }
-  // },
-  async mounted() {
-    try {
-      const session: any = new Session({
-        host: 'ws://localhost:9090',
-        gateway: 'data',
-        // auth: ticket
-      });
+  setup() {
+    const session: any = new Auth({
+      host: 'http://localhost:9090',
+      gateway: 'auth'
+    })
 
-      let apps: any = [];
+    console.log(session);
 
-      setTimeout(() => {
-        console.log(session);
+    let ticket: any;
 
-        session.socket.emit('all', (err: any, res: any) => {
-          if (err) {
-            throw new Error(err)
-          }
-          apps = res;
-        });
-      }, 1000);
-
-      return {
-        session,
-        apps
-      }
-    } catch (error) {
-      console.log(error);
+    return {
+      session,
+      ticket
     }
+  },
+  async mounted() {
+    this.ticket = await this.session.login({
+      username: 'admin',
+      password: 'admin'
+    })
+
+    console.log(this.ticket);
+
   },
   components: {
     IonButtons,
@@ -84,7 +74,7 @@ export default {
     IonCardHeader,
     IonCardContent
   }
-}
+})
 </script>
 
 <style scoped>
