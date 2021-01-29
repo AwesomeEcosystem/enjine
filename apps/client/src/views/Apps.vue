@@ -24,7 +24,7 @@
           </IonCardHeader>
           <IonCardContent>
             <div class="" v-for="(data) in database.user" v-bind:key="data">
-              {{ data.username }}
+              {{ data }}
             </div>
           </IonCardContent>
         </IonCard>
@@ -56,12 +56,12 @@ export default defineComponent({ // TODO Interfaces
     });
 
     onMounted(async () => {
-      ticket = await auth.login({ username: 'admin', password: 'admin' })
+      ticket = await auth.login({ username: 'admin', password: 'admin' }).catch(e => console.log(e))
       console.log(ticket);
 
       session = new Session({
         host: 'http://localhost:9090',
-        gateway: 'user',
+        gateway: 'data',
         ticket
       })
 

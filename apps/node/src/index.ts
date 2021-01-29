@@ -20,7 +20,7 @@ const database = new Manager('.database'),
       });
 
 
-data.use(authMiddleware);
+// data.use(authMiddleware);
 
 user.use(authMiddleware);
 media.use(authMiddleware);
