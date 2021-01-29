@@ -16,9 +16,9 @@ const authService: any = new AuthService(users, sessions)
 
 export async function authMiddleware(socket: any, next: any) {
   try {
-    // console.log('token',  socket);
+    console.log('token',  socket.handshake.query);
 
-    const { token, _id }: any = socket.handshake.query.auth
+    const { token, _id }: any = socket.handshake.query
     const ip = socket.handshake.adress
 
     const validated = await authService.validateToken(token, _id, ip)
