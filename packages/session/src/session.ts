@@ -6,7 +6,11 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
 
   constructor(config: any) { // TODO Config Interface
     this.config = config
-    this.socket = io(`${config.host}/${config.gateway}`);
+    this.socket = io(`${config.host}/${config.gateway}`, {
+      query: {
+        auth: config.ticket
+      }
+    });
   }
 
   public async emit(name: any) { // TODO Interfaces

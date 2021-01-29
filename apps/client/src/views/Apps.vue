@@ -23,7 +23,7 @@
             Header
           </IonCardHeader>
           <IonCardContent>
-            <div class="" v-for="(data) in data.data" v-bind:key="data">
+            <div class="" v-for="(data) in database.user" v-bind:key="data">
               {{ data.username }}
             </div>
           </IonCardContent>
@@ -36,29 +36,43 @@
 <script lang="ts">
 import { defineComponent, onMounted, reactive } from 'vue';
 import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardContent } from '@ionic/vue';
-import { Session } from '@scale/session'
+import { Auth, Session } from '@scale/session'
 // IonCol, IonGrid, IonRow
-export default defineComponent({
+export default defineComponent({ // TODO Interfaces
   name: 'Folder',
   setup() {
-    const session: any = new Session({
+
+    const auth = new Auth({
       host: 'http://localhost:9090',
-      gateway: 'user'
+      gateway: 'auth'
     })
 
-    const data: any = reactive({
-      data: []
+    let ticket: any = {};
+    let session: any = {};
+
+    const database: any = reactive({
+      data: [],
+      user: []
     });
 
     onMounted(async () => {
-      data.data = await session.emit('all')
-      console.log(data.data);
+      ticket = await auth.login({ username: 'admin', password: 'admin' })
+      console.log(ticket);
 
+      session = new Session({
+        host: 'http://localhost:9090',
+        gateway: 'user',
+        ticket
+      })
+
+      database.user = await session.emit('all')
     })
 
     return {
+      auth,
+      ticket,
       session,
-      data
+      database
     }
   },
   components: {
