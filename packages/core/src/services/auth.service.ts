@@ -41,7 +41,7 @@ export class AuthService {
 
   public async validateToken(token: string, user_id: string, ip: string) {
     const authToken: any = await this.sessions.find((auth: any) => { // TODO AuthToken Interface
-      return auth.token === auth.token && auth._id === user_id + '=' + ip && auth.ip === ip && auth.expiresAt > new Date().getTime(); // TODO Use Iteration
+      return auth.token === token && auth._id === user_id + '=' + ip && auth.ip === ip; // TODO ExpiresAt
     });
     if (!authToken) {
       console.log('Token not found', token)

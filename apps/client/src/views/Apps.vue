@@ -23,7 +23,7 @@
             Header
           </IonCardHeader>
           <IonCardContent>
-            <div class="" v-for="(data) in database.user" v-bind:key="data">
+            <div class="" v-for="(data, _id) in database.data" v-bind:key="_id">
               {{ data }}
             </div>
           </IonCardContent>
@@ -51,12 +51,11 @@ export default defineComponent({ // TODO Interfaces
     let session: any = {};
 
     const database: any = reactive({
-      data: [],
-      user: []
+      data: []
     });
 
     onMounted(async () => {
-      ticket = await auth.login({ username: 'admin', password: 'admin' }).catch(e => console.log(e))
+      ticket = await auth.login({ dataname: 'admin', password: 'admin' }).catch(e => console.log(e))
       console.log(ticket);
 
       session = new Session({
@@ -65,7 +64,9 @@ export default defineComponent({ // TODO Interfaces
         ticket
       })
 
-      database.user = await session.emit('all')
+      database.data = await session.emit('all')
+
+      // session.socket.on('put')
     })
 
     return {
