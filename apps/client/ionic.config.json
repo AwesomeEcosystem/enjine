@@ -1,7 +1,0 @@
-{
-  "name": "@scale/client",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "vue"
-}
