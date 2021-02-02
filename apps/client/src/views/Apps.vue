@@ -47,21 +47,21 @@ export default defineComponent({ // TODO Interfaces
       gateway: 'auth'
     })
 
-    let ticket: any = {};
-    let session: any = {};
+    let ticket: any = reactive({});
+    let session: any = reactive({});
 
     const database: any = reactive({
       data: []
     });
 
     onMounted(async () => {
-      ticket = await auth.login({ dataname: 'admin', password: 'admin' }).catch(e => console.log(e))
+      ticket = await auth.login({ username: 'admin', password: 'admin' }).catch(e => console.log(e))
       console.log(ticket);
 
       session = new Session({
         host: 'http://localhost:9090',
         gateway: 'data',
-        ticket
+        // ticket
       })
 
       database.data = await session.emit('all')
