@@ -14,8 +14,8 @@ export async function endpoints(context: any) {
     }
   })
 
-  socket.on('post', async (data: any, callback: any) => {
-    const user = new User(data)
+  socket.on('register', async (data: any, callback: any) => {
+    const user = await new User(data)
     try {
       const res = await database.post(user)
       callback(null, res)

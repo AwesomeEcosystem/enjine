@@ -25,7 +25,6 @@ export class Gateway {
 
     if (this.middlewares) {
       for (const middleware of this.middlewares) {
-        console.log('middleware of middwares', middleware);
 
         this.namespace.use((socket: any, next: any) => middleware(socket, next))
       }

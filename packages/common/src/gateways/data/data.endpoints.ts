@@ -16,7 +16,7 @@ export async function endpoints(context: any) {
   });
 
   socket.on('post', async (data: any, callback: any) => {
-    const doc: any = new Document('data', 'admin', data) // TODO Dyn Author
+    const doc: any = new Document('data', socket.handshake.auth.ticket.user, data) // TODO Dyn Author
     try {
       const res: any = await database.post(doc)
 
@@ -29,7 +29,7 @@ export async function endpoints(context: any) {
 
   socket.on('update', async (doc: any, callback: any) => {
     try {
-      const res = await database.put(doc._id, doc)
+      const res = await database.put(doc._id, doc)  // TODO updated Author
 
       space.emit('update', doc)
       callback(null, res)

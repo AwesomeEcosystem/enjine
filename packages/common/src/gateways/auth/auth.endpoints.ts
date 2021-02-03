@@ -11,7 +11,7 @@ export async function endpoints(context: any) { // context Interface
 
   socket.on('login', async (data: any, callback: any) => {
     try {
-      const auth: any = await authService.login(data, socket.handshake.ip)
+      const auth: any = await authService.login(data, socket.handshake.address)
 
       callback(null, auth)
     } catch (err) {

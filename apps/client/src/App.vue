@@ -8,6 +8,23 @@
   </div>
 </template>
 
-<style>
+<script>
+import { Auth, Session } from '@scale/session'
 
+export default {
+  async mounted() {
+    try {
+      await this.$store.dispatch('init')
+    } catch (e) {
+      console.log(e);
+    } finally {
+      if (this.$store.getters.isAuth) {
+        this.$router.push('/')
+      }
+    }
+  }
+}
+</script>
+
+<style>
 </style>
