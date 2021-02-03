@@ -16,20 +16,16 @@ const authService: any = new AuthService(users, sessions)
 
 export async function authMiddleware(socket: any, next: any) {
   try {
-    console.log('token',  socket.handshake.auth);
-
     const { token, _id }: any = socket.handshake.auth.ticket
     const ip = socket.handshake.adress // TODO IP is undefined
 
     const validated = await authService.validateToken(token, _id, ip)
-    console.log('validated',  validated);
 
     if (!validated) {
       const error = new Exception(403, 'Not Authenticated!')
-      console.log('Not Authenticated!');
       next(error)
     }
-    console.log(`${socket.id} authenticated!`);
+    
     next()
   } catch (error) {
     next(error)
