@@ -36,7 +36,8 @@ export async function endpoints(context: any) {
 
   socket.on('get', async (id: any, callback: any) => {
     try {
-      const res: any = await database.get(id)
+      const user: any = await database.get(id)
+      const res: any = delete user.password
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
