@@ -13,7 +13,7 @@ const auth = new Auth({
 export default new Vuex.Store({
   state: {
     ticket: null,
-    session: null,
+    sessions: null,
     user: null
   },
   getters: {
@@ -24,8 +24,11 @@ export default new Vuex.Store({
     setTicket(state, ticket) {
       state.ticket = ticket;
     },
-    setSession(state, session) {
-      state.session = session.socket;
+    addSession(state, { space, session }) {
+      state.sessions = {
+        ...state.sessions,
+        [space]: session.socket
+      }
     },
     setUser(state, user) {
       state.user = user;
@@ -36,12 +39,14 @@ export default new Vuex.Store({
       return new Promise(async (resolve, reject) => {
         if (state.ticket) {
           try {
-            await dispatch('initSession');
+            await dispatch('initSession', 'data');
             await dispatch('initUser');
             resolve(true);
           } catch (e) {
             reject(e);
           }
+        } else {
+          resolve(true);
         }
       })
     },
@@ -50,7 +55,6 @@ export default new Vuex.Store({
         try {
           const ticket = await auth.login(credentials)
           commit('setTicket', ticket)
-          await dispatch('initSession')
           await dispatch('initUser')
           resolve(true)
         } catch (e) {
@@ -58,30 +62,27 @@ export default new Vuex.Store({
         }
       })
     },
-    async initSession({ state, commit, dispatch }) {
+    async initSession({ state, commit, dispatch }, space) {
       return new Promise((resolve, reject) => {
         try {
           const session = new Session({
             host: 'localhost:9090',
-            gateway: 'data',
+            gateway: space,
             ticket: state.ticket
           });
-          commit('setSession', session);
+          commit('addSession', { space, session });
           resolve(true)
         } catch (e) {
           reject(e);
         }
       })
     },
-    async initUser({ state, commit }) {
+    async initUser({ state, commit, dispatch }) {
       return new Promise((resolve, reject) => {
-        const users = new Session({
-          host: 'localhost:9090',
-          gateway: 'user',
-          ticket: state.ticket
-        })
+        dispatch('initSession', 'user')
+        dispatch('initSession', 'data')
 
-        users.socket.emit('get', state.ticket.user, (err, res) => {
+        state.sessions.user.emit('get', state.ticket.user, (err, res) => {
           if (err) return reject(err);
           commit('setUser', res);
           resolve(res);

@@ -17,18 +17,18 @@ export default {
     }
   },
   mounted() {
-    this.$store.state.sessions.data.emit('all', (err, res) => {
+    this.$store.state.sessions.user.emit('all', (err, res) => {
       if (err) return console.log(err);
       this.data = res;
     })
 
-    this.$store.state.sessions.data.on('post', (doc) => {
+    this.$store.state.sessions.user.on('post', (doc) => {
       this.data.push(doc);
     })
   },
   methods: {
     post(text) {
-      this.$store.state.sessions.data.emit('post', text, (err, res) => {
+      this.$store.state.sessions.user.emit('post', text, (err, res) => {
         if (err) return console.log(err);
         console.log(res);
       })
