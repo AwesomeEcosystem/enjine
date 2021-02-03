@@ -9,7 +9,7 @@
 import { Auth, Session } from '@scale/session'
 
 export default {
-  name: 'Home',
+  name: 'Users',
   data() {
     return {
       data: [],

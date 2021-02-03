@@ -35,11 +35,20 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async init({ state, dispatch }) {
+    async init({ state, commit, dispatch }) {
       return new Promise(async (resolve, reject) => {
-        if (state.ticket) {
+        if (localStorage && localStorage.getItem('ticket_token')) {
           try {
-            await dispatch('initSession', 'data');
+            const ticket = {
+              token: localStorage.getItem('ticket_token'),
+              expiresAt: localStorage.getItem('ticket_expiresAt'),
+              ip: localStorage.getItem('ticket_ip'),
+              user: localStorage.getItem('ticket_user'),
+              _id: localStorage.getItem('ticket__id')
+            }
+
+            console.log(ticket);
+            commit('setTicket', ticket)
             await dispatch('initUser');
             resolve(true);
           } catch (e) {
@@ -54,6 +63,13 @@ export default new Vuex.Store({
       return new Promise(async (resolve, reject) => {
         try {
           const ticket = await auth.login(credentials)
+          if (localStorage) {
+            localStorage.setItem('ticket_token', ticket.token)
+            localStorage.setItem('ticket_expiresAt', ticket.expiresAt)
+            localStorage.setItem('ticket_ip', ticket.ip)
+            localStorage.setItem('ticket_user', ticket.user)
+            localStorage.setItem('ticket__id', ticket._id)
+          }
           commit('setTicket', ticket)
           await dispatch('initUser')
           resolve(true)
@@ -90,5 +106,4 @@ export default new Vuex.Store({
       })
     }
   },
-  // plugins: [ createPersistedState() ]
 })
