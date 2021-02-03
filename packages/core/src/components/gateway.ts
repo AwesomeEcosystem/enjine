@@ -44,7 +44,7 @@ export class Gateway {
 
     // TODO Push Client into Connections
 
-    this.endpoints({ socket, database: this.database })
+    this.endpoints({ socket, space: this.namespace, database: this.database })
   }
 
   private disconnection(socket: any){

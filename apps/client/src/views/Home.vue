@@ -1,7 +1,5 @@
 <template>
-  <div class="bg-gray-500">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="">
     {{ ticket }}
     {{ data }}
     <input v-model="text" @keyup.enter="post(text)">
@@ -30,10 +28,11 @@ export default {
     })
 
     this.ticket = await auth.login({ username: 'admin', password: 'admin' })
-
+    console.log(this.ticket);
     this.session = new Session({
       host: 'localhost:9090',
-      gateway: 'data'
+      gateway: 'data',
+      ticket: this.ticket
     })
 
     this.session.socket.emit('all', (err, res) => {
@@ -41,9 +40,9 @@ export default {
       this.data = res;
     })
 
-    this.session.socket.on('post', (err, res) => {
-      if (err) return console.log(err);
-      this.data.push(res)
+    this.session.socket.on('post', (doc) => {
+      console.log(doc);
+      this.data.push(doc)
     })
   },
   methods: {

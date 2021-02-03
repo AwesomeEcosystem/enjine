@@ -14,7 +14,6 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
 
     this.socket.on('connect_error', (err: any) => {
       console.log(err);
-
     })
   }
 
