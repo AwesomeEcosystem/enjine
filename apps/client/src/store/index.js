@@ -46,8 +46,6 @@ export default new Vuex.Store({
               user: localStorage.getItem('ticket_user'),
               _id: localStorage.getItem('ticket__id')
             }
-
-            console.log(ticket);
             commit('setTicket', ticket)
             await dispatch('initUser');
             resolve(true);
