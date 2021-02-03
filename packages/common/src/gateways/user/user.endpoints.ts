@@ -7,8 +7,8 @@ export async function endpoints(context: any) {
 
   socket.on('all', async (callback: any) => {
     try {
-      const res = await database.all()
-      const all = res.forEach(u => delete u.password)
+      const res: any = await database.all()
+      const all: any = res.forEach((u: any) => delete u.password)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -16,9 +16,9 @@ export async function endpoints(context: any) {
   })
 
   socket.on('register', async (data: any, callback: any) => {
-    const user = await new User(data)
+    const user: any = await new User(data)
     try {
-      const res = await database.post(user)
+      const res: any = await database.post(user)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -27,7 +27,7 @@ export async function endpoints(context: any) {
 
   socket.on('update', async (data: any, callback: any) => {
     try {
-      const res = await database.put(data._id, ...data)
+      const res: any = await database.put(data._id, ...data)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -36,7 +36,7 @@ export async function endpoints(context: any) {
 
   socket.on('get', async (id: any, callback: any) => {
     try {
-      const res = await database.get(id)
+      const res: any = await database.get(id)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -45,8 +45,8 @@ export async function endpoints(context: any) {
 
   socket.on('find', async (fn: any, callback: any) => {
     try {
-      const user = await database.find(fn)
-      const res = delete user.password
+      const user: any = await database.find(fn)
+      const res: any = delete user.password
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -55,8 +55,8 @@ export async function endpoints(context: any) {
 
   socket.on('filter', async (fn: any, callback: any) => {
     try {
-      const filtered = await database.filter(fn)
-      const res = filtered.forEach(u => delete u.password)
+      const filtered: any = await database.filter(fn)
+      const res: any = filtered.forEach((u: any) => delete u.password)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -65,7 +65,7 @@ export async function endpoints(context: any) {
 
   socket.on('remove', async (id: string, callback: any) => {
     try {
-      const res = await database.remove(id)
+      const res: any = await database.remove(id)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
