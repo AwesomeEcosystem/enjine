@@ -34,20 +34,18 @@ export class AuthService {
       token,
       expiresAt,
       ip,
+      user: user._id,
       _id: user._id + '=' + ip
     });
     return authToken;
   }
 
-  public async validateToken(token: string, user_id: string, ip: string) {
-    const authToken: any = await this.sessions.find((auth: any) => { // TODO AuthToken Interface
-      return auth.token === token && auth._id === user_id + '=' + ip && auth.ip === ip; // TODO ExpiresAt
-    });
+  public async validateToken(token: string, user_id: string, ip: string) {// TODO AuthToken Interface
+    const authToken: any = await this.sessions.find((auth: any) => auth.token === token);
     if (!authToken) {
-      console.log('Token not found', token)
       throw new Error('Token not found');
     }
-    return this.users.get(authToken.user_id);
+    return this.users.get(authToken.user);
   }
 
   public createToken(user: any): any { // TODO User Interface, TokenData,
