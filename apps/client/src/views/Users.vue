@@ -1,7 +1,28 @@
 <template>
   <div class="">
-    {{ data }}
-    <input class="bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded p-2" v-model="text" @keyup.enter="post(text)">
+    <table class="table-auto">
+      <thead class="bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded p-2">
+        <tr>
+          <th>Username</th>
+          <th>ID</th>
+        </tr>
+      </thead>
+      <tbody v-for="(user, i) in data">
+        <tr>
+          <td>{{ user.username }}</td>
+          <td>{{ user._id }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="">
+      <input class="bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded p-2"
+        v-model="credentials.username"
+        placeholder="Username">
+      <input class="bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded p-2"
+        v-model="credentials.password"
+        @keyup.enter="post(credentials)"
+        placeholder="Password">
+    </div>
   </div>
 </template>
 
@@ -12,8 +33,11 @@ export default {
   name: 'Users',
   data() {
     return {
-      data: [],
-      text: ''
+      credentials: {
+        username: '',
+        password: '',
+      },
+      data: []
     }
   },
   mounted() {
@@ -27,12 +51,14 @@ export default {
     })
   },
   methods: {
-    post(text) {
-      this.$store.state.sessions.user.emit('post', text, (err, res) => {
+    post(credentials) {
+      this.$store.state.sessions.user.emit('post', credentials, (err, res) => {
         if (err) return console.log(err);
-        console.log(res);
       })
-      this.text = ''
+      this.credentials = {
+        username: '',
+        password: ''
+      }
     }
   }
 }

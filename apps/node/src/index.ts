@@ -5,15 +5,15 @@ import { Manager } from '@scale/database';
 
 const database = new Manager('.database'),
 
-      datas = database.create('data'),
-      users = database.create('user'),
-      medias = database.create('media'),
+      datadb = database.create('data'),
+      userdb = database.create('user'),
+      mediadb = database.create('media'),
 
-      auth = new AuthGateway(database),
-      data = new DataGateway(datas),
+      auth = new AuthGateway('auth', database),
+      data = new DataGateway('data', datadb),
 
-      user = new UserGateway(users),
-      media = new MediaGateway(medias),
+      user = new UserGateway('user', userdb),
+      media = new MediaGateway('media', mediadb),
 
       host = new Host({
         cors: { origin: '*', credentials: false },

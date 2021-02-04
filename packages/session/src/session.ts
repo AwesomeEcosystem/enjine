@@ -17,14 +17,14 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
     })
   }
 
-  public async emit(name: any) { // TODO Interfaces
-    return new Promise((resolve: any, reject: any) => {
-      this.socket.emit(name, async (err: any, res: any) => {
-        if (err) return reject(err);
-        resolve(res);
-      })
-    });
-  }
+  // public async emit(name: any) { // TODO Interfaces
+  //   return new Promise((resolve: any, reject: any) => {
+  //     this.socket.emit(name, async (err: any, res: any) => {
+  //       if (err) return reject(err);
+  //       resolve(res);
+  //     })
+  //   });
+  // }
 
   // public async emit(name: any, data: any, callback: any) { // TODO Interfaces
   //   this.socket.emit(name, data, callback)

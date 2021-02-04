@@ -67,6 +67,11 @@ host.add([
 # Usage
 
 
+If oyu want to use an dynamic Gateway simple do
+
+```js
+new DataGateway(/([^\s]+)/, database)
+```
 
 # Why still Alpha Version?
 

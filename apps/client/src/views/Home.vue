@@ -30,7 +30,6 @@ export default {
     post(text) {
       this.$store.state.sessions.data.emit('post', text, (err, res) => {
         if (err) return console.log(err);
-        console.log(res);
       })
       this.text = ''
     }

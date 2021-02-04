@@ -3,7 +3,7 @@ import { User } from '@scale/core';
 
 export async function endpoints(context: any) {
 
-  const { socket, database } = context;
+  const { socket, space, database } = context;
 
   socket.on('all', async (callback: any) => {
     try {
@@ -16,9 +16,12 @@ export async function endpoints(context: any) {
   })
 
   socket.on('register', async (data: any, callback: any) => {
-    const user: any = await new User(data)
     try {
+      const user: any = await new User(data)
       const res: any = await database.post(user)
+      const registered = delete user.password
+
+      space.emit('post', registered)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -28,6 +31,9 @@ export async function endpoints(context: any) {
   socket.on('update', async (data: any, callback: any) => {
     try {
       const res: any = await database.put(data._id, ...data)
+
+      const updated = delete res.password
+      space.emit('post', updated)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -67,6 +73,8 @@ export async function endpoints(context: any) {
   socket.on('remove', async (id: string, callback: any) => {
     try {
       const res: any = await database.remove(id)
+
+      space.emit('remove', id)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
