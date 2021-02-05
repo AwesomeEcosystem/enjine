@@ -4,6 +4,7 @@
     <div class="">
       <input class="bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded p-2" v-model="username" placeholder="Username">
       <input class="bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100 rounded p-2" v-model="password" placeholder="Password" @keyup.enter="login({ username, password })">
+      <button @click="login({ username, password })">Login</button>
     </div>
   </div>
 </template>

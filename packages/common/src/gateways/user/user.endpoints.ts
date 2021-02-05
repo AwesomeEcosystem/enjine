@@ -21,7 +21,7 @@ export async function endpoints(context: any) {
       const res: any = await database.post(user)
       const registered = delete user.password
 
-      space.emit('post', registered)
+      space.emit('register', user)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -33,7 +33,7 @@ export async function endpoints(context: any) {
       const res: any = await database.put(data._id, ...data)
 
       const updated = delete res.password
-      space.emit('post', updated)
+      space.emit('update', updated)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)

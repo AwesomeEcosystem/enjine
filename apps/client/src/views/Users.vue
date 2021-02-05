@@ -5,12 +5,14 @@
         <tr>
           <th>Username</th>
           <th>ID</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody v-for="(user, i) in data">
         <tr>
           <td>{{ user.username }}</td>
           <td>{{ user._id }}</td>
+          <td><button @click="remove(user._id)">Remove</button></td>
         </tr>
       </tbody>
     </table>
@@ -46,19 +48,29 @@ export default {
       this.data = res;
     })
 
-    this.$store.state.sessions.user.on('post', (doc) => {
+    this.$store.state.sessions.user.on('register', (doc) => {
       this.data.push(doc);
+    })
+
+    this.$store.state.sessions.user.on('remove', (id) => {
+      const filtered = this.data.filter(d => d._id != id);
+      this.data = filtered;
     })
   },
   methods: {
     post(credentials) {
-      this.$store.state.sessions.user.emit('post', credentials, (err, res) => {
+      this.$store.state.sessions.user.emit('register', credentials, (err, res) => {
         if (err) return console.log(err);
       })
       this.credentials = {
         username: '',
         password: ''
       }
+    },
+    remove(id) {
+      this.$store.state.sessions.user.emit('remove', id, (err, res) => {
+        if (err) return console.log(err);
+      })
     }
   }
 }

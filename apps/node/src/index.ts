@@ -10,7 +10,7 @@ const database = new Manager('.database'),
       mediadb = database.create('media'),
 
       auth = new AuthGateway('auth', database),
-      data = new DataGateway('data', datadb),
+      data = new DataGateway('data', datadb), // XXX /([^\s]+)/
 
       user = new UserGateway('user', userdb),
       media = new MediaGateway('media', mediadb),
