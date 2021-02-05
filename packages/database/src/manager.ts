@@ -20,9 +20,7 @@ export class Manager extends Database {
   }
 
   create(name: string) {
-    const db = new DatabaseModel(name, this.path)
-    this.post(db)
-
+    // const db = new DatabaseModel(name, this.path) TODO DB Entry in Manager
     return this.open(name)
   }
 
