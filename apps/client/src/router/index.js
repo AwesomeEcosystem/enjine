@@ -32,7 +32,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.auth)) {
-    if (Vue.prototype.$session.ticket && Vue.prototype.$session.ticket.user) {
+    if (localStorage && localStorage.getItem('ticket_token') || Vue.prototype.$session.ticket && Vue.prototype.$session.ticket.user) {
       next()
       return
     }

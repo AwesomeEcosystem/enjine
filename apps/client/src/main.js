@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 import { Session } from '@scale/session'
 
 Vue.prototype.$session = new Session({
-  host: 'localhost:9090',
+  host: '192.168.1.183:9090',
   gateway: 'auth'
 })
 

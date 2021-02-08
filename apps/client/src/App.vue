@@ -13,17 +13,16 @@
 </template>
 
 <script>
-import { Auth, Session } from '@scale/session'
 
 export default {
   async mounted() {
-    await this.$session.init()
+    console.log(await this.$session.init());
     this.$session.add({
-      host: 'localhost:9090',
+      host: '192.168.1.183:9090',
       gateway: 'data'
     })
     this.$session.add({
-      host: 'localhost:9090',
+      host: '192.168.1.183:9090',
       gateway: 'user'
     })
   }
