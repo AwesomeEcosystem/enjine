@@ -1,10 +1,14 @@
 <template>
-  <div class="bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 min-h-screen">
-    <div class="">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/usermanager">Usermanager</router-link>
+  <div class="bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 min-w-screen">
+    <div class="container mx-auto p-2 min-h-screen flex">
+      <div class="">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/usermanager">Usermanager</router-link>
+      </div>
+      <div class="flex flex-col justify-center w-full">
+        <router-view/>
+      </div>
     </div>
-    <router-view/>
   </div>
 </template>
 
@@ -13,15 +17,15 @@ import { Auth, Session } from '@scale/session'
 
 export default {
   async mounted() {
-    try {
-      await this.$store.dispatch('init')
-    } catch (e) {
-      console.log(e);
-    } finally {
-      if (this.$store.getters.isAuth) {
-        this.$router.push('/')
-      }
-    }
+    await this.$session.init()
+    this.$session.add({
+      host: 'localhost:9090',
+      gateway: 'data'
+    })
+    this.$session.add({
+      host: 'localhost:9090',
+      gateway: 'user'
+    })
   }
 }
 </script>

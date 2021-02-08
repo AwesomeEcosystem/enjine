@@ -43,23 +43,23 @@ export default {
     }
   },
   mounted() {
-    this.$store.state.sessions.user.emit('all', (err, res) => {
+    this.$session.gateway.user.emit('all', (err, res) => {
       if (err) return console.log(err);
       this.data = res;
     })
 
-    this.$store.state.sessions.user.on('register', (doc) => {
+    this.$session.gateway.user.on('register', (doc) => {
       this.data.push(doc);
     })
 
-    this.$store.state.sessions.user.on('remove', (id) => {
+    this.$session.gateway.user.on('remove', (id) => {
       const filtered = this.data.filter(d => d._id != id);
       this.data = filtered;
     })
   },
   methods: {
     post(credentials) {
-      this.$store.state.sessions.user.emit('register', credentials, (err, res) => {
+      this.$session.gateway.user.emit('register', credentials, (err, res) => {
         if (err) return console.log(err);
       })
       this.credentials = {
@@ -68,7 +68,7 @@ export default {
       }
     },
     remove(id) {
-      this.$store.state.sessions.user.emit('remove', id, (err, res) => {
+      this.$session.gateway.user.emit('remove', id, (err, res) => {
         if (err) return console.log(err);
       })
     }

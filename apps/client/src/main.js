@@ -9,6 +9,13 @@ import './assets/main.css'
 
 Vue.config.productionTip = false
 
+import { Session } from '@scale/session'
+
+Vue.prototype.$session = new Session({
+  host: 'localhost:9090',
+  gateway: 'auth'
+})
+
 new Vue({
   router,
   store,
