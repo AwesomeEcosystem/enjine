@@ -1,7 +1,0 @@
-export * from './communities'
-export * from './groups'
-export * from './messages'
-export * from './networks'
-export * from './organizations'
-export * from './posts'
-export * from './profiles'

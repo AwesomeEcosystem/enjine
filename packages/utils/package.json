@@ -1,7 +1,7 @@
 {
   "name": "@scale/utils",
   "version": "0.0.1",
-  "description": "> TODO: description",
+  "description": "scale Instance Native Utilities",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/scale#readme",
   "license": "MIT",
