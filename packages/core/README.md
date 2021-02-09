@@ -1,11 +1,20 @@
 # `@scale/core`
 
-> TODO: description
+> Core Modules to build *scale Instances*
 
 ## Usage
 
-```
-const core = require('@scale/core');
+```js
+const { Host, Instance, Gateway } = require('@scale/core');
+const { Database } = require('@scale/database');
 
-// TODO: DEMONSTRATE API
+const db = new Database('.db')
+
+host.add([
+  new Instance('', [
+    new Gateway('name', db, (context) => console.log(context))
+  ])
+]);
+
+host.listen(9090);
 ```

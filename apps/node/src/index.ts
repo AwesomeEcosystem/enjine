@@ -1,18 +1,39 @@
-import { Host, Instance, Gateway, Endpoint } from '@scale/core';
+import { Host, Instance, Gateway, authMiddleware, User } from '@scale/core';
+import { AuthGateway, UserGateway, DataGateway, MediaGateway } from '@scale/common';
+import { Manager } from '@scale/database';
 
-const host = new Host({
-  cors: { origin: '*', credentials: false },
-  transports: ['websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling', 'polling']
-})
+
+const database = new Manager('.database'),
+
+      datadb = database.create('data'),
+      userdb = database.create('user'),
+      mediadb = database.create('media'),
+
+      auth = new AuthGateway('auth', database),
+      data = new DataGateway('data', datadb), // XXX /([^\s]+)/
+
+      user = new UserGateway('user', userdb),
+      media = new MediaGateway('media', mediadb),
+
+      host = new Host({
+        cors: { origin: '*', credentials: false },
+        transports: ['websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling', 'polling']
+      });
+
+
+data.use(authMiddleware);
+
+user.use(authMiddleware);
+media.use(authMiddleware);
+
 
 host.add([
-  new Instance('dev', [
-    new Gateway('playground', [
-      new Endpoint('check', (id: any, data: any) => {
-        console.log(id, data);
-      })
-    ])
+  new Instance('', [
+    auth,
+    user,
+    data,
+    media
   ])
-])
+]);
 
-host.listen()
+host.listen(9090);

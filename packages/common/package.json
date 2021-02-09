@@ -1,0 +1,36 @@
+{
+  "name": "@scale/common",
+  "version": "0.0.1",
+  "description": "These are the extended Core Modules as Common Instance Component",
+  "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
+  "homepage": "https://github.com/AwesomeEcosystem/scale#readme",
+  "license": "MIT",
+  "main": "dist/index",
+  "types": "dist/index",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AwesomeEcosystem/scale.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AwesomeEcosystem/scale/issues"
+  },
+  "dependencies": {
+    "@scale/core": "file:../core",
+    "@scale/database": "file:../database",
+    "@scale/utils": "file:../utils"
+  }
+}

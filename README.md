@@ -2,64 +2,80 @@
 
 > Progressive Interoperable Full Stack Application Data Management Framework
 
+> Lets build a digital global data flow infrastructure for an open, transparent and efficient future!
+
+**scale** is a real time data management framework.
+
 # Concept
+
+> Lets build Data Cities with links which are like streets :)
 
 Parts of a full *data management backend* with implemented *authentication* are designed into classes for scalable architecture, which safes much time!
 
-```js
-
-class Core {
-  constructor(name, fn) {
-
-  }
-}
-
-new Core('core', () => {
-
-})
-
-```
-
-```js
-
-host.add([
-  new Instance('social', ({ manager }) => {
-
-    const users = manager.create('users')
-    const posts = users.create('posts')
-    const comments = posts.create('comments')
-
-    return [
-
-      new Gateway('users', [
-
-        new Endpoint('find', async (id: any, data: any) => {
-          return await users.find(data)
-        })
-
-      ]),
-
-      new Gateway('posts', [
-
-        new Endpoint('post', async (id: any, data: any) => {
-          return await posts.post(data)
-        })
-
-        new Endpoint('comment', async (id: any, data: any) => {
-          const post  =await posts.get(data.id)
-        })
-
-      ])
-
-    ]
-  })
-])
-
-```
-
-
 # Usage
 
+```js
+// Server
+const { Host, Instance, Gateway, authMiddleware, User } = require('@scale/core');
+const { AuthGateway, UserGateway, DataGateway, MediaGateway } = require('@scale/common');
+const { Manager } = require('@scale/database');
+
+
+const database = new Manager('.database'),
+
+      datadb = database.create('data'),
+      userdb = database.create('user'),
+      mediadb = database.create('media'),
+
+      auth = new AuthGateway('auth', database),
+      data = new DataGateway('data', datadb), // XXX /([^\s]+)/
+
+      user = new UserGateway('user', userdb),
+      media = new MediaGateway('media', mediadb),
+
+      host = new Host({
+        cors: { origin: '*', credentials: false },
+        transports: ['websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling', 'polling']
+      });
+
+
+data.use(authMiddleware);
+
+user.use(authMiddleware);
+media.use(authMiddleware);
+
+
+host.add([
+  new Instance('', [
+    auth,
+    user,
+    data,
+    media
+  ])
+]);
+
+host.listen(4000);
+```
+
+```js
+// Client
+
+const { Session } = require('session');
+
+const session = new Session({
+  host: 'localhost:4000',
+  gateway: 'auth'
+})
+
+session.init()
+
+await session.login({ username, password })
+
+session.add({
+  host: 'localhost:4000',
+  gateway: 'database'
+})
+```
 
 
 # Why still Alpha Version?

@@ -1,11 +1,3 @@
 # `@scale/utils`
 
-> TODO: description
-
-## Usage
-
-```
-const utils = require('@scale/utils');
-
-// TODO: DEMONSTRATE API
-```
+> scale Instance Native Utilities

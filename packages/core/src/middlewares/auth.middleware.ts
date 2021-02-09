@@ -1,42 +1,52 @@
-import { NextFunction, Response } from 'express';
-import jwt from 'jsonwebtoken';
-import HttpException from '../exceptions/HttpException';
-import { DataStoredInToken, RequestWithUser } from '../interfaces/auth.interface';
-import manager from '../database'; // TODO Root Database
+import { Manager } from '@scale/database'; // TODO Root Database
+import { AuthService } from '../services/auth.service';
+import { Exception } from '../exceptions/exception';
 
-export default async function authMiddleware(req: RequestWithUser, res: Response, next: NextFunction) {
-  const users = manager.create('users');
-  // const cookies = req.cookies;
-  const headers = req.headers;
+// TODO Database must be injectable like in gateways and endpoints
 
-  const authHeader = headers.authorization;
+const database = new Manager('.database')
 
-  if (authHeader) {
-    let parts = authHeader.split(' ');
-    const jwtToken = parts[1];
-    console.log(headers);
-    const secret = process.env.JWT_SECRET;
+const users = database.create('user');
+const sessions = database.create('session');
 
-    try {
-      console.log(jwtToken);
-      console.log(secret);
+const authService: any = new AuthService(users, sessions)
 
+// io.use(wrap(passport.initialize()));
+// io.use(wrap(passport.session()));
 
-      const verificationResponse = jwt.verify(jwtToken, secret) as DataStoredInToken;
-      const userId = verificationResponse._id;
-      const findUser = await users.get(userId);
+export async function authMiddleware(socket: any, next: any) {
+  try {
+    const { token, _id }: any = socket.handshake.auth.ticket
+    const ip = socket.handshake.adress // TODO IP is undefined
 
-      if (findUser) {
-        req.user = findUser;
-        next();
-      } else {
-        next(new HttpException(401, '1 Wrong authentication token'));
-      }
-    } catch (error) {
-      console.log(error);
-      next(new HttpException(401, '2 Wrong authentication token'));
+    const validated = await authService.validateToken(token, _id, ip)
+
+    if (!validated) {
+      const error = new Exception(403, 'Not Authenticated!')
+      next(error)
     }
-  } else {
-    next(new HttpException(404, '3 Authentication token missing'));
+    
+    next()
+  } catch (error) {
+    next(error)
   }
+
 }
+//
+// if (!socket.handshake.query.token && socket.handshake.query.login) {
+//
+//   const loginData = socket.handshake.query.login
+//   const ip = socket.handshake.adress
+//
+//   console.log(loginData.username);
+//
+//
+//   const authenticated = await authService.login(loginData, ip)
+//
+//   if (!authenticated) {
+//     const error = new Exception(403, 'Not Authenticated!')
+//     next(error)
+//   }
+//   next()
+//
+// }

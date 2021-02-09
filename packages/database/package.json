@@ -1,13 +1,14 @@
 {
   "name": "@scale/database",
-  "version": "0.0.0",
-  "description": "> TODO: description",
+  "version": "0.0.1",
+  "description": "Simple to use Level Database Manager",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/scale#readme",
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
   "scripts": {
+    "dev": "tsc -w",
     "build": "tsc",
     "test": "jest"
   },
@@ -29,6 +30,7 @@
   },
   "dependencies": {
     "@scale/utils": "file:../utils",
+    "async-constructor": "^0.4.5",
     "level-ts": "^2.0.6",
     "uniqid": "^5.2.0"
   },

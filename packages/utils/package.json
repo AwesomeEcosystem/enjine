@@ -1,13 +1,14 @@
 {
   "name": "@scale/utils",
-  "version": "0.0.0",
-  "description": "> TODO: description",
+  "version": "0.0.1",
+  "description": "scale Instance Native Utilities",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/scale#readme",
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
   "scripts": {
+    "dev": "tsc -w",
     "build": "tsc",
     "test": "jest"
   },
@@ -32,6 +33,7 @@
     "envalid": "^6.0.2"
   },
   "devDependencies": {
-    "@types/bcrypt": "^3.0.0"
+    "@types/bcrypt": "^3.0.0",
+    "@types/node": "^14.14.21"
   }
 }

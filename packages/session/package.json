@@ -1,13 +1,14 @@
 {
   "name": "@scale/session",
-  "version": "0.0.0",
-  "description": "> TODO: description",
+  "version": "0.0.1",
+  "description": "scale Instance Session Manager",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/scale#readme",
   "license": "MIT",
   "main": "dist",
   "types": "dist",
   "scripts": {
+    "dev": "tsc -w",
     "build": "tsc",
     "test": "jest"
   },
@@ -25,6 +26,7 @@
     "url": "https://github.com/AwesomeEcosystem/scale/issues"
   },
   "dependencies": {
+    "async-constructor": "^0.4.5",
     "axios": "^0.21.1",
     "socket.io-client": "^3.0.5"
   }

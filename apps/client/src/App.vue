@@ -1,41 +1,33 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 min-w-screen">
+    <div class="container mx-auto p-2 min-h-screen flex">
+      <div class="">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/usermanager">Usermanager</router-link>
+      </div>
+      <div class="flex flex-col justify-center w-full">
+        <router-view/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import { Session } from '@scale/session'
 
 export default {
-  name: 'App',
-  data() {
-    return {
-      session: null
-    }
-  },
-  mounted() {
-    this.session = new Session({
-      host: 'ws://localhost:9090',
-      instance: 'dev',
-      gateway: 'playground'
+  async mounted() {
+    await this.$session.init()
+    this.$session.add({
+      host: '192.168.1.183:9090',
+      gateway: 'data'
     })
-  },
-  components: {
-    HelloWorld
+    this.$session.add({
+      host: '192.168.1.183:9090',
+      gateway: 'user'
+    })
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

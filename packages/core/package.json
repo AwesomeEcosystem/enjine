@@ -1,13 +1,14 @@
 {
   "name": "@scale/core",
-  "version": "0.0.0",
-  "description": "> TODO: description",
+  "version": "0.0.1",
+  "description": "Core Modules to build scale Instances",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/scale#readme",
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
   "scripts": {
+    "dev": "tsc -w",
     "build": "tsc",
     "test": "jest"
   },
@@ -30,7 +31,8 @@
   "dependencies": {
     "@scale/database": "file:../database",
     "@scale/utils": "file:../utils",
-    "bcrypt": "^4.0.1",
+    "async-constructor": "^0.4.5",
+    "bcrypt": "^5.0.0",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.11.1",
     "cookie-parser": "^1.4.5",
@@ -44,7 +46,7 @@
     "jest": "^25.1.0",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.10.0",
-    "socket.io": "^2.3.0",
+    "socket.io": "^3.0.5",
     "ts-jest": "^25.2.1",
     "ts-node": "^8.8",
     "typescript": "^3.8.3"
@@ -59,7 +61,7 @@
     "@types/jest": "^25.1.4",
     "@types/jsonwebtoken": "^8.3.8",
     "@types/morgan": "^1.9.0",
-    "@types/node": "^13.9.2",
+    "@types/node": "^14.14.20",
     "@types/socket.io": "^2.1.4",
     "@types/supertest": "^2.0.8",
     "supertest": "^4.0.2",
