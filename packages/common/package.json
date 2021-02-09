@@ -29,8 +29,8 @@
     "url": "https://github.com/AwesomeEcosystem/scale/issues"
   },
   "dependencies": {
-    "@scale/core": "file:../core",
-    "@scale/database": "file:../database",
-    "@scale/utils": "file:../utils"
+    "@scale/core": "0.0.1",
+    "@scale/database": "0.0.1",
+    "@scale/utils": "0.0.1"
   }
 }
