@@ -1,11 +1,18 @@
-# `common`
+# `@scale/common`
 
-> TODO: description
+> These are the extended Core Modules as Common Instance Component
 
 ## Usage
 
-```
-const common = require('common');
+```js
+const { DataGateway } = require('@scale/common');
+const { Databse } = require('@scale/database');
 
-// TODO: DEMONSTRATE API
+const db = new Database('.db')
+
+host.add([
+  new Instance('', [
+    new DataGateway('data', db, (context) => console.log(context))
+  ])
+]);
 ```

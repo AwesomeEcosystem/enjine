@@ -5,7 +5,7 @@
 ## Usage
 
 ```js
-const { Host, Instance, Gateway, authMiddleware } = require('@scale/core');
+const { Host, Instance, Gateway } = require('@scale/core');
 const { Database } = require('@scale/database');
 
 const db = new Database('.db')

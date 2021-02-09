@@ -1,7 +1,7 @@
 {
   "name": "@scale/common",
   "version": "0.0.1",
-  "description": "> TODO: description",
+  "description": "These are the extended Core Modules as Common Instance Component",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/scale#readme",
   "license": "MIT",
