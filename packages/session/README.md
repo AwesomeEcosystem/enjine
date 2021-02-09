@@ -20,5 +20,4 @@ session.add({
   host: 'localhost:4000',
   gateway: 'database'
 })
-
 ```
