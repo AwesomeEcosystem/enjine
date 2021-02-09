@@ -21,6 +21,14 @@ export default {
     async login(credentials) {
       try {
         await this.$session.login(credentials)
+        this.$session.add({
+          host: '192.168.1.183:9090',
+          gateway: 'data'
+        })
+        this.$session.add({
+          host: '192.168.1.183:9090',
+          gateway: 'user'
+        })
         this.$router.push('/')
       } catch (e) {
         alert(e)

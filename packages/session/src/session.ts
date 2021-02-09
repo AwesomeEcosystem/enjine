@@ -4,7 +4,7 @@ import { Auth } from './auth';
 export class Session { // TODO Exent EventErmitter or SocketIO Manager
   public ticket: any = null;
   public config: any = null;
-  public gateway: any = null; // Interfaces
+  public gateway: any = {}; // Interfaces
 
   constructor(config: any) {
     this.config = config
@@ -47,6 +47,7 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
           localStorage.setItem('ticket_user', this.ticket.user)
           localStorage.setItem('ticket__id', this.ticket._id)
         }
+        
         resolve(true);
       } catch (e) {
         reject(e);
@@ -55,13 +56,10 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
   }
 
   public add(config: any) {
-    this.gateway = {
-      ...this.gateway,
-      [config.gateway]: io(`${config.host}/${config.gateway}`, {
-        auth: {
-          ticket: this.ticket
-        }
-      })
-    }
+    this.gateway[config.gateway] = io(`${config.host}/${config.gateway}`, {
+      auth: {
+        ticket: this.ticket
+      }
+    })
   }
 }

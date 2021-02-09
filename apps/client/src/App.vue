@@ -16,7 +16,7 @@
 
 export default {
   async mounted() {
-    console.log(await this.$session.init());
+    await this.$session.init()
     this.$session.add({
       host: '192.168.1.183:9090',
       gateway: 'data'
