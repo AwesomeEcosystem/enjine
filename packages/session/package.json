@@ -1,7 +1,7 @@
 {
   "name": "@scale/session",
   "version": "0.0.1",
-  "description": "> TODO: description",
+  "description": "scale Instance Session Manager",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/scale#readme",
   "license": "MIT",
