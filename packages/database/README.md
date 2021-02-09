@@ -1,11 +1,13 @@
 # `@scale/database`
 
-> TODO: description
+> Simple to use Level Database Manager.
 
 ## Usage
 
-```
-const database = require('@scale/database');
+```js
+const { Manager } = require('@scale/database');
 
-// TODO: DEMONSTRATE API
+const manager = new Manager('.db')
+
+const database = manager.create('database')
 ```
