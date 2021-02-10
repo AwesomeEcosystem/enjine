@@ -1,9 +1,9 @@
 {
   "name": "@ecosis/core",
-  "version": "0.0.1",
-  "description": "Core Modules to build scale Instances",
+  "version": "0.0.1-alpha.1",
+  "description": "Core Modules to build ecosis Instances",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
-  "homepage": "https://github.com/AwesomeEcosystem/scale#readme",
+  "homepage": "https://github.com/AwesomeEcosystem/ecosis#readme",
   "license": "MIT",
   "main": "dist/index",
   "types": "dist/index",
@@ -12,25 +12,19 @@
     "build": "tsc",
     "test": "jest"
   },
-  "directories": {
-    "src": "src"
-  },
-  "files": [
-    "src"
-  ],
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AwesomeEcosystem/scale.git"
+    "url": "git+https://github.com/AwesomeEcosystem/ecosis.git"
   },
   "bugs": {
-    "url": "https://github.com/AwesomeEcosystem/scale/issues"
+    "url": "https://github.com/AwesomeEcosystem/ecosis/issues"
   },
   "dependencies": {
-    "@ecosis/database": "0.0.1",
-    "@ecosis/utils": "0.0.1",
+    "@ecosis/database": "^0.0.1-alpha.2",
+    "@ecosis/utils": "^0.0.1-alpha.1",
     "async-constructor": "^0.4.5",
     "bcrypt": "^5.0.0",
     "class-transformer": "^0.2.3",
