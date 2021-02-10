@@ -1,5 +1,5 @@
 {
-  "name": "@scale/node",
+  "name": "@ecosis/node",
   "version": "0.0.1",
   "description": "Node Boilerplate",
   "main": "dist",
@@ -15,10 +15,10 @@
   "author": "equaliser0",
   "license": "MIT",
   "dependencies": {
-    "@scale/common": "file:../../packages/common",
-    "@scale/core": "file:../../packages/core",
-    "@scale/database": "file:../../packages/database",
-    "@scale/utils": "file:../../packages/utils"
+    "@ecosis/common": "file:../../packages/common",
+    "@ecosis/core": "file:../../packages/core",
+    "@ecosis/database": "file:../../packages/database",
+    "@ecosis/utils": "file:../../packages/utils"
   },
   "devDependencies": {
     "nodemon": "^2.0.7",

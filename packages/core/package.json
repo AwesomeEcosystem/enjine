@@ -1,5 +1,5 @@
 {
-  "name": "@scale/core",
+  "name": "@ecosis/core",
   "version": "0.0.1",
   "description": "Core Modules to build scale Instances",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
@@ -29,8 +29,8 @@
     "url": "https://github.com/AwesomeEcosystem/scale/issues"
   },
   "dependencies": {
-    "@scale/database": "0.0.1",
-    "@scale/utils": "0.0.1",
+    "@ecosis/database": "0.0.1",
+    "@ecosis/utils": "0.0.1",
     "async-constructor": "^0.4.5",
     "bcrypt": "^5.0.0",
     "class-transformer": "^0.2.3",

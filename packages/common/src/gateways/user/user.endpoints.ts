@@ -1,5 +1,5 @@
-import { Manager } from '@scale/database';
-import { User } from '@scale/core';
+import { Manager } from '@ecosis/database';
+import { User } from '@ecosis/core';
 
 export async function endpoints(context: any) {
 

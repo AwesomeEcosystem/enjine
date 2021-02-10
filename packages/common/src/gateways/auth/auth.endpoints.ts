@@ -1,4 +1,4 @@
-import { AuthService } from '@scale/core';
+import { AuthService } from '@ecosis/core';
 
 export async function endpoints(context: any) { // context Interface
 

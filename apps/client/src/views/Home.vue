@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { Auth, Session } from '@scale/session'
+import { Auth, Session } from '@ecosis/session'
 
 export default {
   name: 'Home',

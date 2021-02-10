@@ -1,6 +1,6 @@
-import { Host, Instance, Gateway, authMiddleware, User } from '@scale/core';
-import { AuthGateway, UserGateway, DataGateway, MediaGateway } from '@scale/common';
-import { Manager } from '@scale/database';
+import { Host, Instance, Gateway, authMiddleware, User } from '@ecosis/core';
+import { AuthGateway, UserGateway, DataGateway, MediaGateway } from '@ecosis/common';
+import { Manager } from '@ecosis/database';
 
 
 const database = new Manager('.database'),

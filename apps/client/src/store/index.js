@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
-import { Auth, Session } from '@scale/session'
+import { Auth, Session } from '@ecosis/session'
 
 Vue.use(Vuex)
 

@@ -1,4 +1,4 @@
-import { Model } from '@scale/database';
+import { Model } from '@ecosis/database';
 
 // TODO Transform Group into Identity
 

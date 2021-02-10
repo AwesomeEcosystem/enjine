@@ -1,4 +1,4 @@
-# `@scale/session`
+# `@ecosis/session`
 
 > scale Instance Session Manager
 

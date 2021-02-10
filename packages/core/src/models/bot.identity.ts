@@ -1,4 +1,4 @@
-import { Identity } from '@scale/database';
+import { Identity } from '@ecosis/database';
 
 export class Bot extends Identity {
   username: string;

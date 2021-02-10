@@ -1,12 +1,12 @@
-# `@scale/core`
+# `@ecosis/core`
 
 > Core Modules to build *scale Instances*
 
 ## Usage
 
 ```js
-const { Host, Instance, Gateway } = require('@scale/core');
-const { Database } = require('@scale/database');
+const { Host, Instance, Gateway } = require('@ecosis/core');
+const { Database } = require('@ecosis/database');
 
 const db = new Database('.db')
 

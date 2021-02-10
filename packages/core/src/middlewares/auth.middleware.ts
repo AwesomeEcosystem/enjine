@@ -1,4 +1,4 @@
-import { Manager } from '@scale/database'; // TODO Root Database
+import { Manager } from '@ecosis/database'; // TODO Root Database
 import { AuthService } from '../services/auth.service';
 import { Exception } from '../exceptions/exception';
 

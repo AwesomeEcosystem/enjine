@@ -1,4 +1,4 @@
-import { Manager, Model } from '@scale/database';
+import { Manager, Model } from '@ecosis/database';
 import { Document } from '../../models/document.model';
 
 export async function endpoints(context: any) {

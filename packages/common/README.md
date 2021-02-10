@@ -1,12 +1,12 @@
-# `@scale/common`
+# `@ecosis/common`
 
 > These are the extended Core Modules as Common Instance Component
 
 ## Usage
 
 ```js
-const { DataGateway } = require('@scale/common');
-const { Databse } = require('@scale/database');
+const { DataGateway } = require('@ecosis/common');
+const { Databse } = require('@ecosis/database');
 
 const db = new Database('.db')
 

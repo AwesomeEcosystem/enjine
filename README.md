@@ -16,9 +16,9 @@ Parts of a full *data management backend* with implemented *authentication* are 
 
 ```js
 // Server
-const { Host, Instance, Gateway, authMiddleware, User } = require('@scale/core');
-const { AuthGateway, UserGateway, DataGateway, MediaGateway } = require('@scale/common');
-const { Manager } = require('@scale/database');
+const { Host, Instance, Gateway, authMiddleware, User } = require('@ecosis/core');
+const { AuthGateway, UserGateway, DataGateway, MediaGateway } = require('@ecosis/common');
+const { Manager } = require('@ecosis/database');
 
 
 const database = new Manager('.database'),

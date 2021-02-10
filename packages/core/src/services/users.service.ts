@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { Manager } from '@scale/database';
+import { Manager } from '@ecosis/database';
 import { User } from '../models/user.identity';
 import { Exception } from '../exceptions/exception';
 

@@ -1,5 +1,5 @@
 import { appendAsyncConstructor } from 'async-constructor'
-import { createCrypto } from '@scale/utils';
+import { createCrypto } from '@ecosis/utils';
 import { Model } from './model';
 
 export class Identity extends Model {

@@ -1,5 +1,5 @@
-import { Identity } from '@scale/database';
-import { createCrypto } from '@scale/utils';
+import { Identity } from '@ecosis/database';
+import { createCrypto } from '@ecosis/utils';
 
 export class User extends Identity {
   username: string;

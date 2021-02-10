@@ -9,7 +9,7 @@ import './assets/main.css'
 
 Vue.config.productionTip = false
 
-import { Session } from '@scale/session'
+import { Session } from '@ecosis/session'
 
 Vue.prototype.$session = new Session({
   host: '192.168.1.183:9090',
