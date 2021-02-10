@@ -18,7 +18,7 @@
     "@ecosis/common": "file:../../packages/common",
     "@ecosis/core": "file:../../packages/core",
     "@ecosis/database": "file:../../packages/database",
-    "@ecosis/utils": "file:../../packages/utils"
+    "@ecosis/utils": "^0.0.1-alpha.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.7",
