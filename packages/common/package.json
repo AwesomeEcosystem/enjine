@@ -1,6 +1,6 @@
 {
   "name": "@ecosis/common",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.0",
   "description": "These are the extended Core Modules as Common Instance Component",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/scale#readme",
@@ -29,8 +29,8 @@
     "url": "https://github.com/AwesomeEcosystem/scale/issues"
   },
   "dependencies": {
-    "@ecosis/core": "0.0.1",
-    "@ecosis/database": "0.0.1",
-    "@ecosis/utils": "0.0.1"
+    "@ecosis/core": "^0.0.1-alpha.0",
+    "@ecosis/database": "^0.0.1-alpha.0",
+    "@ecosis/utils": "^0.0.1-alpha.0"
   }
 }
