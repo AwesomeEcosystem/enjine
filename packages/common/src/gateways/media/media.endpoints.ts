@@ -2,7 +2,7 @@ import { Manager } from '@ecosis/database';
 
 export async function endpoints(context: any) {
 
-  const { socket, database } = context;
+  const { socket, space, database } = context;
 
   socket.on('upload', async (data: any, callback: any) => {
     // console.log(socket.id);

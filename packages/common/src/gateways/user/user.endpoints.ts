@@ -9,9 +9,9 @@ export async function endpoints(context: any) {
     try {
       const res: any = await database.all()
       const all: any = res.forEach((u: any) => delete u.password)
-      callback(null, res)
+      callback(res)
     } catch (err) {
-      callback(new Error(err), null)
+      space.emit('error', new Error(err))
     }
   })
 
@@ -42,7 +42,7 @@ export async function endpoints(context: any) {
     try {
       const user: any = await database.get(id)
       const res: any = delete user.password
-      callback(null, res)
+      callback(res)
     } catch (err) {
       space.emit('error', new Error(err))
     }
@@ -52,7 +52,7 @@ export async function endpoints(context: any) {
     try {
       const user: any = await database.find(fn)
       const res: any = delete user.password
-      callback(null, res)
+      callback(res)
     } catch (err) {
       space.emit('error', new Error(err))
     }
@@ -62,7 +62,7 @@ export async function endpoints(context: any) {
     try {
       const filtered: any = await database.filter(fn)
       const res: any = filtered.forEach((u: any) => delete u.password)
-      callback(null, res)
+      callback(res)
     } catch (err) {
       space.emit('error', new Error(err))
     }
