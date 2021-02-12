@@ -1,4 +1,5 @@
 import { io } from 'socket.io-client'
+// import { axios } from 'axios';
 import { Auth } from './auth';
 
 export class Session { // TODO Exent EventErmitter or SocketIO Manager
@@ -47,7 +48,7 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
           localStorage.setItem('ticket_user', this.ticket.user)
           localStorage.setItem('ticket__id', this.ticket._id)
         }
-        
+
         resolve(true);
       } catch (e) {
         reject(e);
@@ -62,4 +63,20 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
       }
     })
   }
+  // TODO Add RESTful API
+  // public post() {
+  //
+  // }
+  //
+  // public put() {
+  //
+  // }
+  //
+  // public get() {
+  //
+  // }
+  //
+  // public delete() {
+  //
+  // }
 }

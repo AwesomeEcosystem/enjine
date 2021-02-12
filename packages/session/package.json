@@ -1,6 +1,6 @@
 {
   "name": "@ecosis/session",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "description": "ecosis Instance Session Manager",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/ecosis#readme",
@@ -9,7 +9,12 @@
   "types": "dist",
   "scripts": {
     "dev": "tsc -w",
-    "build": "tsc",
+    "build": "npm run build:es2015 && npm run build:esm && npm run build:cjs && npm run build:umd && npm run build:umd:min",
+    "build:es2015": "tsc --module es2015 --target es2015 --outDir dist/es2015",
+    "build:esm": "tsc --module es2015 --target es5 --outDir dist/esm",
+    "build:cjs": "tsc --module commonjs --target es5 --outDir dist/cjs",
+    "build:umd": "rollup dist/esm/index.js --format umd --name @ecosis/session --sourceMap --output dist/umd/session.js",
+    "build:umd:min": "cd dist/umd && uglifyjs --compress --mangle --source-map --screw-ie8 --comments --o yourlibrary.min.js -- yourlibrary.js && gzip yourlibrary.min.js -c > yourlibrary.min.js.gz",
     "test": "jest"
   },
   "repository": {
