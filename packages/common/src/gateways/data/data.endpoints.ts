@@ -16,7 +16,7 @@ export async function endpoints(context: any) {
   socket.on('post', async (data: any, callback: any) => {
     const doc: any = new Document('data', socket.handshake.auth.ticket.user, data) // TODO Dyn Author
     try {
-      await database.post(doc)
+      const res: any = await database.post(doc)
       callback(null, res)
       space.emit('post', doc)
     } catch (err) {
@@ -26,7 +26,7 @@ export async function endpoints(context: any) {
 
   socket.on('update', async (doc: any, callback: any) => {
     try {
-      await database.put(doc._id, doc)  // TODO updated Author
+      const res: any = await database.put(doc._id, doc)  // TODO updated Author
       callback(null, res)
       space.emit('update', doc)
     } catch (err) {
@@ -63,7 +63,7 @@ export async function endpoints(context: any) {
 
   socket.on('remove', async (id: string, callback: any) => {
     try {
-      await database.remove(id)
+      const res: any = await database.remove(id)
       callback(null, res)
       space.emit('remove', id)
     } catch (err) {
