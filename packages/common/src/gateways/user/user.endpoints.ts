@@ -8,7 +8,7 @@ export async function endpoints(context: any) {
   socket.on('all', async (callback: any) => {
     try {
       const res: any = await database.all()
-      const all: any = res.forEach((u: any) => delete u.password)
+      res.forEach((u: any) => delete u.password)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -31,8 +31,8 @@ export async function endpoints(context: any) {
   socket.on('update', async (data: any, callback: any) => {
     try {
       const res: any = await database.put(data._id, ...data)
+      delete res.password
 
-      const updated = delete res.password
       space.emit('update', updated)
       callback(null, res)
     } catch (err) {
@@ -43,7 +43,7 @@ export async function endpoints(context: any) {
   socket.on('get', async (id: any, callback: any) => {
     try {
       const user: any = await database.get(id)
-      const res: any = delete user.password
+      delete user.password
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -53,7 +53,7 @@ export async function endpoints(context: any) {
   socket.on('find', async (fn: any, callback: any) => {
     try {
       const user: any = await database.find(fn)
-      const res: any = delete user.password
+      delete user.password
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
@@ -63,7 +63,7 @@ export async function endpoints(context: any) {
   socket.on('filter', async (fn: any, callback: any) => {
     try {
       const filtered: any = await database.filter(fn)
-      const res: any = filtered.forEach((u: any) => delete u.password)
+      filtered.forEach((u: any) => delete u.password)
       callback(null, res)
     } catch (err) {
       callback(new Error(err), null)
