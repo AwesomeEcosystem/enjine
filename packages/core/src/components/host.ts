@@ -30,7 +30,7 @@ export class Host {
     this.env = process.env.NODE_ENV === 'production' ? true : false;
 
     this.app = express();
-    this.http = createServer(app);
+    this.http = createServer(this.app);
 
     if (this.middleware) {
       for (const middleware of this.middleware) {
