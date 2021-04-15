@@ -23,7 +23,7 @@
     "url": "https://github.com/AwesomeEcosystem/ecosis/issues"
   },
   "dependencies": {
-    "@ecosis/core": "^0.0.1-alpha.1",
+    "@ecosis/core": "^0.0.1-alpha.2",
     "@ecosis/database": "^0.0.1-alpha.2",
     "@ecosis/utils": "^0.0.1-alpha.1"
   }

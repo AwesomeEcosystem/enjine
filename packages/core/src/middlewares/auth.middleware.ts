@@ -16,6 +16,10 @@ const authService: any = new AuthService(users, sessions)
 
 export async function authMiddleware(socket: any, next: any) {
   try {
+    const available: any = await users.all() // TODO Interface
+    if (!available) {
+      next()
+    }
     const { token, _id }: any = socket.handshake.auth.ticket
     const ip = socket.handshake.adress // TODO IP is undefined
 
@@ -25,28 +29,10 @@ export async function authMiddleware(socket: any, next: any) {
       const error = new Exception(403, 'Not Authenticated!')
       next(error)
     }
-    
+
     next()
   } catch (error) {
     next(error)
   }
 
 }
-//
-// if (!socket.handshake.query.token && socket.handshake.query.login) {
-//
-//   const loginData = socket.handshake.query.login
-//   const ip = socket.handshake.adress
-//
-//   console.log(loginData.username);
-//
-//
-//   const authenticated = await authService.login(loginData, ip)
-//
-//   if (!authenticated) {
-//     const error = new Exception(403, 'Not Authenticated!')
-//     next(error)
-//   }
-//   next()
-//
-// }
