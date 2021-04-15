@@ -5,7 +5,11 @@
 ## Usage
 
 ```js
-const { Session } = require('session');
+// Nodejs
+const { Session } = require('@ecosis/session');
+
+// Browser
+import { Session } from '@ecosis/session'
 
 const session = new Session({
   host: 'localhost:4000',

@@ -8,8 +8,8 @@ export async function endpoints(context: any) {
   socket.on('all', async (callback: any) => {
     try {
       const res: any = await database.all()
-      const all: any = res.forEach((u: any) => delete u.password)
-      callback(res)
+      res.forEach((u: any) => delete u.password)
+      callback(null, res)
     } catch (err) {
       space.emit('error', new Error(err))
     }
@@ -18,8 +18,8 @@ export async function endpoints(context: any) {
   socket.on('register', async (data: any) => {
     try {
       const user: any = await new User(data)
-      const res: any = await database.post(user)
-      const registered = delete user.password
+      await database.post(user)
+      delete user.password
 
       space.emit('register', user)
     } catch (err) {
@@ -30,9 +30,9 @@ export async function endpoints(context: any) {
   socket.on('update', async (data: any) => {
     try {
       const res: any = await database.put(data._id, ...data)
+      delete res.password
 
-      const updated = delete res.password
-      space.emit('update', updated)
+      space.emit('update', res)
     } catch (err) {
       space.emit('error', new Error(err))
     }
@@ -41,8 +41,8 @@ export async function endpoints(context: any) {
   socket.on('get', async (id: any, callback: any) => {
     try {
       const user: any = await database.get(id)
-      const res: any = delete user.password
-      callback(res)
+      delete user.password
+      callback(null, user)
     } catch (err) {
       space.emit('error', new Error(err))
     }
@@ -51,8 +51,8 @@ export async function endpoints(context: any) {
   socket.on('find', async (fn: any, callback: any) => {
     try {
       const user: any = await database.find(fn)
-      const res: any = delete user.password
-      callback(res)
+      delete user.password
+      callback(null, user)
     } catch (err) {
       space.emit('error', new Error(err))
     }
@@ -61,8 +61,8 @@ export async function endpoints(context: any) {
   socket.on('filter', async (fn: any, callback: any) => {
     try {
       const filtered: any = await database.filter(fn)
-      const res: any = filtered.forEach((u: any) => delete u.password)
-      callback(res)
+      filtered.forEach((u: any) => delete u.password)
+      callback(null, filtered)
     } catch (err) {
       space.emit('error', new Error(err))
     }
