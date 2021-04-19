@@ -11,32 +11,30 @@ export async function endpoints(context: any) {
       res.forEach((u: any) => delete u.password)
       callback(null, res)
     } catch (err) {
-      callback(new Error(err), null)
+      space.emit('error', new Error(err))
     }
   })
 
-  socket.on('register', async (data: any, callback: any) => {
+  socket.on('register', async (data: any) => {
     try {
       const user: any = await new User(data)
       await database.post(user)
       delete user.password
 
       space.emit('register', user)
-      callback(null, user)
     } catch (err) {
-      callback(new Error(err), null)
+      space.emit('error', new Error(err))
     }
   })
 
-  socket.on('update', async (data: any, callback: any) => {
+  socket.on('update', async (data: any) => {
     try {
       const res: any = await database.put(data._id, ...data)
       delete res.password
 
       space.emit('update', res)
-      callback(null, res)
     } catch (err) {
-      callback(new Error(err), null)
+      space.emit('error', new Error(err))
     }
   })
 
@@ -46,7 +44,7 @@ export async function endpoints(context: any) {
       delete user.password
       callback(null, user)
     } catch (err) {
-      callback(new Error(err), null)
+      space.emit('error', new Error(err))
     }
   })
 
@@ -56,7 +54,7 @@ export async function endpoints(context: any) {
       delete user.password
       callback(null, user)
     } catch (err) {
-      callback(new Error(err), null)
+      space.emit('error', new Error(err))
     }
   })
 
@@ -66,18 +64,16 @@ export async function endpoints(context: any) {
       filtered.forEach((u: any) => delete u.password)
       callback(null, filtered)
     } catch (err) {
-      callback(new Error(err), null)
+      space.emit('error', new Error(err))
     }
   })
 
-  socket.on('remove', async (id: string, callback: any) => {
+  socket.on('remove', async (id: string) => {
     try {
-      const res: any = await database.remove(id)
-
+      await database.remove(id)
       space.emit('remove', id)
-      callback(null, res)
     } catch (err) {
-      callback(new Error(err), null)
+      space.emit('error', new Error(err))
     }
   })
 }
