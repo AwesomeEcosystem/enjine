@@ -1,4 +1,4 @@
-# `@ecosis/core`
+# `@enjine/core`
 
 > Core Modules to build *scale Instances*
 

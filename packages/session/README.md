@@ -1,4 +1,4 @@
-# `@ecosis/session`
+# `@enjine/session`
 
 > scale Instance Session Manager
 
@@ -6,10 +6,10 @@
 
 ```js
 // Nodejs
-const { Session } = require('@ecosis/session');
+const { Session } = require('@enjine/session');
 
 // Browser
-import { Session } from '@ecosis/session'
+import { Session } from '@enjine/session'
 
 const session = new Session({
   host: 'localhost:4000',

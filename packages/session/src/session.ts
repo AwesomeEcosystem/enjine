@@ -1,5 +1,5 @@
 import { io } from 'socket.io-client'
-// import { axios } from 'axios';
+// import { axios } from 'axios'; // TODO Controller Integration
 import { Auth } from './auth';
 
 export class Session { // TODO Exent EventErmitter or SocketIO Manager
@@ -13,14 +13,14 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
 
   public async init() { // Make it multi sessionable
     return new Promise(async (resolve: any, reject: any) => {
-      if (localStorage && localStorage.getItem('ticket_token')) {
+      if (localStorage && localStorage.getItem(`${this.config.host}_ticket_token`)) {
         try {
           this.ticket = {
-            token: localStorage.getItem('ticket_token'),
-            expiresAt: localStorage.getItem('ticket_expiresAt'),
-            ip: localStorage.getItem('ticket_ip'),
-            user: localStorage.getItem('ticket_user'),
-            _id: localStorage.getItem('ticket__id')
+            token: localStorage.getItem(`${this.config.host}_ticket_token`),
+            expiresAt: localStorage.getItem(`${this.config.host}_ticket_expiresAt`),
+            ip: localStorage.getItem(`${this.config.host}_ticket_ip`),
+            user: localStorage.getItem(`${this.config.host}_ticket_user`),
+            _id: localStorage.getItem(`${this.config.host}_ticket__id`)
           }
           resolve(true);
         } catch (e) {
@@ -41,12 +41,14 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
         })
 
         this.ticket = await auth.login(credentials)
+
         if (localStorage) {
-          localStorage.setItem('ticket_token', this.ticket.token)
-          localStorage.setItem('ticket_expiresAt', this.ticket.expiresAt)
-          localStorage.setItem('ticket_ip', this.ticket.ip)
-          localStorage.setItem('ticket_user', this.ticket.user)
-          localStorage.setItem('ticket__id', this.ticket._id)
+          localStorage.setItem(`${this.config.host}_ticket_token`, this.ticket.token)
+          localStorage.setItem(`${this.config.host}_ticket_expiresAt`, this.ticket.expiresAt)
+          localStorage.setItem(`${this.config.host}_ticket_ip`, this.ticket.ip)
+          localStorage.setItem(`${this.config.host}_ticket_user`, this.ticket.user)
+          localStorage.setItem(`${this.config.host}_ticket__id`, this.ticket._id)
+          // TODO Multisitable
         }
 
         resolve(true);
@@ -55,6 +57,8 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
       }
     })
   }
+
+  // TODO Logout
 
   public add(config: any) {
     this.gateway[config.gateway] = io(`${config.host}/${config.gateway}`, {

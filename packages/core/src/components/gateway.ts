@@ -4,9 +4,8 @@ import { AuthService } from '../services/auth.service';
 export class Gateway {
   public name: string;
   public database: any;
-  public middlewares: any[] = []; // TODO Interface Middlewares
+  public middleware: any[]; // TODO Interface Middlewares
   public endpoints: any; // TODO Interface Endpoints
-  public connections: { [ id: string ] : any; } = {};
   public namespace: any;
 
   constructor(name: string, db: any, endpoints: any) { // TODO DB Interface
@@ -16,15 +15,15 @@ export class Gateway {
   }
 
   public use(middleware: any) { // TODO Middleware Interface
-    this.middlewares.push(middleware)
+    this.middleware.push(middleware)
   }
 
   public initialize(io: any) {
 
     this.namespace = io.of(this.name)
 
-    if (this.middlewares) {
-      for (const middleware of this.middlewares) {
+    if (this.middleware) {
+      for (const middleware of this.middleware) {
 
         this.namespace.use((socket: any, next: any) => middleware(socket, next))
       }
