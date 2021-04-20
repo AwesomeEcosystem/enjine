@@ -8,9 +8,9 @@ export class Controller {
   public endpoints: any; // TODO Interface Endpoints
   public router: any;
 
-  constructor(name: string, db: any, endpoints: any) { // TODO DB Interface
+  constructor(name: string, endpoints: any, db?: any) { // TODO DB Interface
     this.name = name;
-    this.database = db;
+    this.database = db || {};
     this.endpoints = endpoints;
   }
 
