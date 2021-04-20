@@ -23,4 +23,13 @@ export class Auth {
       })
     });
   }
+
+  public validate(ticket) { // TODO upgraged logic
+    return new Promise((resolve: any, reject: any) => {
+      this.socket.emit('auth', ticket, async (err: any, res: any) => {
+        if (err) return reject(err);
+        resolve(res);
+      })
+    });
+  }
 }
