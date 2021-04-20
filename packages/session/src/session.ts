@@ -2,10 +2,27 @@ import { io } from 'socket.io-client'
 // import { axios } from 'axios'; // TODO Controller Integration
 import { Auth } from './auth';
 
+const isBrowser: Function = () => {
+  try {
+    if (window) return true;
+  } catch (e) {
+    return false;
+  }
+};
+
+const isNode: Function = () => {
+  try {
+    if (global) return true;
+  } catch (e) {
+    return false;
+  }
+};
+
 export class Session { // TODO Exent EventErmitter or SocketIO Manager
   public ticket: any = null;
   public config: any = null;
   public gateway: any = {}; // Interfaces
+  public controller: any = {}; // Interfaces
 
   constructor(config: any) {
     this.config = config
@@ -13,7 +30,8 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
 
   public async init() { // Make it multi sessionable
     return new Promise(async (resolve: any, reject: any) => {
-      if (localStorage && localStorage.getItem(`${this.config.host}_ticket_token`)) {
+
+      if (isBrowser() && localStorage && localStorage.getItem(`${this.config.host}_ticket_token`)) {
         try {
           this.ticket = {
             token: localStorage.getItem(`${this.config.host}_ticket_token`),
@@ -29,6 +47,7 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
       } else {
         resolve(true);
       }
+
     })
   }
 
@@ -42,13 +61,12 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
 
         this.ticket = await auth.login(credentials)
 
-        if (localStorage) {
+        if (isBrowser() && localStorage) {
           localStorage.setItem(`${this.config.host}_ticket_token`, this.ticket.token)
           localStorage.setItem(`${this.config.host}_ticket_expiresAt`, this.ticket.expiresAt)
           localStorage.setItem(`${this.config.host}_ticket_ip`, this.ticket.ip)
           localStorage.setItem(`${this.config.host}_ticket_user`, this.ticket.user)
           localStorage.setItem(`${this.config.host}_ticket__id`, this.ticket._id)
-          // TODO Multisitable
         }
 
         resolve(true);
@@ -61,11 +79,19 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
   // TODO Logout
 
   public add(config: any) {
-    this.gateway[config.gateway] = io(`${config.host}/${config.gateway}`, {
-      auth: {
-        ticket: this.ticket
-      }
-    })
+    const host = config.host || this.config.host
+
+    if (config.gateway) {
+      this.gateway[config.gateway] = io(`${host}/${config.gateway}`, {
+        auth: {
+          ticket: this.ticket
+        }
+      })
+    }
+
+    if (config.controller) {
+      this.controller[config.controller] = config.controller // TODO Implement axios
+    }
   }
   // TODO Add RESTful API
   // public post() {

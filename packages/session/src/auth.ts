@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client'
 
 export class Auth {
-  public credentials: string
+  public ticket: string
   public host: string;
   public gateway: string;
   public socket: any;
@@ -18,7 +18,7 @@ export class Auth {
       this.socket.emit('login', credentials, async (err: any, res: any) => {
         if (err) return reject(err);
 
-        this.credentials = res;
+        this.ticket = res;
         resolve(res);
       })
     });
