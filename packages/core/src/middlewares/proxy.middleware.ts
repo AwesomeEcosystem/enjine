@@ -1,4 +1,4 @@
-import { Auth } from '@ecosis/session';
+import { Auth } from '@enjine/session';
 import { Exception } from '../exceptions/exception';
 
 export async function proxyMiddleware(gateway: any) { // TODO Dev a real generic extendable proxy middleware and extend proxyAuthMiddleware
@@ -8,7 +8,7 @@ export async function proxyMiddleware(gateway: any) { // TODO Dev a real generic
     try {
 
       let res: any = await auth.validate(socket.handshake.auth.ticket)
-      if (res) next():
+      if (res) next();
 
     } catch (error) {
       next(new Exception(403, error))

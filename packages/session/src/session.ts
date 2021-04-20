@@ -93,20 +93,4 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
       this.controller[config.controller] = config.controller // TODO Implement axios
     }
   }
-  // TODO Add RESTful API
-  // public post() {
-  //
-  // }
-  //
-  // public put() {
-  //
-  // }
-  //
-  // public get() {
-  //
-  // }
-  //
-  // public delete() {
-  //
-  // }
 }

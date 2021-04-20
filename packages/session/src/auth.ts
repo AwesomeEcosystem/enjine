@@ -24,7 +24,7 @@ export class Auth {
     });
   }
 
-  public validate(ticket) { // TODO upgraged logic
+  public validate(ticket: any) { // TODO upgraged logic & Ticket Interface
     return new Promise((resolve: any, reject: any) => {
       this.socket.emit('auth', ticket, async (err: any, res: any) => {
         if (err) return reject(err);

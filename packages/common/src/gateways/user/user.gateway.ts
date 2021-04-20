@@ -1,4 +1,4 @@
-import { Gateway, authMiddleware } from '@ecosis/core';
+import { Gateway, authMiddleware } from '@enjine/core';
 import { endpoints } from './user.endpoints';
 
 export class UserGateway extends Gateway {

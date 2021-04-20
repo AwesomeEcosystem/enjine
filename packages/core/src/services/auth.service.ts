@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Exception } from '../exceptions/exception';
-import { compareCrypto } from '@ecosis/utils';
+import { compareCrypto } from '@enjine/utils';
 
 export class AuthService {
   public users: any;

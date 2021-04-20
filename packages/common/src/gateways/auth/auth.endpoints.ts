@@ -1,4 +1,4 @@
-import { AuthService } from '@ecosis/core';
+import { AuthService } from '@enjine/core';
 
 export async function endpoints(context: any) { // context Interface
 

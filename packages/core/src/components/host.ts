@@ -38,8 +38,8 @@ export class Host {
 
     if (this.middleware) {
       for (const middleware of this.middleware) {
-        this.app.use((req: any, res: any, next) => middleware(req, res, next))
-        this.io.use((socket, next) => middleware(socket.request, {}, next))
+        // this.app.use((req: any, res: any, next) => middleware(req, res, next)) // TODO multimiddleware
+        // this.io.use((socket, next) => middleware(socket.request, {}, next))
       }
       // TODO Real Passport Session
       // app.use(wrap(passport.initialize()));

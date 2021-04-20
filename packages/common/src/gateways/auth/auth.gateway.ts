@@ -1,4 +1,4 @@
-import { Gateway } from '@ecosis/core';
+import { Gateway } from '@enjine/core';
 import { endpoints } from './auth.endpoints';
 
 export class AuthGateway extends Gateway {
