@@ -1,4 +1,3 @@
-// import { any, any }  from 'socket.io';
 import { AuthService } from '../services/auth.service';
 
 export class Gateway {
@@ -8,9 +7,9 @@ export class Gateway {
   public endpoints: any; // TODO Interface Endpoints
   public namespace: any;
 
-  constructor(name: string, db: any, endpoints: any) { // TODO DB Interface
+  constructor(name: string, endpoints: any, db?: any) { // TODO DB Interface
     this.name = name;
-    this.database = db;
+    this.database = db || {};
     this.endpoints = endpoints;
   }
 
@@ -33,19 +32,15 @@ export class Gateway {
     }
 
     this.namespace.on('connection', (event: any) => this.connection(event));
-    this.namespace.on('disconnect', (event: any) => this.disconnection(event));
-    console.log(`Gateway '${this.name}' initialized`);
+    // this.namespace.on('disconnect', (event: any) => this.disconnection(event));
+    console.log(`Gateway ${(this.name) ? this.name : ''} initialized`); // TODO Global custom Logger Interface
   }
 
   private async connection(socket: any){
-    console.log(`New Client connected to Gateway '${this.name}'`, socket.id);
-
-    // TODO Push Client into Connections
-
     this.endpoints({ socket, space: this.namespace, database: this.database })
   }
 
-  private disconnection(socket: any){
-    console.log('SocketIO onDisconnect', socket.id);
-  }
+  // private disconnection(socket: any){
+  //   console.log('SocketIO onDisconnect', socket.id);
+  // }
 }
