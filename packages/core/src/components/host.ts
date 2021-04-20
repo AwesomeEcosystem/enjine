@@ -1,5 +1,6 @@
 import { createServer as createHttp } from 'http';
 import { createServer as createHttps } from 'https';
+// import { createProxyServer as createProxy } from 'http-proxy';
 import express from 'express';
 import logger from 'morgan';
 
@@ -30,6 +31,7 @@ export class Host {
 
     this.app = express();
     this.server = {
+      // proxy: createProxy({}),
       http: createHttp(this.app),
       https: (this.config.secure) ? createHttps(this.config.secure, this.app) : null
     }
@@ -37,6 +39,7 @@ export class Host {
     if (this.middleware) {
       for (const middleware of this.middleware) {
         this.app.use((req: any, res: any, next) => middleware(req, res, next))
+        this.io.use((socket, next) => middleware(socket.request, {}, next))
       }
       // TODO Real Passport Session
       // app.use(wrap(passport.initialize()));

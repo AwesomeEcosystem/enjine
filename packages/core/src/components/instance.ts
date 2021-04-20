@@ -3,14 +3,14 @@ import { Application, Router } from 'express';
 import cors from 'cors';
 
 export class Instance {
-  public name: string;
-  public host: any; // TODO express Interface
-  public io: any; // TODO SocketIO Interface
-  public app: Application;
-  public http: any; // tODO Http
-  public gateway: any[]; // TODO Gateways Interface
-  public controller: any[]; // TODO Controller Interface
-  public middleware: any[]; // TODO Type Middlewares
+  public name: string = '';
+  public host: any = {}; // TODO express Interface
+  public io: any; = {}// TODO SocketIO Interface
+  public app: Application = {};
+  public http: any = {}; // tODO Http
+  public gateway: any[] = []; // TODO Gateways Interface
+  public controller: any[] = []; // TODO Controller Interface
+  public middleware: any[] = []; // TODO Type Middlewares
 
   constructor(name: string, modules: any) {
     this.name = name;
@@ -49,6 +49,7 @@ export class Instance {
 
     if (this.middleware) {
       for (const middleware of this.middleware) {
+        this.io.use((socket, next) => middleware(socket.request, {}, next))
         this.app.use((req: any, res: any, next: any) => middleware(req, res, next))
       }
       // TODO Real Passport Session
