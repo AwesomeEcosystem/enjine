@@ -3,7 +3,7 @@ import { Application, Router } from 'express';
 import cors from 'cors';
 
 export class Instance {
-  public name: string = '';
+  public name: string;
   public host: any; // TODO express Interface
   public io: any;// TODO SocketIO Interface
   public app: Application;
@@ -12,10 +12,10 @@ export class Instance {
   public controller: any[] = []; // TODO Controller Interface
   public middleware: any[] = []; // TODO Type Middlewares
 
-  constructor(name: string, modules: any) {
-    this.name = name;
-    this.gateway = modules.gateway || [];
-    this.controller = modules.controller || [];
+  constructor(config: any) {
+    this.name = config.name || '';
+    this.gateway = config.gateway || [];
+    this.controller = config.controller || [];
   }
 
   public use(middleware: any) { // TODO Middleware Interface
