@@ -1,7 +1,7 @@
 {
   "name": "@enjine/common",
-  "version": "0.0.1-alpha.6",
-  "description": "Extended Core Modules as Common Instance Component",
+  "version": "0.0.1-alpha.8",
+  "description": "Extended modules to build common Instances",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/enjine#readme",
   "license": "MIT",
@@ -23,8 +23,8 @@
     "url": "https://github.com/AwesomeEcosystem/enjine/issues"
   },
   "dependencies": {
-    "@enjine/core": "^0.0.1-alpha.4",
-    "@enjine/database": "^0.0.1-alpha.3",
-    "@enjine/utils": "^0.0.1-alpha.2"
+    "@enjine/core": "^0.0.1-alpha.6",
+    "@enjine/database": "^0.0.1-alpha.7",
+    "@enjine/utils": "^0.0.1-alpha.6"
   }
 }

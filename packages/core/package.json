@@ -1,7 +1,7 @@
 {
   "name": "@enjine/core",
-  "version": "0.0.1-alpha.4",
-  "description": "Modules to build Node Instances",
+  "version": "0.0.1-alpha.6",
+  "description": "Core modules to build advanced Instances",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/enjine#readme",
   "license": "MIT",
@@ -23,9 +23,9 @@
     "url": "https://github.com/AwesomeEcosystem/enjine/issues"
   },
   "dependencies": {
-    "@enjine/database": "^0.0.1-alpha.3",
-    "@enjine/session": "^0.0.1-alpha.5",
-    "@enjine/utils": "^0.0.1-alpha.2",
+    "@enjine/database": "^0.0.1-alpha.7",
+    "@enjine/session": "^0.0.1-alpha.8",
+    "@enjine/utils": "^0.0.1-alpha.6",
     "async-constructor": "^0.4.5",
     "bcrypt": "^5.0.0",
     "class-transformer": "^0.2.3",
