@@ -25,7 +25,7 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
   public controller: any = {}; // Interfaces
 
   constructor(config: any) {
-    this.config = config
+    this.config = config || {}
   }
 
   public async init() { // Make it multi sessionable
