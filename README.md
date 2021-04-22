@@ -1,10 +1,11 @@
-# scale
+# enjine
 
 > Progressive Interoperable Full Stack Application Data Management Framework
 
 > Lets build a digital global data flow infrastructure for an open, transparent and efficient future!
 
-**scale** is a real time data management framework.
+Its good for beginners, because of the easy to use bundled standards - all nessecary tools at once! And its good for advanced, because it safes much time!
+
 
 # Concept
 
@@ -16,45 +17,24 @@ Parts of a full *data management backend* with implemented *authentication* are 
 
 ```js
 // Server
-const { Host, Instance, Gateway, authMiddleware, User } = require('@enjine/core');
-const { AuthGateway, UserGateway, DataGateway, MediaGateway } = require('@enjine/common');
-const { Manager } = require('@enjine/database');
+import { Host, Instance, Controller, Gateway } from '@enjine/core'
 
+const controller = new Controller('/', ({ router }) => {
+  router.get('/', (req, res) => {
+    res.send('Hi')
+  })
+})
 
-const database = new Manager('.database'),
+const instance = new Instance({
+  controller: [ controller ]
+})
 
-      datadb = database.create('data'),
-      userdb = database.create('user'),
-      mediadb = database.create('media'),
+const host = new Host({ port: 4000 })
 
-      auth = new AuthGateway('auth', database),
-      data = new DataGateway('data', datadb), // XXX /([^\s]+)/
+host.add(instance)
 
-      user = new UserGateway('user', userdb),
-      media = new MediaGateway('media', mediadb),
+host.bootstrap()
 
-      host = new Host({
-        cors: { origin: '*', credentials: false },
-        transports: ['websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling', 'polling']
-      });
-
-
-data.use(authMiddleware);
-
-user.use(authMiddleware);
-media.use(authMiddleware);
-
-
-host.add([
-  new Instance('', [
-    auth,
-    user,
-    data,
-    media
-  ])
-]);
-
-host.listen(4000);
 ```
 
 ```js
