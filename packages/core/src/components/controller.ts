@@ -31,6 +31,7 @@ export class Controller {
     }
 
     this.endpoints({ router: this.router, database: this.database })
+    console.log(`Controller ${(this.name) ? this.name : ''} initialized`); // TODO Global custom Logger Interface
   }
 
   // public client(path: any) {
