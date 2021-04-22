@@ -2,6 +2,7 @@ import { createServer as createHttp } from 'http';
 import { createServer as createHttps } from 'https';
 // import { createProxyServer as createProxy } from 'http-proxy';
 import express from 'express';
+import { Nuxt, Builder } from 'nuxt';
 import logger from 'morgan';
 
 export class Host {
@@ -53,11 +54,25 @@ export class Host {
     };
   }
 
-  public bootstrap() {
+  public async bootstrap() {
 
-    // TODO this.env = process.env.NODE_ENV === 'production' ? true : false;
+    const isDev = process.env.NODE_ENV !== 'production'
 
     this.initialize()
+
+    if (this.config.nuxt) {
+      const nuxt: any = new Nuxt()
+      await nuxt.ready()
+
+      // Render every route with Nuxt.js
+      this.app.use(nuxt.render)
+
+      // Build only in dev mode with hot-reloading
+      if (isDev) {
+        const builder: any = new Builder(nuxt)
+        await builder.build()
+      }
+    }
 
     this.server.http.listen(this.config.port || 80, this.config.host || 'localhost');
 
