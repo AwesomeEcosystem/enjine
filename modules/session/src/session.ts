@@ -24,11 +24,13 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
   public gateway: any = {}; // Interfaces
   public controller: any = {}; // Interfaces
 
-  constructor(config: any) {
+  constructor(config?: any) {
     this.config = config || {}
   }
 
-  public async init() { // Make it multi sessionable
+  public async init(config?: any) { // Make it multi sessionable
+    this.config = config || this.config || {};
+
     return new Promise(async (resolve: any, reject: any) => {
 
       if (isBrowser() && localStorage && localStorage.getItem(`${this.config.host}_ticket_token`)) {
