@@ -61,7 +61,7 @@ export class Host {
     this.initialize()
 
     if (this.config.nuxt) {
-      const nuxt: any = new Nuxt()
+      const nuxt: any = new Nuxt(this.config.nuxt)
       await nuxt.ready()
 
       // Render every route with Nuxt.js
