@@ -3,6 +3,6 @@ import { endpoints } from './auth.endpoints';
 
 export class AuthGateway extends Gateway {
   constructor(name: any, db: any) {
-    super(name, db, endpoints)
+    super(name, endpoints, db)
   }
 }
