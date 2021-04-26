@@ -49,8 +49,12 @@ export class Instance {
 
     if (this.middleware) {
       for (const middleware of this.middleware) {
-        this.io.use((socket: any, next: any) => middleware(socket, next)) // TODO express wrapped middleware
-        // this.app.use((req: any, res: any, next: any) => middleware(req, res, next))
+        if (this.io) {
+          this.io.use((socket: any, next: any) => middleware(socket, next)) // TODO express wrapped middleware
+        }
+        if (this.app) {
+          // this.app.use((req: any, res: any, next: any) => middleware(req, res, next))
+        }
       }
       // TODO Real Passport Session
       // app.use(wrap(passport.initialize()));
