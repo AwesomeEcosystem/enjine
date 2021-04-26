@@ -1,5 +1,3 @@
-import { AuthService } from '../services/auth.service';
-
 export class Gateway {
   public name: string;
   public database: any;
