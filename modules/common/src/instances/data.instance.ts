@@ -7,10 +7,10 @@ export class DataInstance extends Instance {
 
     super({
       controller: [
-        new DataController(`/${config.name || ''}`, config.db)
+        new DataController({ name: `/${config.name || ''}`, db: config.db})
       ],
       gateway: [
-        new DataGateway(config.name || '', config.db)
+        new DataGateway({ name: config.name || '', db: config.db})
       ]
     });
 
