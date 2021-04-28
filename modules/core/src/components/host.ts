@@ -3,7 +3,7 @@ import { createServer as createHttps } from 'https';
 // import { createProxyServer as createProxy } from 'http-proxy';
 import express from 'express';
 import { Nuxt, Builder } from 'nuxt';
-import logger from 'morgan';
+import consola from 'consola';
 
 export class Host {
   // public env: boolean;
@@ -52,6 +52,8 @@ export class Host {
         instance.initialize(this.server, this.app, this.config)
       }
     };
+    consola.success(`${(this.config.secure) ? 'Secure' : ''} Core initialized!`)
+
   }
 
   public async bootstrap() {
@@ -90,7 +92,6 @@ export class Host {
 
       this.server.https.listen(this.config.port || 443, this.config.host || 'localhost')
     }
-
-    console.log(`${(this.config.secure) ? 'Secure' : ''} Application listening on htt${(this.config.secure) ? 'ps' : 'p'}://${this.config.host || 'localhost'}:${this.config.port || 8000}`);
+    consola.info(`${(this.config.secure) ? 'Secure' : ''} Application listening on htt${(this.config.secure) ? 'ps' : 'p'}://${this.config.host || 'localhost'}:${this.config.port || 8000}`)
   }
 }

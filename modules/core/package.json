@@ -1,6 +1,6 @@
 {
   "name": "@enjine/core",
-  "version": "0.0.1-alpha.10",
+  "version": "0.0.1-alpha.11",
   "description": "Core modules to build advanced Instances",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/enjine#readme",
@@ -30,6 +30,7 @@
     "bcrypt": "^5.0.0",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.11.1",
+    "consola": "^2.15.3",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
@@ -41,7 +42,6 @@
     "http-proxy-middleware": "^1.2.0",
     "jest": "^25.1.0",
     "jsonwebtoken": "^8.5.1",
-    "morgan": "^1.10.0",
     "nuxt": "^2.15.4",
     "socket.io": "^3.0.5",
     "ts-jest": "^25.2.1",

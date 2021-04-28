@@ -1,6 +1,7 @@
 import { Server, Socket } from 'socket.io';
 import { Application, Router } from 'express';
 import cors from 'cors';
+import consola from 'consola';
 
 export class Instance {
   public name: string;
@@ -60,8 +61,7 @@ export class Instance {
       // app.use(wrap(passport.initialize()));
       // app.use(wrap(passport.session()));
     }
-
-    console.log(`Instance '${this.name}' initialized`); // TODO Fancy Logger
+    consola.success(`Instance ${(this.name) ? this.name : ''} initialized`);
   }
 
   public client(path: any) {

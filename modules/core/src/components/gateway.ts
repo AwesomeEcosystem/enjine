@@ -1,3 +1,5 @@
+import consola from 'consola';
+
 export class Gateway {
   public name: string;
   public database: any;
@@ -31,7 +33,7 @@ export class Gateway {
 
     this.namespace.on('connection', (event: any) => this.connection(event));
     // this.namespace.on('disconnect', (event: any) => this.disconnection(event));
-    console.log(`Gateway ${(this.name) ? this.name : ''} initialized`); // TODO Global custom Logger Interface
+    consola.success(`Gateway ${(this.name) ? this.name : ''} initialized`); // TODO Global custom Logger Interface
   }
 
   private async connection(socket: any){

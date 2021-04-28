@@ -1,5 +1,6 @@
 import path from 'path'
 import express from 'express'
+import consola from 'consola';
 
 export class Controller {
   public name: string;
@@ -31,7 +32,7 @@ export class Controller {
     }
 
     this.endpoints({ router: this.router, database: this.database })
-    console.log(`Controller ${(this.name) ? this.name : ''} initialized`); // TODO Global custom Logger Interface
+    consola.success(`Controller ${(this.name) ? this.name : ''} initialized`);
   }
 
   // public client(path: any) {
