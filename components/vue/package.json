@@ -1,10 +1,15 @@
 {
-  "name": "@enjine/vue",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@enjine/components",
+  "version": "0.0.1-alpha.2",
+  "description": "enjine generic app VueJS Components",
+  "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
+  "homepage": "https://github.com/AwesomeEcosystem/enjine#readme",
+  "license": "MIT",
+  "main": "dist/enjine-components.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build:components": "vue-cli-service build --target lib --name enjine-components ./src/index.ts",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e"
   },
@@ -33,5 +38,12 @@
     "vue-template-compiler": "^2.6.11",
     "wdio-chromedriver-service": "^6.0.3",
     "wdio-geckodriver-service": "^1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AwesomeEcosystem/enjine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AwesomeEcosystem/enjine/issues"
   }
 }
