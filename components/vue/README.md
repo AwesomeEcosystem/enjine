@@ -1,4 +1,4 @@
-# lib
+# @enjine/vue
 
 ## Project setup
 ```
