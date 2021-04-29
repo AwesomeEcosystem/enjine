@@ -7,4 +7,5 @@ export { default as Menu } from './components/Menu.vue';
 export { default as Nav } from './components/Nav.vue';
 export { default as Settings } from './components/Settings.vue';
 export { default as Session } from './components/Session.vue';
+import './assets/tailwind.css'
 // TODO Root Obj
