@@ -32,7 +32,7 @@ export class Controller {
     }
 
     this.endpoints({ router: this.router, database: this.database })
-    consola.success(`Controller ${(this.name) ? this.name : ''} initialized`);
+    consola.success(`Controller ${(this.name) ? this.name + ' ' : ''}initialized`);
   }
 
   // public client(path: any) {

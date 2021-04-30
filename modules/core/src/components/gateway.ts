@@ -33,7 +33,7 @@ export class Gateway {
 
     this.namespace.on('connection', (event: any) => this.connection(event));
     // this.namespace.on('disconnect', (event: any) => this.disconnection(event));
-    consola.success(`Gateway ${(this.name) ? this.name : ''} initialized`); // TODO Global custom Logger Interface
+    consola.success(`Gateway ${(this.name) ? this.name + ' ' : ''}initialized`); // TODO Global custom Logger Interface
   }
 
   private async connection(socket: any){

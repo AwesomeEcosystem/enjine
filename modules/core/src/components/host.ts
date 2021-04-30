@@ -52,7 +52,7 @@ export class Host {
         instance.initialize(this.server, this.app, this.config)
       }
     };
-    consola.success(`${(this.config.secure) ? 'Secure' : ''} Core initialized!`)
+    consola.success(`${(this.config.secure) ? 'Secure ' : ''}Host initialized!`)
 
   }
 

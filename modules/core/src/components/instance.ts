@@ -61,7 +61,7 @@ export class Instance {
       // app.use(wrap(passport.initialize()));
       // app.use(wrap(passport.session()));
     }
-    consola.success(`Instance ${(this.name) ? this.name : ''} initialized`);
+    consola.success(`Instance ${(this.name) ? this.name + ' ' : ''}initialized`);
   }
 
   public client(path: any) {
