@@ -8,7 +8,7 @@ export class Instance {
   public host: any; // TODO express Interface
   public io: any;// TODO SocketIO Interface
   public app: Application;
-  public http: any; // tODO Http
+  public server: any; // TODO Http
   public gateway: any[] = []; // TODO Gateways Interface
   public controller: any[] = []; // TODO Controller Interface
   public middleware: any[] = []; // TODO Type Middlewares
@@ -23,13 +23,13 @@ export class Instance {
     this.middleware.push(middleware)
   }
 
-  public initialize(http: any, app: Application, config: any) {
+  public initialize(server: any, app: Application, config: any) {
 
-    this.http = http;
+    this.server = server;
     this.app = app;
 
     if (this.gateway) {
-      this.io = new Server(http, config);
+      this.io = new Server((server.https) ? server.https : server.http, config);
       for (const gateway of this.gateway) {
         gateway.initialize(this.io);
       };
