@@ -8,7 +8,15 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class App extends Vue {}
+export default class App extends Vue {
+  @Prop() auth?: string;
+  created() {
+    this.$session.init();
+    if (!this.$session.ticket && this.auth) {
+      this.$router.go(this.auth))
+    }
+  }
+}
 </script>
 
 <style scoped>

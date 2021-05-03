@@ -1,15 +1,15 @@
 import { Database } from './database';
 import { Model } from './model';
 
-class DatabaseModel extends Model { // TODO too ugly - Declaration Dilemma
-  name: string;
-  path: string;
-  constructor(name: string, path: string) {
-    super('db-' + name)
-    this.name = name;
-    this.path = path;
-  }
-}
+// class DatabaseModel extends Model { // TODO too ugly - Declaration Dilemma
+//   name: string;
+//   path: string;
+//   constructor(name: string, path: string) {
+//     super('db-' + name)
+//     this.name = name;
+//     this.path = path;
+//   }
+// }
 
 export class Manager extends Database {
   path: string;
@@ -28,3 +28,5 @@ export class Manager extends Database {
     return new Manager(this.path + name)
   }
 }
+
+// TODO Archive System (Time-Period etc)

@@ -1,9 +1,13 @@
+import path from 'path'
 import { createServer as createHttp } from 'http';
 import { createServer as createHttps } from 'https';
 // import { createProxyServer as createProxy } from 'http-proxy';
 import express from 'express';
 import { Nuxt, Builder } from 'nuxt';
 import consola from 'consola';
+
+const cors = { origin: '*', credentials: false };
+const transports = ['websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling', 'polling'];
 
 export class Host {
   // public env: boolean;
@@ -15,9 +19,9 @@ export class Host {
 
   constructor(config: any) {
     this.config = config || {
-      cors: { origin: '*', credentials: false },
-      transports: ['websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling', 'polling']
-    };
+      cors: config.cors || cors,
+      transports: config.transports || transports
+    }
   }
 
   public add(instance: any) {
@@ -63,6 +67,8 @@ export class Host {
     this.initialize()
 
     if (this.config.nuxt) {
+      const config: any = (typeof this.config.nuxt === {}) ? this.config.nuxt : path.join(__dirname, 'nuxt.config');
+      
       const nuxt: any = new Nuxt(this.config.nuxt)
       await nuxt.ready()
 

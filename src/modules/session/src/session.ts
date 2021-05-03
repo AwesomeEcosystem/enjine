@@ -1,5 +1,6 @@
+import { EventErmitter } from 'events'
 import { io } from 'socket.io-client'
-// import { axios } from 'axios'; // TODO Controller Integration
+import axios from 'axios';
 import { Auth } from './auth';
 
 const isBrowser: Function = () => {
@@ -18,7 +19,7 @@ const isNode: Function = () => {
   }
 };
 
-export class Session { // TODO Exent EventErmitter or SocketIO Manager
+export class Session extends EventErmitter {
   public ticket: any = null;
   public config: any = null;
   public gateway: any = {}; // Interfaces
@@ -28,29 +29,18 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
     this.config = config || {}
   }
 
-  public async init(config?: any) { // Make it multi sessionable
+  public init(config?: any) { // Make it multi sessionable
     this.config = config || this.config || {};
 
-    return new Promise(async (resolve: any, reject: any) => {
-
-      if (isBrowser() && localStorage && localStorage.getItem(`${this.config.host}_ticket_token`)) {
-        try {
-          this.ticket = {
-            token: localStorage.getItem(`${this.config.host}_ticket_token`),
-            expiresAt: localStorage.getItem(`${this.config.host}_ticket_expiresAt`),
-            ip: localStorage.getItem(`${this.config.host}_ticket_ip`),
-            user: localStorage.getItem(`${this.config.host}_ticket_user`),
-            _id: localStorage.getItem(`${this.config.host}_ticket__id`)
-          }
-          resolve(true);
-        } catch (e) {
-          reject(e);
-        }
-      } else {
-        resolve(true);
+    if (isBrowser() && localStorage && localStorage.getItem(`${this.config.host}_ticket_token`)) {
+      this.ticket = {
+        token: localStorage.getItem(`${this.config.host}_ticket_token`),
+        expiresAt: localStorage.getItem(`${this.config.host}_ticket_expiresAt`),
+        ip: localStorage.getItem(`${this.config.host}_ticket_ip`),
+        user: localStorage.getItem(`${this.config.host}_ticket_user`),
+        _id: localStorage.getItem(`${this.config.host}_ticket__id`)
       }
-
-    })
+    }
   }
 
   public async login(credentials: any) { // TODO Creds Interface
@@ -89,10 +79,19 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
           ticket: this.ticket
         }
       })
+
+      this.gateway[config.gateway].on('connected', (res: any) this.emit('success'))
+      this.gateway[config.gateway].on('error', (err: any) this.emit('error', err))
+      this.gateway[config.gateway].on('connect_error', (err: any) this.emit('error', err))
     }
 
     if (config.controller) {
-      this.controller[config.controller] = config.controller // TODO Implement axios
+      this.controller[config.controller] = axios.create({
+        baseURL: `${this.config.host}/${config.controller}`,
+        auth: {
+          ticket: this.ticket
+        }
+      })
     }
   }
 }
