@@ -19,12 +19,12 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class App extends Vue {
-  @Prop() host!: string;
+export default class Connection extends Vue {
   @Prop() gateway!: string;
+
+  data: any[] = [];
+
+  gateway.emit('all', (res: any[]) => this.data = res);
+  gateway.on('post', (doc: any[]) => this.data.push(doc));
 }
 </script>
-
-<style scoped>
-
-</style>
