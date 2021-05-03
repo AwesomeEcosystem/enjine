@@ -1,0 +1,10 @@
+{
+  "title": "enjine Documentation",
+  "url": "enjine.ecosis.io",
+  "logo": {
+    "light": "/logo-light.svg",
+    "dark": "/logo-dark.svg"
+  },
+  "github": "AwesomeEcosystem/enjine",
+  "twitter": "@enjine10"
+}
