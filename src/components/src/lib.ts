@@ -10,7 +10,7 @@ import Main from './components/Main.vue';
 import Menu from './components/Menu.vue';
 import Nav from './components/Nav.vue';
 import Settings from './components/Settings.vue';
-import Session from './components/Session.vue';
+import Connection from './components/Connection.vue';
 import './assets/tailwind.css'
 
 declare module 'vue/types/vue' {
@@ -28,7 +28,7 @@ const components: any[] = [
   Menu,
   Nav,
   Settings,
-  Session
+  Connection
 ]
 
 export function install(Vue: Vue, args: any = {}) {
@@ -56,5 +56,5 @@ export {
   Menu,
   Nav,
   Settings,
-  Session
+  Connection
 }
