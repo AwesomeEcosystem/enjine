@@ -12,7 +12,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build:components": "vue-cli-service build --target lib --name enjine-components ./src/index.ts",
-    "build:postcss": "postcss src/assets/**/*.css --base src/assets/ --dir dist",
+    "build:theme": "postcss src/assets/**/*.css --base src/assets/ --dir themes",
     "build:bundle": "rollup -c && rollup -c --environment MINIFY && npm run build:postcss",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e"

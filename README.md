@@ -25,9 +25,17 @@ Read the Dos [here](https://docs.ecosis,io)
 
 ## Boilerplates
 
-- [Minimal Fullstack]()
-- [Basic Fullstack]()
-- [Advanced Fullstack]()
+###  Single Page Application
+
+- [Minimal]()
+- [Basic]()
+- [Advanced]()
+
+### Fullstack
+
+- [Minimal]()
+- [Basic]()
+- [Advanced]()
 
 # Concept
 
@@ -81,6 +89,8 @@ session.api.get('/')
 
 ```shell
 npm i
+
+npm run test
 
 npm run dev
 ```

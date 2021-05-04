@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="flex justify-around items-center" v-else>
-        <p>No Feed available</p>
+        <p>No {{ (!gateway && !controller) ? 'Connection' : 'Data' }} available</p>
       </div>
     </div>
 
@@ -31,7 +31,7 @@ export default class Feed extends Vue {
 
     if (this.gateway) {
 
-      this.gateway.emit('all', (arr: any[]) => this.data = arr);
+      this.gateway.emit('all', (res: any[]) => this.data = res);
 
       this.gateway.on('post', (obj: any[]) => this.data.post(obj));
       this.gateway.on('update', (obj: any[]) => this.data.update(obj));
@@ -39,7 +39,7 @@ export default class Feed extends Vue {
 
     } else if (!this.gateway && this.controller) {
 
-      this.controller.get('/', (arr: any[]) => this.data = arr)
+      this.controller.get('/', (res: any[]) => this.data = res)
     }
   }
 }
