@@ -1,0 +1,19 @@
+{
+  "name": "@enjine/themes",
+  "version": "0.0.1",
+  "description": "tailwindcss themes",
+  "main": "basic",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "tailwindcss",
+    "css",
+    "theme",
+    "nuxt",
+    "enjine",
+    "ecosis"
+  ],
+  "author": "equaliser0",
+  "license": "MIT"
+}
