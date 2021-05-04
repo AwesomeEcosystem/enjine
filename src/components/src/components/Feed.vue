@@ -5,7 +5,7 @@
     <div class="flex flex-wrap">
       <div class="" v-if="feed" v-for="(doc, i) in feed">
         <div class="p-2">
-          <p>{{ doc }}</p>
+          <slot name="doc">{{ doc }}</slot>
         </div>
       </div>
       <div class="flex justify-around items-center" v-else>
