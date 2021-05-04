@@ -1,17 +1,19 @@
 <template>
-  <div class="bg-gray-700 py-4 px-8 rounded">
-    <!-- <div class="">
-      <p>Host {{ host }}</p>
-      <p>Gateway {{ feed }}</p>
-    </div> -->
-    <div class="flex flex-wrap" v-if="feed" v-for="(doc, i) in feed">
-      <div class="p-2">
-        <p>{{ doc }}</p>
+  <div class="flex flex-wrap bg-gray-700 py-4 px-8 m-2 rounded text-white">
+    <slot name="top"></slot>
+
+    <div class="flex flex-wrap">
+      <div class="" v-if="feed" v-for="(doc, i) in feed">
+        <div class="p-2">
+          <p>{{ doc }}</p>
+        </div>
+      </div>
+      <div class="flex justify-around items-center" v-else>
+        <p>No Feed available</p>
       </div>
     </div>
-    <div class="flex justify-around items-center" v-else>
-      <p>No Feed available</p>
-    </div>
+
+    <slot name="buttom"></slot>
   </div>
 </template>
 
