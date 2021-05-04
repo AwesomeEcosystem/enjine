@@ -26,6 +26,21 @@ export class Session extends EventErmitter {
   public controller: any = {}; // Interfaces
 
   constructor(config?: any) {
+
+    Array.prototype.post = (obj: any) => {
+      this.push(obj)
+    }
+
+    Array.prototype.update = (obj: any) => {
+      const arr = docs.map((obj: any) => (obj._id === data._id) ? obj = data : obj))
+      this = arr;
+    }
+
+    Array.prototype.remove = (id: any) => {
+      const filtered: any = this.filter((d: any) => d._id != id);
+      this.feed = filtered;
+    }
+
     this.config = config || {}
   }
 
