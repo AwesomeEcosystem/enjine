@@ -36,7 +36,7 @@ export class Session extends EventErmitter {
       this = arr;
     }
 
-    Array.prototype.remove = (id: any) => {
+    Array.prototype.remove = (id: string) => {
       const filtered: any = this.filter((d: any) => d._id != id);
       this.feed = filtered;
     }

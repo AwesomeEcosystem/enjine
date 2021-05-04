@@ -3,7 +3,7 @@
     <slot name="top"></slot>
 
     <div class="flex flex-wrap">
-      <div class="" v-if="gateway" v-for="(doc, i) in data">
+      <div class="" v-if="gateway || controller" v-for="(doc, i) in data">
         <div class="p-2">
           <slot>{{ doc }}</slot>
         </div>
@@ -22,17 +22,25 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Feed extends Vue {
-  @Prop() gateway!: any;
+  @Prop() gateway?: any;
+  @Prop() controller?: any;
 
   data: any[] = [];
 
   mounted() {
 
-    this.gateway.emit('all', (arr: any[]) => this.data = arr);
+    if (this.gateway) {
 
-    this.gateway.on('post', (obj: any[]) => this.data.post(obj));
-    this.gateway.on('update', (obj: any[]) => this.data.update(obj));
-    this.gateway.on('remove', (obj: any[]) => this.data.remove(obj));
+      this.gateway.emit('all', (arr: any[]) => this.data = arr);
+
+      this.gateway.on('post', (obj: any[]) => this.data.post(obj));
+      this.gateway.on('update', (obj: any[]) => this.data.update(obj));
+      this.gateway.on('remove', (id: string) => this.data.remove(id));
+
+    } else if (!this.gateway && this.controller) {
+
+      this.controller.get('/', (arr: any[]) => this.data = arr)
+    }
   }
 }
 

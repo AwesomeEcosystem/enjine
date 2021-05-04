@@ -13,7 +13,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Feed extends Vue {
+export default class Stream extends Vue {
   @Prop() gateway!: any;
 }
 
