@@ -32,6 +32,12 @@ const components: any[] = [
 ]
 
 export function install(Vue: Vue, args: any = {}) {
+  
+  if (install.installed) {
+    return;
+  }
+
+  install.installed = true;
 
   Array.prototype.post = (obj: any) => {
     this.push(obj)
@@ -46,12 +52,6 @@ export function install(Vue: Vue, args: any = {}) {
     const filtered: any = this.filter((d: any) => d._id != id);
     this.feed = filtered;
   }
-
-  if (install.installed) {
-    return;
-  }
-
-  install.installed = true;
 
   const lib: any = (args.components && Array.isArray(args.components)) || components;
   lib.forEach((component: any) => {
