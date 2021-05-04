@@ -1,9 +1,12 @@
 <template>
-  <div class="flex flex-wrap bg-gray-700 py-4 px-8 m-2 rounded text-white">
-    <Feed :gateway="session.gateway.data" v-slot="{ doc }">
-      <Card>{{ doc }}</Card>
-    </Feed>
-  </div>
+  <section>
+    <Container>
+      <Feed :gateway="gateway" v-slot="{ doc }">
+        <Card>{{ doc }}</Card>
+      </Feed>
+    </Container>
+    <Editor :gateway="gateway"/>
+  </section>
 </template>
 
 <script lang="ts">
@@ -11,7 +14,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Feed extends Vue {
-  @Prop() session!: any;
+  @Prop() gateway!: any;
 }
 
 </script>

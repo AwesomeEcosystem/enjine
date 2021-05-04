@@ -5,7 +5,7 @@
     <div class="flex flex-wrap">
       <div class="" v-if="gateway" v-for="(doc, i) in data">
         <div class="p-2">
-          <slot name="doc">{{ doc }}</slot>
+          <slot>{{ doc }}</slot>
         </div>
       </div>
       <div class="flex justify-around items-center" v-else>
