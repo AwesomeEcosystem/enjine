@@ -1,0 +1,25 @@
+{
+  "name": "@enjine/nuxt",
+  "version": "0.0.1",
+  "description": "NuxtJS Module to build ecosis & enjine applications out of the box",
+  "main": "src",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AwesomeEcosystem/enjine.git"
+  },
+  "keywords": [
+    "enjine",
+    "ecosis",
+    "nuxt",
+    "vue"
+  ],
+  "author": "equaliser0",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AwesomeEcosystem/enjine/issues"
+  },
+  "homepage": "https://github.com/AwesomeEcosystem/enjine#readme"
+}
