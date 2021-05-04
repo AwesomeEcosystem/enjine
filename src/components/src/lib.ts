@@ -32,6 +32,21 @@ const components: any[] = [
 ]
 
 export function install(Vue: Vue, args: any = {}) {
+
+  Array.prototype.post = (obj: any) => {
+    this.push(obj)
+  }
+
+  Array.prototype.update = (obj: any) => {
+    const arr = docs.map((obj: any) => (obj._id === data._id) ? obj = data : obj))
+    this = arr;
+  }
+
+  Array.prototype.remove = (id: any) => {
+    const filtered: any = this.filter((d: any) => d._id != id);
+    this.feed = filtered;
+  }
+
   if (install.installed) {
     return;
   }
