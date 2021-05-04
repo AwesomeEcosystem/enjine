@@ -4,27 +4,47 @@
 
 **enjine** bundles everything you need to build ecosis ready apps out of the box!
 
-The ***ultimate*** NuxtJS extension for re-usability, scalability and interoperability.  
+The ***ultimate*** extension for re-usability, scalability and interoperability.  
 
 > Lets build a digital global data flow infrastructure for an open, transparent and efficient future!
 
-Its good for beginners, because of the easy to use bundled standards - all nessecary tools at once! And its good for advanced, because it safes much time!
+Its good for beginners, because of the easy to use bundled standards - all necessary tools at once! And its good for advanced, because it safes much time!
 
+# Documentation
+
+Read the Dos [here](https://docs.ecosis,io)
+
+## Node Modules
+
+- [Core]()
+- [Common]()
+- [Session]()
+- [Components]()
+- [Database]()
+- [Utils]()
+
+## Boilerplates
+
+- [Minimal Fullstack]()
+- [Basic Fullstack]()
+- [Advanced Fullstack]()
 
 # Concept
 
+Extended NuxtJS shipped with a real time Data Management System including ready to use VueJS Components.
 
-> Lets build Data Cities with links which are like streets :)
-
-Parts of a full *data management backend* with implemented *authentication* are designed into classes for scalable architecture, which safes much time!
 
 # Usage
+
+## Core Functionality
+
+Design your Data Instances and embed them into your host.
 
 ```js
 // Server
 import { Host, Instance, Controller, Gateway } from '@enjine/core'
 
-const controller = new Controller('/', ({ router }) => {
+const controller = new Controller('/api', ({ router }) => {
   router.get('/', (req, res) => {
     res.send('Hi')
   })
@@ -47,26 +67,20 @@ host.bootstrap()
 
 const { Session } = require('session');
 
-const session = new Session({
-  host: 'localhost:4000',
-  gateway: 'auth'
-})
-
-session.init()
-
-await session.login({ username, password })
+const session = new Session()
 
 session.add({
   host: 'localhost:4000',
-  gateway: 'database'
+  controller: 'api'
 })
+
+session.api.get('/')
 ```
 
+# Proof of Concept
 
-# Why still Alpha Version?
+```shell
+npm i
 
-The Framework is as secure as modern standards are, so I would use it ready for the production. But the concept of the vision is to have this library more dynamic and shipped with more features, which makes this so functional.
-
-# Vision
-
-***Decentralization*** means *security*, *stability* and *scalability*. The concept of the tweak- and extendable ***dynamic*** **Instance**
+npm run dev
+```
