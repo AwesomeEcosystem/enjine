@@ -2,6 +2,7 @@ import { EventErmitter } from 'events'
 import { io } from 'socket.io-client'
 import axios from 'axios';
 import { Auth } from './auth';
+import { Connection } from './connection';
 
 const isBrowser: Function = () => {
   try {
@@ -19,27 +20,26 @@ const isNode: Function = () => {
   }
 };
 
+Array.prototype.post = (obj: any) => {
+  this.push(obj)
+}
+
+Array.prototype.update = (obj: any) => {
+  const arr = docs.map((obj: any) => (obj._id === data._id) ? obj = data : obj))
+  this = arr;
+}
+
+Array.prototype.remove = (id: string) => {
+  const filtered: any = this.filter((d: any) => d._id != id);
+  this.feed = filtered;
+}
+
 export class Session extends EventErmitter {
-  public ticket: any = null;
-  public config: any = null;
-  public gateway: any = {}; // Interfaces
-  public controller: any = {}; // Interfaces
+  public ticket: any = {};
+  public config: any = {};
+  public connection: any = {};
 
   constructor(config?: any) {
-
-    Array.prototype.post = (obj: any) => {
-      this.push(obj)
-    }
-
-    Array.prototype.update = (obj: any) => {
-      const arr = docs.map((obj: any) => (obj._id === data._id) ? obj = data : obj))
-      this = arr;
-    }
-
-    Array.prototype.remove = (id: string) => {
-      const filtered: any = this.filter((d: any) => d._id != id);
-      this.feed = filtered;
-    }
 
     this.config = config || {}
   }
@@ -87,26 +87,14 @@ export class Session extends EventErmitter {
 
   public add(config: any) {
     const host = config.host || this.config.host
+    const gateway = config.gateway || config.name
+    const controller = config.controller || config.name
 
-    if (config.gateway) {
-      this.gateway[config.gateway] = io(`${host}/${config.gateway}`, {
-        auth: {
-          ticket: this.ticket
-        }
-      })
-
-      this.gateway[config.gateway].on('connected', (res: any) this.emit('success'))
-      this.gateway[config.gateway].on('error', (err: any) this.emit('error', err))
-      this.gateway[config.gateway].on('connect_error', (err: any) this.emit('error', err))
-    }
-
-    if (config.controller) {
-      this.controller[config.controller] = axios.create({
-        baseURL: `${this.config.host}/${config.controller}`,
-        auth: {
-          ticket: this.ticket
-        }
-      })
-    }
+    this.connection[config.name || config.gateway || config.controller] = new Connection({
+      ticket: this.ticket,
+      host: config.host,
+      gateway,
+      controller
+    })
   }
 }
