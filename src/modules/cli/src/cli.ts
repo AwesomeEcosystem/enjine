@@ -1,7 +1,7 @@
 
 import arg from 'arg';
 import inquirer from 'inquirer';
-import { createProject } from './main';
+import { createProject } from './index';
 
 function parseArgumentsIntoOptions(rawArgs) {
   const args = arg(
@@ -20,28 +20,40 @@ function parseArgumentsIntoOptions(rawArgs) {
   return {
     skipPrompts: args['--yes'] || false,
     git: args['--git'] || false,
-    template: args._[0],
+    language: args._[0],
     runInstall: args['--install'] || false,
   };
 }
 
 async function promptForMissingOptions(options) {
-  const defaultTemplate = 'javascript';
+  const defaultLanguage = 'javascript';
+  const defaultStack = 'minimal';
   if (options.skipPrompts) {
     return {
       ...options,
-      template: options.template || defaultTemplate,
+      language: options.language || defaultLanguage,
+      stack: options.stack || defaultStack
     };
   }
 
   const questions = [];
-  if (!options.template) {
+  if (!options.language) {
     questions.push({
       type: 'list',
-      name: 'template',
-      message: 'Please choose which project template to use',
+      name: 'language',
+      message: 'Please choose which project language to use',
       choices: ['javascript', 'typescript'],
-      default: defaultTemplate,
+      default: defaultLanguage,
+    });
+  }
+
+  if (!options.stack) {
+    questions.push({
+      type: 'list',
+      name: 'stack',
+      message: 'Please choose which stack to use',
+      choices: ['minimal', 'monorepo'],
+      default: defaultStack,
     });
   }
 
@@ -57,7 +69,7 @@ async function promptForMissingOptions(options) {
   const answers = await inquirer.prompt(questions);
   return {
     ...options,
-    template: options.template || answers.template,
+    language: options.language || answers.language,
     git: options.git || answers.git,
   };
 }
