@@ -1,46 +1,17 @@
-import { EventErmitter } from 'events'
+import { EventEmitter } from 'events'
 import { io } from 'socket.io-client'
 import axios from 'axios';
+import { isBrowser } from '@enjine/utils';
 import { Auth } from './auth';
 import { Connection } from './connection';
 
-const isBrowser: Function = () => {
-  try {
-    if (window) return true;
-  } catch (e) {
-    return false;
-  }
-};
-
-const isNode: Function = () => {
-  try {
-    if (global) return true;
-  } catch (e) {
-    return false;
-  }
-};
-
-Array.prototype.post = (obj: any) => {
-  this.push(obj)
-}
-
-Array.prototype.update = (obj: any) => {
-  const arr = docs.map((obj: any) => (obj._id === data._id) ? obj = data : obj))
-  this = arr;
-}
-
-Array.prototype.remove = (id: string) => {
-  const filtered: any = this.filter((d: any) => d._id != id);
-  this.feed = filtered;
-}
-
-export class Session extends EventErmitter {
+export class Session extends EventEmitter {
   public ticket: any = {};
   public config: any = {};
   public connection: any = {};
 
   constructor(config?: any) {
-
+    super()
     this.config = config || {}
   }
 
@@ -76,8 +47,9 @@ export class Session extends EventErmitter {
           localStorage.setItem(`${this.config.host}_ticket__id`, this.ticket._id)
         }
 
-        resolve(true);
+        resolve(this.ticket);
       } catch (e) {
+        this.emit('error', e)
         reject(e);
       }
     })
