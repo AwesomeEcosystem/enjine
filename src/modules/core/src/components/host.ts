@@ -67,9 +67,9 @@ export class Host {
     this.initialize()
 
     if (this.config.nuxt) {
-      const config: any = (typeof this.config.nuxt === {}) ? this.config.nuxt : path.join(__dirname, 'nuxt.config');
-      
-      const nuxt: any = new Nuxt(this.config.nuxt)
+      const config: any = (typeof this.config.nuxt === 'object') ? this.config.nuxt : path.join(__dirname, 'nuxt.config');
+
+      const nuxt: any = new Nuxt(config)
       await nuxt.ready()
 
       // Render every route with Nuxt.js
