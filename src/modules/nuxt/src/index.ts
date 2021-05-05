@@ -15,3 +15,5 @@ export default mod
 
 // REQUIRED if publishing the module as npm package
 export const meta = require('./package.json')
+
+export * from './config'
