@@ -1,6 +1,6 @@
 import uniqid from 'uniqid';
 
-export class Model {
+export class Data {
   _id: string;
   created: Date;
   // TODO Updated Prop
