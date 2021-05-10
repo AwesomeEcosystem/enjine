@@ -37,7 +37,7 @@ export class Gateway {
   }
 
   private async connection(socket: any){
-    this.endpoints({ socket, space: this.namespace, database: this.database })
+    this.endpoints({ socket, namespace: this.namespace, database: this.database })
   }
 
   // private disconnection(socket: any){
