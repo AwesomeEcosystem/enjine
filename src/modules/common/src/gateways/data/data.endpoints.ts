@@ -2,14 +2,14 @@ import { Document } from '../../models/document.model';
 
 export async function endpoints(context: any) {
 
-  const { socket, space, database } = context;
+  const { socket, namespace, database } = context;
 
   socket.on('all', async (callback: any) => {
     try {
       const res: any = await database.all()
       callback(res)
     } catch (err) {
-      socket.emit('error', new Error(err))
+      namespace.emit('error', new Error(err))
     }
   });
 
@@ -17,16 +17,16 @@ export async function endpoints(context: any) {
     const doc: any = new Document('data', socket.handshake.auth.ticket.user || 'undefined', data) // TODO Dyn Author
     try {
       const res: any = await database.post(doc)
-      space.emit('post', doc)
+      namespace.emit('post', doc)
     } catch (err) {
-      space.emit('error', new Error(err))
+      namespace.emit('error', new Error(err))
     }
   });
 
   socket.on('update', async (doc: any) => {
     try {
       const res: any = await database.put(doc._id, doc)  // TODO updated Author
-      space.emit('update', doc)
+      namespace.emit('update', doc)
     } catch (err) {
       socket.emit('error', new Error(err))
     }
@@ -62,7 +62,7 @@ export async function endpoints(context: any) {
   socket.on('remove', async (id: string) => {
     try {
       const res: any = await database.remove(id)
-      space.emit('remove', id)
+      namespace.emit('remove', id)
     } catch (err) {
       socket.emit('error', new Error(err))
     }
