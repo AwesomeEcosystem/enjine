@@ -48,7 +48,7 @@ If you want to use basic data management APIs, you can do so.
   </code-block>
 </code-group>
 
-> For understanding whats going on under the hood, have a look at [Core Guide](/guide/core)
+> For understanding whats going on under the hood, have a look at [Core Guide](/guide/core#instance)
 
 The **DataInstance** is an extended ***Instance***, which wraps *DataGateway* and *DataController*.
 

@@ -67,7 +67,7 @@ If you want to have multiple Databases, you can use a Database-Manager. Its an e
 
   const comments = posts.create('comments')
 
-  await post.post({
+  await posts.post({
     _id: 'post-key',
     data: {}
   })
@@ -95,7 +95,7 @@ If you want to have multiple Databases, you can use a Database-Manager. Its an e
 
   const comments = posts.create('comments')
 
-  await post.post({
+  await posts.post({
     _id: 'post-key',
     data: {}
   })
