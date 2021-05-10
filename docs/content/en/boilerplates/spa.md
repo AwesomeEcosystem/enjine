@@ -1,13 +1,11 @@
 ---
-title: Setup
+title: Single Page Application
 description: ''
-position: 2
-category: Guide
----
+position: 14
+category: boilerplate
+---.
 
-Check the [Nuxt.js documentation](https://nuxtjs.org/guides/configuration-glossary/configuration-modules) for more information about installing and using modules in Nuxt.js.
-
-## Installation
+## Usage
 
 Add `@nuxtjs/xxx` dependency to your project:
 

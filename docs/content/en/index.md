@@ -3,25 +3,31 @@ title: Introduction
 description: ''
 position: 1
 category: ''
-features:
-  - Feature 1
-  - Feature 2
-  - Feature 3
 ---
 
-<img src="/preview.png" class="light-img" width="1280" height="640" alt=""/>
-<img src="/preview-dark.png" class="dark-img" width="1280" height="640" alt=""/>
+**enjine** ships the most sophisticated technologies to build interoperable applications out of the box! The approach is to make developing ready to use application even for beginners and professionals.
 
-[Module]() for [NuxtJS](https://nuxtjs.org).
+> This documentation will help juniors to learn fundamentals and the most used technologies for building applications in our days.
 
-<alert type="success">
+There is no need to install any webserver, database and other out of nodejs applications. Everything is shipped, so you can focus on developing the app, without all crunchy stuff, which costs time and energy.
 
-Your documentation has been created successfully!
+To do so, there are multiple ways you can choose for developing applications. For example you can fill application templates made by the community with content, customize them or developing and sharing your own template and modules.
 
-</alert>
+**enjine** is lovely based on
+- [Nuxtjs](https://nuxtjs.org/)
+- [Vuejs](https://vuejs.org/)
+- [Expressjs](https://expressjs.com/)
+- [Socketio](https://socket.io/)
+- [Tailwindcss](https://tailwindcss.com/)
 
-## Features
+and is written in Typescript.
 
-<list :items="features"></list>
+## Contributors
 
-<p class="flex items-center">Enjoy light and dark mode:&nbsp;<app-color-switcher class="inline-flex ml-2"></app-color-switcher></p>
+### Developers
+
+### Bakers
+
+### Partners
+
+### Angels
