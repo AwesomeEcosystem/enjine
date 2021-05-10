@@ -23,7 +23,7 @@
     "url": "https://github.com/AwesomeEcosystem/enjine/issues"
   },
   "dependencies": {
-    "@enjine/database": "^0.0.1-alpha.8",
+    "@enjine/database": "^0.0.1-alpha.9",
     "@enjine/session": "^0.0.1-alpha.19",
     "@enjine/utils": "^0.0.1-alpha.8",
     "async-constructor": "^0.4.5",
