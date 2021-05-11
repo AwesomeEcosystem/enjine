@@ -62,9 +62,9 @@ If you need ready to use modules, you can install common ones:
 
 ### Components
 
-> Requires Vue 2 - Vue 3 Compatibility coming soon
+There are basic **Components** already available to design your gui.
 
-There are basic **Components** already available to design your gui:
+> Vuejs and Tailwindcss under the hood
 
 <code-group>
   <code-block label="npm" active>
@@ -83,7 +83,39 @@ There are basic **Components** already available to design your gui:
   </code-block>
 </code-group>
 
-Now you can import those into Vuejs or Nuxt
+If you use the `App Config Template` by `@enjine/common`
+
+<code-group>
+  <code-block label="es6" active>
+
+  ```js
+  import { App } from '@enjine/common'
+
+  export default new App({
+    components: [ '@enjine/components' ]
+  })
+  ```
+
+  </code-block>
+  <code-block label="commonjs">
+
+  ```js
+  const { App } = require('@enjine/common')
+
+  module.exports = new App({
+    components: [ '@enjine/components' ]
+  })
+  ```
+
+  </code-block>
+</code-group>
+
+- [Learn more about the Configuration here](/setup/config)
+
+Or you can import those into Vuejs or Nuxt by your own
+
+> Requires Vue 2 or Nuxt 2 - Vue 3 Compatibility coming soon
+
 
 <code-group>
   <code-block label="Nuxt" active>
@@ -136,38 +168,11 @@ Vue.component(Card)
 
 </code-block>
 
-If you use the `App Config Template` by `@enjine/common`:
-
-<code-group>
-  <code-block label="es6" active>
-
-  ```js
-  import { App } from '@enjine/common'
-
-  export default new App({
-    components: '@enjine/components'
-  })
-  ```
-
-  </code-block>
-  <code-block label="commonjs">
-
-  ```js
-  const { App } = require('@enjine/common')
-
-  module.exports = new App({
-    components: '@enjine/components'
-  })
-  ```
-
-  </code-block>
-</code-group>
-
-[Learn more about the Components Usage here](/guide/components)
+- [Learn more about the Components Usage here](/guide/components)
 
 ### Themes
 
-Because of *Tailwindcss*, its possible ti adopt themes. **enjine** has some ready for you.
+Because of *Tailwindcss*, its possible to adopt themes. **enjine** has some ready for you.
 
 <code-group>
   <code-block label="npm" active>
@@ -181,6 +186,60 @@ Because of *Tailwindcss*, its possible ti adopt themes. **enjine** has some read
 
   ```bash
   yarn add @enjine/themes
+  ```
+
+  </code-block>
+</code-group>
+
+If you use the `App Config Template` by `@enjine/common`:
+
+<code-group>
+  <code-block label="es6" active>
+
+  ```js
+  import { App } from '@enjine/common'
+
+  export default new App({
+    theme: '@enjine/theme/basic'
+  })
+  ```
+
+  </code-block>
+  <code-block label="commonjs">
+
+  ```js
+  const { App } = require('@enjine/common')
+
+  module.exports = new App({
+    theme: '@enjine/theme/basic'
+  })
+  ```
+
+  </code-block>
+</code-group>
+
+- [Learn more about the Configuration here](/setup/config)
+
+Or you import the theme into Vuejs or Nuxt by your own
+
+> Requires `Vue` or `Nuxt `and latest `Tailwindcss`
+
+<code-group>
+  <code-block label="Nuxt" active>
+
+
+  ```js[nuxt.config.js]
+  // ..
+  css: [ '@enjine/themes/basic' ],
+  // ..
+
+  ```
+  </code-block>
+  <code-block label="Vue">
+
+  ```js[src/main.js]
+  import Vue from 'vue'
+  import '@enjine/themes/basic'
   ```
 
   </code-block>
