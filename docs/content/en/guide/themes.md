@@ -5,6 +5,8 @@ position: 14
 category: 'guide'
 ---
 
+> Requires `@enjine/common` & `@enjine/themes`
+
 <code-group>
   <code-block label="es6" active>
 
@@ -29,3 +31,5 @@ category: 'guide'
 
   </code-block>
 </code-group>
+
+If you use basic or extended **enjine Components** and ***Tailwindcss APIs***, the style will be automatically adopted.

@@ -7,9 +7,9 @@ category: 'guide'
 
 > Serverside Database
 
-## Single
+## Simple
 
-If you only want to use a single Database:
+If you only want to use a simple Database:
 
 <code-group>
   <code-block label="es6" active>
@@ -33,7 +33,7 @@ If you only want to use a single Database:
 
   ```js
   const { Database } = require('@enjine/database')
-  
+
   // The declared name of a database is the relative path  
   const name = 'any-db-name'
 

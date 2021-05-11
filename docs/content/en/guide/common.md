@@ -171,3 +171,27 @@ await connection.get('/find', (obj) => obj._id === 'any-key' )
 await connection.get('/filter', (obj) => obj.created < Date )
 await connection.remove('/any-key')
 ```
+
+## AuthInstance
+
+> Coming soon
+
+## AuthGateway
+
+> Coming soon
+
+## AuthController
+
+> Coming soon
+
+## MediaInstance
+
+> Coming soon
+
+## MediaGateway
+
+> Coming soon
+
+## MediaController
+
+> Coming soon

@@ -32,7 +32,7 @@ One **Session** holds one ticket for its ***Connections***
   // Add gateway or controller or both into session
   session.add({
     // host: 'ws://localhost:6090' // optional if different host for same ticket
-    gateway: 'anyName' // Namespace
+    gateway: 'anyName', // Namespace
     controller: 'anyName' // Route
   })
 
@@ -41,8 +41,8 @@ One **Session** holds one ticket for its ***Connections***
   session.gateway.anyName.emit('anyEvent', { data: 'any Data' })
 
   // Use added Controller
-  const data = await session.controller.get('/anyRoute')
-  await session.controller.post('/anyRoute', {})
+  const data = await session.controller.anyName.get('/anyRoute')
+  await session.controller.anyName.post('/anyRoute', {})
   ```
 
   </code-block>
@@ -66,7 +66,7 @@ One **Session** holds one ticket for its ***Connections***
   // Add gateway or controller or both into session
   session.add({
     // host: 'ws://localhost:6090' // optional if different host for same ticket
-    gateway: 'anyName' // Namespace
+    gateway: 'anyName', // Namespace
     controller: 'anyName' // Route
   })
 
@@ -75,8 +75,8 @@ One **Session** holds one ticket for its ***Connections***
   session.gateway.anyName.emit('anyEvent', { data: 'any Data' })
 
   // Use added Controller
-  const data = await session.controller.get('/anyRoute')
-  await session.controller.post('/anyRoute', {})
+  const data = await session.controller.anyName.get('/anyRoute')
+  await session.controller.anyName.post('/anyRoute', {})
   ```
 
   </code-block>

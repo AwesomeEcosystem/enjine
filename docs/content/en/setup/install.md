@@ -96,8 +96,13 @@ Now you can import those into Vuejs or Nuxt
   import Components from '@enjine/components'
 
   Vue.use(Components)
-  ```
 
+  // nuxt.config
+  // ..
+  plugins: [ '~/plugins/enjine' ]
+  // ..
+
+  ```
   </code-block>
   <code-block label="Vue">
 
@@ -115,7 +120,7 @@ Now you can import those into Vuejs or Nuxt
 
 Of course you can import single components
 
-<code-block active>
+<code-block label="vue" active>
 
 ```js
 import Vue from 'vue'
@@ -131,7 +136,34 @@ Vue.component(Card)
 
 </code-block>
 
-[Learn more about the Usage here](/guide/components)
+If you use the `App Config Template` by `@enjine/common`:
+
+<code-group>
+  <code-block label="es6" active>
+
+  ```js
+  import { App } from '@enjine/common'
+
+  export default new App({
+    components: '@enjine/components'
+  })
+  ```
+
+  </code-block>
+  <code-block label="commonjs">
+
+  ```js
+  const { App } = require('@enjine/common')
+
+  module.exports = new App({
+    components: '@enjine/components'
+  })
+  ```
+
+  </code-block>
+</code-group>
+
+[Learn more about the Components Usage here](/guide/components)
 
 ### Themes
 
