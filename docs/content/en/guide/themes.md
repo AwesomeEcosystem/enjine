@@ -22,7 +22,7 @@ category: 'guide'
   ```js
   const { App } = require('@enjine/common')
 
-  module.exports new App({
+  module.exports = new App({
     theme: '@enjine/themes/basic'
   })
   ```

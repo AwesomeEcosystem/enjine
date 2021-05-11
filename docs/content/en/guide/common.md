@@ -99,6 +99,20 @@ The **DataInstance** is an extended ***Instance***, which wraps *DataGateway* an
   </code-block>
 </code-group>
 
+### Implemented Events
+
+> Learn more about `Session ` and `Connections` here in [Session Guide](/guide/session)
+
+```js
+connection.emit('all', data => console.log(data))
+connection.emit('get', 'any-key', data => console.log(data))
+connection.emit('post', 'data = Strings, Obj, Array')
+connection.emit('put', { _id: 'any-key', data: {} })
+connection.emit('find', (obj) => obj._id === 'any-key' )
+connection.emit('filter', (obj) => obj.created < Date )
+connection.emit('remove', 'any-key')
+```
+
 ## DataController
 
 <code-group>
@@ -145,3 +159,15 @@ The **DataInstance** is an extended ***Instance***, which wraps *DataGateway* an
 
   </code-block>
 </code-group>
+
+### Implemented Routes
+
+```js
+await connection.get('/')
+await connection.get('/any-key')
+await connection.post('/', 'data = Strings, Obj, Array')
+await connection.put('/', { _id: 'any-key', data: {} })
+await connection.get('/find', (obj) => obj._id === 'any-key' )
+await connection.get('/filter', (obj) => obj.created < Date )
+await connection.remove('/any-key')
+```

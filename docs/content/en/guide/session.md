@@ -9,6 +9,8 @@ One **Session** holds one ticket for its ***Connections***
 
 > You can use Session client and server side
 
+> You can add gateway or controller connections or both at once if available on instance
+
 <code-group>
   <code-block label="es6" active>
 
@@ -17,7 +19,8 @@ One **Session** holds one ticket for its ***Connections***
 
   const session = new Session({
     host: 'ws://localhost:6090',
-    gateway: 'auth'
+    gateway: 'auth',
+    controller: 'auth'
   })
 
   // Checking Cookies if needed (optional)
@@ -26,15 +29,20 @@ One **Session** holds one ticket for its ***Connections***
   // Authentificate if needed
   await session.login({ username: 'yourUser', password: 'yourPassword')
 
-  // Add gateway into session
+  // Add gateway or controller or both into session
   session.add({
     // host: 'ws://localhost:6090' // optional if different host for same ticket
     gateway: 'anyName' // Namespace
+    controller: 'anyName' // Route
   })
 
   // Use added Gateway
   session.gateway.anyName.on('anyEvent', data => console.log(data))
   session.gateway.anyName.emit('anyEvent', { data: 'any Data' })
+
+  // Use added Controller
+  const data = await session.controller.get('/anyRoute')
+  await session.controller.post('/anyRoute', {})
   ```
 
   </code-block>
@@ -45,7 +53,8 @@ One **Session** holds one ticket for its ***Connections***
 
   const session = new Session({
     host: 'ws://localhost:6090',
-    gateway: 'auth'
+    gateway: 'auth',
+    controller: 'auth'
   })
 
   // Checking Cookies if needed (optional)
@@ -54,15 +63,20 @@ One **Session** holds one ticket for its ***Connections***
   // Authentificate if needed
   await session.login({ username: 'yourUser', password: 'yourPassword' })
 
-  // Add gateway into session
+  // Add gateway or controller or both into session
   session.add({
     // host: 'ws://localhost:6090' // optional if different host for same ticket
     gateway: 'anyName' // Namespace
+    controller: 'anyName' // Route
   })
 
   // Use added Gateway
   session.gateway.anyName.on('anyEvent', data => console.log(data))
   session.gateway.anyName.emit('anyEvent', { data: 'any Data' })
+
+  // Use added Controller
+  const data = await session.controller.get('/anyRoute')
+  await session.controller.post('/anyRoute', {})
   ```
 
   </code-block>
@@ -78,7 +92,8 @@ If you want to have Tickets and Connections more under your control, you can use
 
   const auth = new Auth({
     host: 'ws://localhost:6090',
-    gateway: 'auth'
+    gateway: 'auth',
+    controller: 'auth'
   })
 
   const ticket = await auth.login({ username: 'yourUser', password: 'yourPassword' })
@@ -86,11 +101,17 @@ If you want to have Tickets and Connections more under your control, you can use
   const connection = new Connection({
     ticket,
     host: 'ws://localhost:6090',
-    gateway: 'anyName'
+    gateway: 'anyName',
+    controller: 'anyName'
   })
 
+  // Gateway Usage
   connection.on('anyEvent', data => console.log(data))
   connection.emit('anyEvent', { data: 'any Data' })
+
+  // Controller Usage
+  const data = await connection.get('/')
+  await connection.post('/anyRoute', {})
   ```
 
   </code-block>
@@ -101,7 +122,8 @@ If you want to have Tickets and Connections more under your control, you can use
 
   const auth = new Auth({
     host: 'ws://localhost:6090',
-    gateway: 'auth'
+    gateway: 'auth',
+    controller: 'auth'
   })
 
   const ticket = await auth.login({ username: 'yourUser', password: 'yourPassword' })
@@ -109,11 +131,17 @@ If you want to have Tickets and Connections more under your control, you can use
   const connection = new Connection({
     ticket,
     host: 'ws://localhost:6090',
-    gateway: 'anyName'
+    gateway: 'anyName',
+    controller: 'anyName'
   })
 
+  // Gateway Usage
   connection.on('anyEvent', data => console.log(data))
   connection.emit('anyEvent', { data: 'any Data' })
+
+  // Controller Usage
+  const data = await connection.get('/')
+  await connection.post('/anyRoute', {})
   ```
 
   </code-block>
