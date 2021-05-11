@@ -74,8 +74,6 @@ An **Instance** wraps ***Gateways*** and ***Controllers*** and inject them into 
   </code-block>
 </code-group>
 
-So you have an empty but running Instance injected into the host yet.
-
 ## Gateway
 
 The **Gateway** is a [socketio namespace](https://socket.io/docs/v4/server-api/#Namespace) with its injectable endpoints.
