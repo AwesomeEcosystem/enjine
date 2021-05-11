@@ -1,7 +1,7 @@
 ---
 title: Single Page Application
 description: ''
-position: 14
+position: 15
 category: boilerplate
 ---.
 
