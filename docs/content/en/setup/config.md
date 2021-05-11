@@ -85,14 +85,33 @@ These options are an extended *nuxt* config. So you can access to all other [con
 
 > Keep in mind the modules you want to inject need to be installed and mentioned as below (No import needed)
 
-<code-block label="es6" active>
+<code-group>
+  <code-block label="es6" active>
 
-```js
-new App({
-  theme: '@enjine/themes/basic',
-  components: [ '@enjine/components' ],
-  // .. optional nuxt configuration
-})
-```
+  ```js
+  import { App } from '@enjine/common'
 
-</code-block>
+  const options = {} // not required
+
+  const app = new App({
+    theme: '@enjine/themes/basic',
+    components: [ '@enjine/components' ],
+    // .. optional nuxt configuration
+  })
+  ```
+
+  </code-block>
+  <code-block label="commonjs">
+
+  ```js
+  const { App } = require('@enjine/common')
+
+  const app = new App({
+    theme: '@enjine/themes/basic',
+    components: [ '@enjine/components' ],
+    // .. optional nuxt configuration
+  })
+  ```
+
+  </code-block>
+</code-group>
