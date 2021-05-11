@@ -23,7 +23,7 @@ If you want to use a configuration template for your *nuxt* with additional enji
   ```js[nuxt.config.js]
   const { App } = require('@enjine/common')
 
-  export default new App()
+  module.exports = new App()
   ```
 
   </code-block>
