@@ -14,6 +14,7 @@ category: Setup
 ## Modules
 
 ### Core
+> Serverside
 
 For developing a node with its core functionalities simply add `@enjine/core` to your dependencies:
 
@@ -36,8 +37,8 @@ For developing a node with its core functionalities simply add `@enjine/core` to
 
 [Learn more about the Usage here](/guide/core)
 
-
 ### Common
+> Serverside
 
 If you need ready to use modules, you can install common ones:
 
@@ -60,7 +61,52 @@ If you need ready to use modules, you can install common ones:
 
 [Learn more about the Usage here](/guide/common)
 
+### Database
+> Serverside
+
+The integrable document based database with no need to install external ones
+
+<code-group>
+  <code-block label="npm" active>
+
+  ```bash
+  npm install @enjine/database
+  ```
+  </code-block>
+  <code-block label="Yarn">
+
+  ```bash
+  yarn add @enjine/database
+  ```
+  </code-block>
+</code-group>
+
+[Learn more about the Usage here](/guide/database)
+
+### Session
+> Serverside & Clientside
+
+The Session lets you connect with ***Instances*** and its ***Gateways*** and ***Controllers***.
+
+<code-group>
+  <code-block label="npm" active>
+
+  ```bash
+  npm install @enjine/session
+  ```
+  </code-block>
+  <code-block label="Yarn">
+
+  ```bash
+  yarn add @enjine/session
+  ```
+  </code-block>
+</code-group>
+
+[Learn more about the Usage here](/guide/session)
+
 ### Components
+> Clientside
 
 There are basic **Components** already available to design your gui.
 
@@ -171,6 +217,7 @@ Vue.component(Card)
 - [Learn more about the Components Usage here](/guide/components)
 
 ### Themes
+> Clientside
 
 Because of *Tailwindcss*, its possible to adopt themes. **enjine** has some ready for you.
 
