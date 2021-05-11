@@ -5,4 +5,4 @@ position: 7
 category: concept
 ---
 
-The **Gateway** enables RESTful APIs for your ***Instances***
+The **Controller** enables RESTful APIs for your ***Instances***

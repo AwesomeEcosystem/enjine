@@ -5,7 +5,7 @@ position: 9
 category: 'guide'
 ---
 
-**Core Module** defines the platform as a ***Host*** with *injected* ***Instances***
+**Core Module** defines the platform as a ***Host*** for *injected* ***Instances***
 
 ## Host
 
@@ -76,7 +76,7 @@ An **Instance** wraps ***Gateways*** and ***Controllers*** and inject them into 
 
 ## Gateway
 
-The **Gateway** is a [socketio namespace](https://socket.io/docs/v4/server-api/#Namespace) with its injectable endpoints.
+The **Gateway** is a [socketio namespace](https://socket.io/docs/v4/server-api/#Namespace) with its endpoints.
 
 <code-group>
   <code-block label="es6" active>
@@ -87,7 +87,7 @@ The **Gateway** is a [socketio namespace](https://socket.io/docs/v4/server-api/#
   // Websocket will be available on ws://localhost:6090/anyName
   const gateway = new Gateway('anyName', ({ socket, namespace }) => {
     namespace.on('anyEvent', (data) => {
-      console.log(data);
+      console.log(data)
       socket.emit('anyResponse')
     })
   })
