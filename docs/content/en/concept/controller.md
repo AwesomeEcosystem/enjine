@@ -6,3 +6,14 @@ category: concept
 ---
 
 The **Controller** enables RESTful APIs for your ***Instances***
+
+## Under the Hood
+
+```js
+class Controller {
+  database,
+  middleware,
+  endpoints,
+  router
+}
+```
