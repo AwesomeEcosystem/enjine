@@ -3,10 +3,12 @@
     <slot name="top"></slot>
 
     <div class="flex flex-wrap">
-      <div class="" v-if="gateway || controller" v-for="(doc, i) in data">
-        <div class="p-2">
-          <slot>{{ doc }}</slot>
-        </div>
+      <div class="" v-if="gateway || controller" v-for="(doc, i) in feed">
+        <slot>
+          <div class="p-2">
+            {{ doc }}
+          </div>
+        </slot>
       </div>
       <div class="flex justify-around items-center" v-else>
         <p>No {{ (!gateway && !controller) ? 'Connection' : 'Data' }} available</p>
@@ -18,30 +20,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop } from 'vue-property-decorator';
 
-@Component
-export default class Feed extends Vue {
-  @Prop() gateway?: any;
-  @Prop() controller?: any;
-
-  data: any[] = [];
-
-  mounted() {
-
-    if (this.gateway) {
-
-      this.gateway.emit('all', (res: any[]) => this.data = res);
-
-      this.gateway.on('post', (obj: any[]) => this.data.post(obj));
-      this.gateway.on('update', (obj: any[]) => this.data.update(obj));
-      this.gateway.on('remove', (id: string) => this.data.remove(id));
-
-    } else if (!this.gateway && this.controller) {
-
-      this.controller.get('/', (res: any[]) => this.data = res)
-    }
-  }
-}
-
+@Component({ name: 'Feed' })
+export default class Feed extends Connection {}
 </script>

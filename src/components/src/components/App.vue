@@ -7,7 +7,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-@Component
+@Component({ name: 'App' })
 export default class App extends Vue {
   @Prop() auth?: string;
   created() {

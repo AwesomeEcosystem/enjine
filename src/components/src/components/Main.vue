@@ -7,7 +7,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-@Component
+@Component({ name: 'Main' })
 export default class Main extends Vue {
   @Prop() wrap?: boolean;
 }

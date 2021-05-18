@@ -49,8 +49,8 @@ export class Session extends EventEmitter {
 
         resolve(this.ticket);
       } catch (e) {
-        this.emit('error', e)
         reject(e);
+        this.emit('error', e)
       }
     })
   }

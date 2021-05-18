@@ -15,7 +15,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-@Component
+@Component({ name: 'Nav' })
 export default class Nav extends Vue {}
 </script>
 

@@ -12,7 +12,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-@Component
+@Component({ name: 'Stream' })
 export default class Stream extends Vue {
   @Prop() gateway!: any;
 }

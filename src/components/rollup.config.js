@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import typescript from '@rollup/plugin-typescript';
 import vue from 'rollup-plugin-vue';
 import node from '@rollup/plugin-node-resolve';
@@ -6,231 +8,174 @@ import babel from 'rollup-plugin-babel';
 import tailwind from 'rollup-plugin-tailwindcss';
 import postcss from 'rollup-plugin-postcss'
 import { terser } from 'rollup-plugin-terser';
+import pkg from './package.json';
 
-import fs from 'fs';
-import path from 'path';
+// Get browserslist config and remove ie from es build targets
+const esbrowserslist = fs.readFileSync('./.browserslistrc')
+  .toString()
+  .split('\n')
+  .filter((entry) => entry && entry.substring(0, 2) !== 'ie');
 
-import pack from './package.json';
+// Extract babel preset-env config, to combine with esbrowserslist
+const babelPresetEnvConfig = require('../babel.config')
+  .presets.filter((entry) => entry[0] === '@babel/preset-env')[0][1];
 
-const babelConfig = {
-	exclude: 'node_modules/**',
-	runtimeHelpers: true,
-	babelrc: false,
-	presets: [['@babel/preset-env', { modules: false }]]
+const argv = minimist(process.argv.slice(2));
+
+const projectRoot = path.resolve(__dirname, '..');
+
+const baseConfig = {
+  input: 'src/entry.ts',
+  plugins: {
+    preVue: [
+      alias({
+        entries: [
+          {
+            find: '@',
+            replacement: `${path.resolve(projectRoot, 'src')}`,
+          },
+        ],
+      }),
+    ],
+    replace: {
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    },
+    vue: {
+      css: true,
+      template: {
+        isProduction: true,
+      },
+    },
+    postVue: [
+      resolve({
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
+      }),
+      commonjs(),
+    ],
+    babel: {
+      exclude: 'node_modules/**',
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
+      babelHelpers: 'bundled',
+    },
+  },
 };
 
-const bannerTxt = `/*! enjine UI Vue Components v${pack.version} | MIT License | https://github.com/AwesomeEcosystem/enjine */`;
+// ESM/UMD/IIFE shared settings: externals
+// Refer to https://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency
+const external = [
+  // list external dependencies, exactly the way it is written in the import statement.
+  // eg. 'jquery'
+  'vue',
+];
 
-const baseFolder = './src/';
-const componentsFolder = 'components/';
-const pkgName = '@enjine/components';
-
-const components = fs
-	.readdirSync(baseFolder + componentsFolder)
-	.filter((f) =>
-		fs.statSync(path.join(baseFolder + componentsFolder, f)).isDirectory()
-	);
-
-const entries = {
-	index: './src/lib.ts',
-	...components.reduce((obj, name) => {
-      external: ['vue'],
-			output: {
-				format: 'cjs',
-				dir: 'dist/cjs',
-				exports: 'named'
-			},
-		obj[name] = (baseFolder + componentsFolder + name);
-		return obj;
-	}, {})
+// UMD/IIFE shared settings: output.globals
+// Refer to https://rollupjs.org/guide/en#output-globals for details
+const globals = {
+  // Provide global variable names to replace your external imports
+  // eg. jquery: '$'
+  vue: 'Vue',
 };
 
-const capitalize = (s) => {
-	if (typeof s !== 'string') return '';
-	return s.charAt(0).toUpperCase() + s.slice(1);
-};
+// Customize configs for individual targets
+const buildFormats = [];
+if (!argv.format || argv.format === 'es') {
+  const esConfig = {
+    ...baseConfig,
+    input: 'src/entry.esm.ts',
+    external,
+    output: {
+      file: 'dist/components.esm.js',
+      format: 'esm',
+      exports: 'named',
+    },
+    plugins: [
+      replace(baseConfig.plugins.replace),
+      ...baseConfig.plugins.preVue,
+      vue(baseConfig.plugins.vue),
+      ...baseConfig.plugins.postVue,
+      babel({
+        ...baseConfig.plugins.babel,
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              ...babelPresetEnvConfig,
+              targets: esbrowserslist,
+            },
+          ],
+        ],
+      }),
+    ],
+  };
+  buildFormats.push(esConfig);
+}
 
-export default () => {
-	const mapComponent = (name) => {
-		const input = [
-			{
-				input: baseFolder + componentsFolder + `${name}/index.js`,
-				external: ['vue'],
-				output: {
-					format: 'umd',
-					name: capitalize(name),
-					file: `dist/components/${name}/index.js`,
-					banner: bannerTxt,
-					exports: 'named',
-					globals: {
-						vue: 'Vue'
-					}
-				},
-				plugins: [
-          typescript(),
-					vue({
-						template: {
-							isProduction: true,
-							compilerOptions: {
-								preserveWhitespace: false
-							}
-						}
-					}),
-					babel(babelConfig),
-          node({
-            extensions: ['.vue', '.ts', '.js']
-          }),
-					cjs(),
-          postcss(),
-          tailwind({
-            input: 'src/assets/tailwind.css',
-            purge: true,
-          }),
-				]
-			}
-		];
-		return input;
-	};
+if (!argv.format || argv.format === 'cjs') {
+  const umdConfig = {
+    ...baseConfig,
+    external,
+    output: {
+      compact: true,
+      file: 'dist/components.ssr.js',
+      format: 'cjs',
+      name: '@enjine/components',
+      exports: 'auto',
+      globals,
+    },
+    plugins: [
+      replace(baseConfig.plugins.replace),
+      ...baseConfig.plugins.preVue,
+      vue({
+        ...baseConfig.plugins.vue,
+        template: {
+          ...baseConfig.plugins.vue.template,
+          optimizeSSR: true,
+        },
+      }),
+      ...baseConfig.plugins.postVue,
+      babel(baseConfig.plugins.babel),
+			postcss(),
+			tailwind({
+				input: 'src/assets/tailwind.css',
+				purge: true,
+			}),
+    ],
+  };
+  buildFormats.push(umdConfig);
+}
 
-	let config = [
-		{
-			input: entries,
-			external: ['vue'],
-			output: {
-				format: 'esm',
-				dir: 'dist/esm'
-			},
-			plugins: [
-        typescript(),
-				vue({
-					template: {
-						isProduction: true,
-						compilerOptions: {
-							preserveWhitespace: false
-						}
-					}
-				}),
-				babel(babelConfig),
-        node({
-          extensions: ['.vue', '.ts', '.js']
-        }),
-        postcss(),
-        tailwind({
-          input: 'src/assets/tailwind.css',
-          purge: true,
-        }),
-				cjs(),
-			]
-		},
-		{
-			input: entries,
-			external: ['vue'],
-			output: {
-				format: 'cjs',
-				dir: 'dist/cjs',
-				exports: 'named'
-			},
-			plugins: [
-        typescript(),
-				vue({
-					template: {
-						isProduction: true,
-						compilerOptions: {
-							preserveWhitespace: false
-						}
-					}
-				}),
-				babel(babelConfig),
-        node({
-          extensions: ['.vue', '.ts', '.js']
-        }),
-        postcss(),
-        tailwind({
-          input: 'src/assets/tailwind.css',
-          purge: true,
-        }),
-				cjs(),
-			]
-		},
-		{
-			input: 'src/index.js',
-			external: ['vue'],
-			output: {
-				format: 'umd',
-				name: capitalize(`${pkgName}`),
-				file: `dist/${pkgName}.js`,
-				exports: 'named',
-				banner: bannerTxt,
-				globals: {
-					vue: 'Vue'
-				}
-			},
-			plugins: [
-        typescript(),
-				vue({
-					template: {
-						isProduction: true,
-						compilerOptions: {
-							preserveWhitespace: false
-						}
-					}
-				}),
-				babel(babelConfig),
-        node({
-          extensions: ['.vue', '.ts', '.js']
-        }),
-        postcss(),
-        tailwind({
-          input: 'src/assets/tailwind.css',
-          purge: true,
-        }),
-				cjs(),
-			]
-		},
-		{
-			input: 'src/index.js',
-			external: ['vue'],
-			output: {
-				format: 'esm',
-				file: `dist/${pkgName}.esm.js`,
-				banner: bannerTxt
-			},
-			plugins: [
-        typescript(),
-				vue({
-					template: {
-						isProduction: true,
-						compilerOptions: {
-							preserveWhitespace: false
-						}
-					}
-				}),
-				babel(babelConfig),
-        node({
-          extensions: ['.vue', '.ts', '.js']
-        }),
-        postcss(),
-        tailwind({
-          input: 'src/assets/tailwind.css',
-          purge: true,
-        }),
-				cjs(),
-			]
-		},
-		// individual components
-		...components.map((f) => mapComponent(f)).reduce((r, a) => r.concat(a), [])
-	];
+if (!argv.format || argv.format === 'iife') {
+  const unpkgConfig = {
+    ...baseConfig,
+    external,
+    output: {
+      compact: true,
+      file: 'dist/components.min.js',
+      format: 'iife',
+      name: '@enjine/components',
+      exports: 'auto',
+      globals,
+    },
+    plugins: [
+      replace(baseConfig.plugins.replace),
+      ...baseConfig.plugins.preVue,
+      vue(baseConfig.plugins.vue),
+      ...baseConfig.plugins.postVue,
+      babel(baseConfig.plugins.babel),
+      terser({
+        output: {
+          ecma: 5,
+        },
+      }),
+			postcss(),
+			tailwind({
+				input: 'src/assets/tailwind.css',
+				purge: true,
+			}),
+    ],
+  };
+  buildFormats.push(unpkgConfig);
+}
 
-	if (process.env.MINIFY === 'true') {
-		config = config.filter((c) => !!c.output.file);
-		config.forEach((c) => {
-			c.output.file = c.output.file.replace(/\.js/g, '.min.js');
-			c.plugins.push(terser({
-				output: {
-					comments: '/^!/'
-				}
-			}));
-		});
-	}
-	return config;
-};
+// Export config
+export default buildFormats;
