@@ -1,65 +1,60 @@
 {
-  "name": "@enjine/components",
-  "version": "0.0.1-alpha.6",
-  "description": "enjine generic app VueJS Components",
-  "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
-  "homepage": "https://github.com/AwesomeEcosystem/enjine#readme",
-  "license": "MIT",
-  "main": "dist/enjine-components.common.js",
-  "module": "dist/enjine-components.umd.js",
-  "unpkg": "dist/enjine-components.umd.min.js",
+  "name": "components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/components.ssr.js",
+  "browser": "dist/components.esm.js",
+  "module": "dist/components.esm.js",
+  "unpkg": "dist/components.min.js",
+  "types": "components.d.ts",
+  "files": [
+    "dist/*",
+    "components.d.ts",
+    "src/**/*.vue"
+  ],
+  "sideEffects": false,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "build:components": "vue-cli-service build --target lib --name enjine-components ./src/index.ts",
-    "build:theme": "postcss src/assets/**/*.css --base src/assets/ --dir themes",
-    "build:bundle": "rollup -c && rollup -c --environment MINIFY && npm run build:postcss",
-    "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e"
-  },
-  "dependencies": {
-    "core-js": "^3.6.5",
-    "vue": "^2.6.11",
-    "vue-class-component": "^7.2.3",
-    "vue-property-decorator": "^9.1.2"
+    "serve": "vue-cli-service serve dev/serve.ts",
+    "build": "cross-env NODE_ENV=production rollup --config build/rollup.config.js",
+    "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
+    "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
+    "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
   },
   "devDependencies": {
-    "@ky-is/tailwind-color-palette": "^1.0.0",
-    "@rollup/plugin-commonjs": "^18.0.0",
-    "@rollup/plugin-node-resolve": "^11.2.1",
-    "@rollup/plugin-typescript": "^8.2.1",
-    "@types/jest": "^24.0.19",
-    "@types/mocha": "^8.0.1",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-e2e-webdriverio": "~4.5.0",
-    "@vue/cli-plugin-typescript": "~4.5.0",
-    "@vue/cli-plugin-unit-jest": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.11",
-    "@vue/test-utils": "^1.0.3",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-syntax-decorators": "^7.12.13",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.7",
+    "@rollup/plugin-alias": "^3.1.1",
+    "@rollup/plugin-babel": "^5.2.2",
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.1",
+    "@rollup/plugin-replace": "^2.3.4",
+    "@vue/cli-plugin-babel": "^4.5.10",
+    "@vue/cli-plugin-typescript": "^4.5.10",
+    "@vue/cli-service": "^4.5.10",
     "autoprefixer": "^9.8.6",
-    "chromedriver": "^84.0.1",
-    "geckodriver": "^1.20.0",
+    "cross-env": "^7.0.3",
+    "minimist": "^1.2.5",
     "postcss": "^7.0.35",
-    "rollup": "^2.46.0",
-    "rollup-plugin-babel": "^4.4.0",
+    "rollup": "^2.36.1",
     "rollup-plugin-postcss": "^4.0.0",
     "rollup-plugin-tailwindcss": "^1.0.0",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-vue": "^6.0.0",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.2",
-    "tailwindcss-dark-mode": "^1.1.7",
-    "ts-node": "^8.10.2",
-    "typescript": "~4.1.5",
-    "vue-template-compiler": "^2.6.11",
-    "wdio-chromedriver-service": "^6.0.3",
-    "wdio-geckodriver-service": "^1.1.0"
+    "rollup-plugin-vue": "^5.1.9",
+    "tailwindcss": "^1.9.6",
+    "typescript": "^3.8.3",
+    "vue": "^2.6.12",
+    "vue-template-compiler": "^2.6.12"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AwesomeEcosystem/enjine.git"
+  "peerDependencies": {
+    "vue": "^2.6.12"
   },
-  "bugs": {
-    "url": "https://github.com/AwesomeEcosystem/enjine/issues"
+  "engines": {
+    "node": ">=12"
+  },
+  "dependencies": {
+    "vue-property-decorator": "^9.1.2"
   }
 }

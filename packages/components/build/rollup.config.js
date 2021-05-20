@@ -1,14 +1,15 @@
+// rollup.config.js
 import fs from 'fs';
 import path from 'path';
-import typescript from '@rollup/plugin-typescript';
 import vue from 'rollup-plugin-vue';
-import node from '@rollup/plugin-node-resolve';
-import cjs from '@rollup/plugin-commonjs';
-import babel from 'rollup-plugin-babel';
-import tailwind from 'rollup-plugin-tailwindcss';
-import postcss from 'rollup-plugin-postcss'
+import alias from '@rollup/plugin-alias';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
+import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
-import pkg from './package.json';
+import minimist from 'minimist';
+import postcss from 'rollup-plugin-postcss'
 
 // Get browserslist config and remove ie from es build targets
 const esbrowserslist = fs.readFileSync('./.browserslistrc')
@@ -105,6 +106,9 @@ if (!argv.format || argv.format === 'es') {
           ],
         ],
       }),
+      postcss({
+        extract: true
+      })
     ],
   };
   buildFormats.push(esConfig);
@@ -118,7 +122,7 @@ if (!argv.format || argv.format === 'cjs') {
       compact: true,
       file: 'dist/components.ssr.js',
       format: 'cjs',
-      name: '@enjine/components',
+      name: 'Components',
       exports: 'auto',
       globals,
     },
@@ -134,11 +138,6 @@ if (!argv.format || argv.format === 'cjs') {
       }),
       ...baseConfig.plugins.postVue,
       babel(baseConfig.plugins.babel),
-			postcss(),
-			tailwind({
-				input: 'src/assets/tailwind.css',
-				purge: true,
-			}),
     ],
   };
   buildFormats.push(umdConfig);
@@ -152,7 +151,7 @@ if (!argv.format || argv.format === 'iife') {
       compact: true,
       file: 'dist/components.min.js',
       format: 'iife',
-      name: '@enjine/components',
+      name: 'Components',
       exports: 'auto',
       globals,
     },
@@ -167,11 +166,6 @@ if (!argv.format || argv.format === 'iife') {
           ecma: 5,
         },
       }),
-			postcss(),
-			tailwind({
-				input: 'src/assets/tailwind.css',
-				purge: true,
-			}),
     ],
   };
   buildFormats.push(unpkgConfig);

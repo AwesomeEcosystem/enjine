@@ -1,13 +1,10 @@
+/* eslint-disable import/prefer-default-export */
 export { default as App } from './App.vue';
 export { default as Card } from './Card.vue';
-export { default as Connection } from './Connection.vue';
 export { default as Container } from './Container.vue';
-export { default as Feed } from './Feed.vue';
-export { default as Layer } from './Layer.vue';
 export { default as Layout } from './Layout.vue';
 export { default as Main } from './Main.vue';
 export { default as Menu } from './Menu.vue';
 export { default as Nav } from './Nav.vue';
 export { default as Settings } from './Settings.vue';
-export { default as Start } from './Start.vue';
-export { default as Stream } from './Stream.vue';
+export { default as Connection } from './Connection.vue';

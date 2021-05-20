@@ -13,7 +13,7 @@ export default class App extends Vue {
   created() {
     this.$session.init();
     if (!this.$session.ticket && this.auth) {
-      this.$router.go(this.auth))
+      this.$router.go(this.auth)
     }
   }
 }
