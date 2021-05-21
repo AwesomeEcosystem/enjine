@@ -1,9 +1,11 @@
 const devPresets = ['@vue/babel-preset-app'];
+
 const buildPresets = [
   [
     '@babel/preset-env',
     // Config for @babel/preset-env
     {
+      loose: true
       // Example: Always transpile optional chaining/nullish coalescing
       // include: [
       //   /(optional-chaining|nullish-coalescing)/
@@ -12,14 +14,15 @@ const buildPresets = [
   ],
   '@babel/preset-typescript',
 ];
+
 module.exports = {
   presets: (process.env.NODE_ENV === 'development' ? devPresets : buildPresets),
   plugins: [
     [
-      '@babel/plugin-syntax-decorators',
+      '@babel/plugin-proposal-decorators',
       {
-        decoratorsBeforeExport: true,
-        // legacy: true
+        // decoratorsBeforeExport: true,
+        legacy: true
       }
     ],
     [

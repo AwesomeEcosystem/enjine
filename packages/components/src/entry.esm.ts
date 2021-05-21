@@ -1,5 +1,5 @@
 import _Vue, { PluginFunction } from 'vue';
-import { Session } from '@enjine/session'
+// import { Session } from '@enjine/session'
 
 // Import vue components
 import * as components from '@/components/index';
@@ -10,9 +10,9 @@ const install: PluginFunction<any> = function installComponents(Vue: typeof _Vue
     Vue.component(componentName, component);
   });
 
-  Vue.prototype.$session = (config: any) => {
-    return new Session(config)
-  }
+  // Vue.prototype.$session = (config: any) => {
+  //   return new Session(config)
+  // }
 };
 
 // Create module definition for Vue.use()
