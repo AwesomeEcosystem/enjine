@@ -1,3 +1,5 @@
+// Comnfig build with sfc-init by vue-sfc-rollup
+
 // rollup.config.js
 import fs from 'fs';
 import path from 'path';
