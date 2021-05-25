@@ -1,4 +1,4 @@
-import chroma, { Color } from 'chroma-js'
+import chroma, { Color } from 'chroma.ts'
 import { ColorRange, PaletteOptions } from '../types'
 
 export class Theme {
@@ -6,23 +6,23 @@ export class Theme {
 
   constructor(color?: string) {
 
-    if (color = 'tourismo') {
-      this.colors('#bcc740')
-    }
-    
-    this.colors(color || '#bcc740')
+    // if (color = 'tourismo') {
+    //   this.colors('#bcc740')
+    // }
+
+    this.color(color || '#bcc740');
   }
 
-  colors(color?: string, options?: PaletteOptions = {}) {
+  color(color?: string, options?: PaletteOptions = {}) {
 
-    if (this.colors && !colors) {
-      const colors: any = this.colors
+    if (this.color && !color) {
+      const color: any = this.color
     }
 
     if (!color || typeof color !== 'string') {
       throw new Error('Please provide a valid "color" string parameter')
   	}
-  	const colorChroma = chroma(color)
+  	const colorChroma = chroma.color(color)
   	const defaultColorscale = [ 100, 200, 300, 400, 500, 600, 700, 800, 900 ]
   	const { name = 'brand', ui = true, uiMix = 0.2, grayscale = true, grayscaleMix = 0.03, palette = {}, colorscale = defaultColorscale } = options
     const mode = options.mode || 'lab'

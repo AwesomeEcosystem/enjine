@@ -4,6 +4,14 @@
   "description": "tailwindcss themes",
   "main": "basic",
   "scripts": {
+    "build": "tsc",
+    "build:bundle": "npm run build && npm run build:css",
+    "build:css": "npm run build:basic && npm run build:cyber && npm run build:ecosis && npm run build:lounge && npm run build:tourismo",
+    "build:basic": "tailwindcss build basic/tailwind.css -o basic/index.css",
+    "build:cyber": "tailwindcss build cyber/tailwind.css -o cyber/index.css",
+    "build:ecosis": "tailwindcss build ecosis/tailwind.css -o ecosis/index.css",
+    "build:lounge": "tailwindcss build lounge/tailwind.css -o lounge/index.css",
+    "build:tourismo": "tailwindcss build tourismo/tailwind.css -o tourismo/index.css",
     "test": "jest"
   },
   "keywords": [
@@ -15,5 +23,9 @@
     "ecosis"
   ],
   "author": "equaliser0",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "chroma.ts": "^1.0.10",
+    "tailwindcss": "^2.1.2"
+  }
 }
