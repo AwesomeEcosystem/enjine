@@ -1,7 +1,7 @@
 import path from 'path'
 import { createServer as createHttp } from 'http';
 import { createServer as createHttps } from 'https';
-// import { createProxyServer as createProxy } from 'http-proxy';
+import proxy from 'express-http-proxy';
 import express from 'express';
 import { Nuxt, Builder } from 'nuxt';
 import consola from 'consola';
@@ -13,8 +13,9 @@ export class Host {
   // public env: boolean;
   public app: express.Application;
   public server: any = {}; // TODO Interface
+  public middlewares: any = []; // TODO Interface Middlewares
+  public proxies: any[] = []; // TODO Interface Proxies
   public instances: any[] = []; // TODO Interface Gateways
-  public middleware: any = []; // TODO Interface Middlewares
   public config: any = {}; // TODO Interface Config
 
   constructor(config: any) {
@@ -29,7 +30,7 @@ export class Host {
   }
 
   public use(middleware: any) { // TODO Middleware Interface
-    this.middleware.push(middleware)
+    this.middlewares.push(middleware)
   }
 
   public initialize() {
@@ -41,14 +42,20 @@ export class Host {
       https: (this.config.secure) ? createHttps(this.config.secure, this.app) : null
     }
 
-    if (this.middleware) {
-      for (const middleware of this.middleware) {
+    if (this.middlewares) {
+      for (const middleware of this.middlewares) {
         // this.app.use((req: any, res: any, next) => middleware(req, res, next)) // TODO multimiddleware
         // this.io.use((socket, next) => middleware(socket.request, {}, next))
       }
       // TODO Real Passport Session
       // app.use(wrap(passport.initialize()));
       // app.use(wrap(passport.session()));
+    }
+
+    if (this.proxies) {
+      for (let route of this.proxies) {
+        this.app.use(route.from, proxy(route.to))
+      }
     }
 
     if (this.instances) {
@@ -99,5 +106,9 @@ export class Host {
       this.server.https.listen(this.config.port || 443, this.config.host || 'localhost')
     }
     consola.info(`${(this.config.secure) ? 'Secure' : ''} Application listening on htt${(this.config.secure) ? 'ps' : 'p'}://${this.config.host || 'localhost'}:${this.config.port || 8000}`)
+  }
+
+  proxy(from: string, to: string) {
+    this.proxies.push({ from, to })
   }
 }
