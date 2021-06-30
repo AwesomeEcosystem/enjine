@@ -98,6 +98,8 @@ The **Gateway** is a [socketio namespace](https://socket.io/docs/v4/server-api/#
 
   const host = new Host({ port: 6090 })
 
+  host.add(instance)
+
   host.bootstrap()
   ```
 
@@ -120,6 +122,8 @@ The **Gateway** is a [socketio namespace](https://socket.io/docs/v4/server-api/#
   })
 
   const host = new Host({ port: 6090 })
+
+  host.add(instance)
 
   host.bootstrap()
   ```
@@ -150,6 +154,8 @@ The **Controller** is an [express router](http://expressjs.com/en/api.html#route
 
   const host = new Host({ port: 6090 })
 
+  host.add(instance)
+
   host.bootstrap()
   ```
 
@@ -171,6 +177,8 @@ The **Controller** is an [express router](http://expressjs.com/en/api.html#route
   })
 
   const host = new Host({ port: 6090 })
+
+  host.add(instance)
 
   host.bootstrap()
   ```
