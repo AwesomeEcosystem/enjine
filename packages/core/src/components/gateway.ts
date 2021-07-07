@@ -1,5 +1,5 @@
 import consola from 'consola';
-import { Socket } from 'socketio';
+import { Socket } from 'socket.io';
 
 export class Gateway {
   public name: string;
