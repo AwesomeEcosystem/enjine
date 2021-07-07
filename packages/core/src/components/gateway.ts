@@ -1,4 +1,5 @@
 import consola from 'consola';
+import { Socket } from 'socketio';
 
 export class Gateway {
   public name: string;
@@ -24,7 +25,7 @@ export class Gateway {
     if (this.middleware) {
       for (const middleware of this.middleware) {
 
-        this.namespace.use((socket: any, next: any) => middleware(socket, next))
+        this.namespace.use((socket: Socket, next: any) => middleware(socket, next))
       }
       // TODO Real Passport Session
       // io.use(wrap(passport.initialize()));
@@ -36,11 +37,11 @@ export class Gateway {
     consola.success(`Gateway ${(this.name) ? this.name + ' ' : ''}initialized`); // TODO Global custom Logger Interface
   }
 
-  private async connection(socket: any){
+  private async connection(socket: Socket){
     this.endpoints({ socket, namespace: this.namespace, database: this.database })
   }
 
-  // private disconnection(socket: any){
+  // private disconnection(socket: Socket){
   //   console.log('SocketIO onDisconnect', socket.id);
   // }
 }

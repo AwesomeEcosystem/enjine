@@ -95,7 +95,7 @@ export class Host {
 
       this.app.enable('trust proxy');
 
-      this.app.use((req: any, res: any, next: any) => { // TODO INterfaces
+      this.app.use((req: express.Request, res: express.Response, next: express.NextFunction) => { // TODO INterfaces
         if (req.secure) {
           next()
         } else {
