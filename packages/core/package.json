@@ -1,6 +1,6 @@
 {
   "name": "@enjine/core",
-  "version": "0.0.1-alpha.20",
+  "version": "0.0.1-alpha.22",
   "description": "Core modules to build customized Hosts and Apps",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/enjine#readme",
@@ -38,6 +38,7 @@
     "envalid": "^6.0.1",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.2",
+    "express-subdomain": "^1.0.5",
     "helmet": "^3.21.3",
     "hpp": "^0.2.3",
     "jest": "^25.1.0",

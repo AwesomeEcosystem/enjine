@@ -1,8 +1,9 @@
 import path from 'path'
 import { createServer as createHttp } from 'http';
 import { createServer as createHttps } from 'https';
-import proxy from 'express-http-proxy';
 import express from 'express';
+import proxy from 'express-http-proxy';
+import subdomain from 'express-subdomain';
 import { Nuxt, Builder } from 'nuxt';
 import consola from 'consola';
 
