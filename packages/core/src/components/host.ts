@@ -55,7 +55,7 @@ export class Host {
 
     if (this.proxies) {
       for (let route of this.proxies) {
-        this.app.use(subdomain(route.from), proxy(route.to))
+        this.app.use(subdomain(route.from, proxy(route.to)))
       }
     }
 
