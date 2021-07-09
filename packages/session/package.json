@@ -1,15 +1,21 @@
 {
   "name": "@enjine/session",
-  "version": "0.0.1-alpha.19",
+  "version": "0.0.1-alpha.23",
   "description": "Session Manager",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/enjine#readme",
   "license": "MIT",
   "main": "dist",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js"
+    }
+  },
   "types": "dist",
   "scripts": {
     "dev": "tsc -w",
-    "build:bundle": "npm run build:esm && npm run build:cjs && npm run build:umd",
+    "build:bundle": "npm run build:esm && npm run build:umd",
     "build": "tsc --project tsconfig.json",
     "build:esm": "tsc --project tsconfig.esm.json",
     "build:cjs": "tsc --project tsconfig.cjs.json",
@@ -27,6 +33,10 @@
     "@enjine/utils": "^0.0.1-alpha.8",
     "async-constructor": "^0.4.5",
     "axios": "^0.21.1",
-    "socket.io-client": "^4.0.1"
+    "socket.io-client": "^4.0.1",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.3.0"
   }
 }
