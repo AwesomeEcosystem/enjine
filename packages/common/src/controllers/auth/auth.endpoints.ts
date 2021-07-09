@@ -4,7 +4,7 @@ export async function endpoints(context: any) { // context Interface
 
   const { router, database } = context; // TODO Sesion DB
 
-  const users = database.create('user');
+  const users = database.create('user'); // TODO there is a better way
   const sessions = database.create('session');
 
   const authService: any = new AuthService(users, sessions) // TODO AuthService Interface
