@@ -5,6 +5,8 @@ position: 1
 category: ''
 ---
 
+> ! Attention: This Library is highly under development (Alpha Version)
+
 **enjine** ships the most sophisticated technologies to build interoperable applications out of the box! The approach is to make developing ready to use application even for beginners and professionals.
 
 This Library bundles all modern web and app development standards right away.
@@ -28,8 +30,10 @@ and is written in Typescript.
 
 ### Developers
 
-### Bakers
+- [equaliser](http://equaliser.ecosis.io)
+
+<!-- ### Bakers
 
 ### Partners
 
-### Angels
+### Angels -->

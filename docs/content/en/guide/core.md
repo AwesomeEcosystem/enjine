@@ -5,7 +5,7 @@ position: 9
 category: 'guide'
 ---
 
-**Core Module** defines the platform as a ***Host*** for *injected* ***Instances***
+**Core Module** defines the platform as a ***Host*** for *injectable* ***Instances***
 
 ## Host
 
