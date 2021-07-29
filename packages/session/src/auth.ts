@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client'
 
 export class Auth {
-  public ticket: string
+  public ticket: string;
   public host: string;
   public gateway: string;
   public socket: any;
@@ -18,7 +18,6 @@ export class Auth {
   }
 
   public async login(credentials: any) { // TODO Creds Interface
-
     return new Promise((resolve: any, reject: any) => {
       this.socket.emit(this.events.login, credentials, async (err: any, res: any) => {
         if (err) return reject(err);
