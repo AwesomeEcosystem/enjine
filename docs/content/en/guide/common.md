@@ -23,9 +23,11 @@ If you want to use basic data management APIs, you can do so.
 
   const db = new Manager(name)
 
-  const instance = new DataInstance(name, db)
+  const instance = new DataInstance({ name, db })
 
   host.add(instance)
+
+  host.bootstrap()
   ```
 
   </code-block>
@@ -40,9 +42,11 @@ If you want to use basic data management APIs, you can do so.
 
   const db = new Manager(name)
 
-  const instance = new DataInstance(name, db)
+  const instance = new DataInstance({ name, db })
 
   host.add(instance)
+
+  host.bootstrap()
   ```
 
   </code-block>
@@ -73,6 +77,8 @@ The **DataInstance** is an extended ***Instance***, which wraps *DataGateway* an
   })
 
   host.add(instance)
+
+  host.bootstrap()
   ```
 
   </code-block>
@@ -94,6 +100,8 @@ The **DataInstance** is an extended ***Instance***, which wraps *DataGateway* an
   })
 
   host.add(instance)
+
+  host.bootstrap()
   ```
 
   </code-block>
@@ -134,6 +142,8 @@ connection.emit('remove', 'any-key')
   })
 
   host.add(instance)
+
+  host.bootstrap()
   ```
 
   </code-block>
@@ -155,6 +165,8 @@ connection.emit('remove', 'any-key')
   })
 
   host.add(instance)
+
+  host.bootstrap()
   ```
 
   </code-block>
