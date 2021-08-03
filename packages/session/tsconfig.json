@@ -3,7 +3,7 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "declarationMap": true,
-    "outDir": "lib/types",
+    "outDir": "dist/types",
   },
   "include": [
     "./src/index.ts"

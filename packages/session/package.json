@@ -1,6 +1,6 @@
 {
   "name": "@enjine/session",
-  "version": "0.0.1-alpha.24",
+  "version": "0.0.1-alpha.25",
   "description": "Session Manager",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/enjine#readme",
@@ -22,7 +22,7 @@
     "build:esm": "cross-env BABEL_ENV=esmUnbundled babel src --extensions '.ts' --out-dir 'dist/esm' --source-maps",
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions '.ts' --out-dir 'dist/cjs' --source-maps",
     "build:bundles": "cross-env BABEL_ENV=esmBundled rollup -c",
-    "build": "npm-run-all -l clean -p build:esm build:cjs build:bundles declarations",
+    "build": "npm-run-all -l clean -p build:esm build:cjs declarations",
     "test": "jest"
   },
   "repository": {

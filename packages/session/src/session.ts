@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events'
 import { io } from 'socket.io-client'
 import axios from 'axios';
-import { isBrowser } from '@enjine/utils';
+// import { isBrowser } from '@enjine/utils';
 import { Auth } from './auth';
 import { Connection } from './connection';
 
@@ -18,7 +18,7 @@ export class Session extends EventEmitter {
   public init(config?: any) { // Make it multi sessionable
     this.config = config || this.config || {};
 
-    if (isBrowser() && localStorage && localStorage.getItem(`${this.config.host}_ticket_token`)) {
+    if (localStorage && localStorage.getItem(`${this.config.host}_ticket_token`)) {
       this.ticket = {
         token: localStorage.getItem(`${this.config.host}_ticket_token`),
         expiresAt: localStorage.getItem(`${this.config.host}_ticket_expiresAt`),
@@ -39,7 +39,7 @@ export class Session extends EventEmitter {
 
         this.ticket = await auth.login(credentials)
 
-        if (isBrowser() && localStorage) {
+        if (localStorage) {
           localStorage.setItem(`${this.config.host}_ticket_token`, this.ticket.token)
           localStorage.setItem(`${this.config.host}_ticket_expiresAt`, this.ticket.expiresAt)
           localStorage.setItem(`${this.config.host}_ticket_ip`, this.ticket.ip)
