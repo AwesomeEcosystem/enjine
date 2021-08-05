@@ -1,6 +1,6 @@
 {
   "name": "@enjine/common",
-  "version": "0.0.1-alpha.21",
+  "version": "0.0.1-alpha.22",
   "description": "Extended modules to build common Instances",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/enjine#readme",
@@ -23,9 +23,9 @@
     "url": "https://github.com/AwesomeEcosystem/enjine/issues"
   },
   "dependencies": {
-    "@enjine/core": "^0.0.1-alpha.14",
+    "@enjine/core": "^0.0.1-alpha.27",
     "@enjine/database": "^0.0.1-alpha.9",
-    "@enjine/session": "^0.0.1-alpha.19",
+    "@enjine/session": "^0.0.1-alpha.27",
     "@enjine/utils": "^0.0.1-alpha.8",
     "@types/express": "^4.17.11"
   }
