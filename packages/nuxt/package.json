@@ -1,9 +1,10 @@
 {
   "name": "@enjine/nuxt",
-  "version": "0.0.1",
-  "description": "NuxtJS Module to build ecosis & enjine applications out of the box",
+  "version": "0.0.2",
+  "description": "NuxtJS Themer to build ecosis & enjine applications out of the box",
   "main": "src",
   "types": "./src/index.d.ts",
+  "type": "module",
   "scripts": {
     "test": "jest"
   },
