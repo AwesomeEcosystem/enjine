@@ -1,6 +1,6 @@
 {
   "name": "@enjine/core",
-  "version": "0.0.1-alpha.26",
+  "version": "0.0.1-alpha.27",
   "description": "Core modules to build customized Hosts and Apps",
   "author": "equaliser0 <accounts@equaliser.minimalcity.de>",
   "homepage": "https://github.com/AwesomeEcosystem/enjine#readme",
@@ -43,7 +43,7 @@
     "hpp": "^0.2.3",
     "jest": "^25.1.0",
     "jsonwebtoken": "^8.5.1",
-    "nuxt": "^2.15.4",
+    "nuxt": "^2.15.7",
     "socket.io": "^3.0.5",
     "ts-jest": "^25.2.1",
     "ts-node": "^8.8",
