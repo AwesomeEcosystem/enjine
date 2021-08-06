@@ -41,71 +41,27 @@ const defaultConfig = docsOptions => ({
     __dirname // transpile node_modules/@nuxt/content-theme-docs
   ],
   css: [
-    '~/assets/css/main.css'
   ],
   plugins: [
+    // '@/plugins/init',
     '@/plugins/markdown',
-    '@/plugins/init',
-    '@/plugins/i18n.client',
-    '@/plugins/vue-scrollactive',
-    '@/plugins/menu.client'
+    // '@/plugins/menu.client',
+    '@/plugins/vue-scrollactive'
+    '@/plugins/enjine'
   ],
   buildModules: [
     themeModule,
     '@nuxtjs/tailwindcss',
     '@nuxtjs/color-mode',
     '@nuxtjs/pwa',
-    '@nuxtjs/google-fonts'
   ],
   modules: [
-    'nuxt-i18n',
-    '@nuxt/content'
   ],
   loading: {
     color: docsOptions.primaryColor
   },
   meta: {
     theme_color: docsOptions.primaryColor
-  },
-  i18n: {
-    locales: [{
-      code: 'en',
-      iso: 'en-US',
-      file: 'en-US.js',
-      name: 'English'
-    }],
-    defaultLocale: 'en',
-    parsePages: false,
-    lazy: true,
-    seo: false,
-    langDir: 'i18n/',
-    vueI18n: {
-      fallbackLocale: 'en',
-      dateTimeFormats: {
-        en: {
-          long: {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            weekday: 'short'
-          }
-        },
-        fr: {
-          long: {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            weekday: 'short'
-          }
-        }
-      }
-    }
-  },
-  googleFonts: {
-    families: {
-      'DM+Sans': true,
-      'DM+Mono': true
-    }
   },
   tailwindcss: {}
 })

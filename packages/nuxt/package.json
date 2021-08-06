@@ -2,9 +2,24 @@
   "name": "@enjine/nuxt",
   "version": "0.0.3",
   "description": "NuxtJS Themer to build ecosis & enjine applications out of the box",
-  "main": "src",
-  "types": "./src/index.d.ts",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "exports": {
+    "require": "./dist/cjs/index.js",
+    "import": "./dist/esm/index.js"
+  },
   "scripts": {
+    "clean": "rimraf dist",
+    "declarations": "tsc -p tsconfig.json",
+    "build:esm": "cross-env BABEL_ENV=esmUnbundled babel src --extensions '.ts' --out-dir 'dist/esm' --source-maps",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions '.ts' --out-dir 'dist/cjs' --source-maps",
+    "build:bundles": "cross-env BABEL_ENV=esmBundled rollup -c",
+    "build": "npm-run-all -l clean -p build:esm build:cjs declarations",
     "test": "jest"
   },
   "dependencies": {
@@ -25,7 +40,16 @@
     "vue-scrollactive": "^0.9.3"
   },
   "devDependencies": {
-    "nuxt": "^2.15.2"
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/node": "^12.20.12",
+    "cross-env": "^7.0.3",
+    "npm-run-all": "^4.1.5",
+    "nuxt": "^2.15.2",
+    "rimraf": "^2.7.1",
+    "typescript": "^4.3.5"
   },
   "repository": {
     "type": "git",
