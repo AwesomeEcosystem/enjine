@@ -1,6 +1,6 @@
 {
   "name": "@enjine/components",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Ready to Use VueJS Components for enjine Apps",
   "main": "dist/components.ssr.js",
   "browser": "dist/components.esm.js",
