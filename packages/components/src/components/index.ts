@@ -5,6 +5,6 @@ export { default as Container } from './Container.vue';
 export { default as Layout } from './Layout.vue';
 export { default as Main } from './Main.vue';
 export { default as Menu } from './Menu.vue';
+export { default as PageLink } from './PageLink.vue';
 export { default as Nav } from './Nav.vue';
 export { default as Settings } from './Settings.vue';
-export { default as Connection } from './Connection.vue';

@@ -9,7 +9,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({ name: 'Container' })
-export default class Container extends Layer {
+export default class Container extends Vue {
   @Prop() wrap?: boolean;
 }
 </script>

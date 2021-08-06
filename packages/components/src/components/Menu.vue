@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="flex flex-wrap w-full m-2 p-2">
     <slot></slot>
   </div>
 </template>

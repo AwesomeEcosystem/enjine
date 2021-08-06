@@ -18,7 +18,7 @@
 
       <div class="flex flex-col">
         <div class="flex flex-col justify-center content-center text-center w-full"
-          @click="$router.push('home')">
+          @click="$router.push('/')">
           <div class="flex justify-center w-full">
             <Avatar class="w-32" :avatar="$session.ticket.user"/>
           </div>
@@ -43,7 +43,13 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({ name: 'Settings' })
-export default class Settings extends Vue {}
+export default class Settings extends Vue {
+  public settings: boolean = true;
+
+  triggerSettings() {
+    this.settings = !this.settings;
+  }
+}
 </script>
 
 <style scoped>

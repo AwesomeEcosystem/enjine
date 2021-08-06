@@ -9,12 +9,11 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({ name: 'App' })
 export default class App extends Vue {
-  @Prop() auth?: string;
   created() {
-    this.$session.init();
-    if (!this.$session.ticket && this.auth) {
-      this.$router.go(this.auth)
-    }
+    // this.$session.init();
+    // if (!this.$session.ticket && this.auth) {
+    //   this.$router.go(this.auth)
+    // }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 {
-  "name": "components",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@enjine/components",
+  "version": "0.0.3",
+  "description": "Ready to Use VueJS Components for enjine Apps",
   "main": "dist/components.ssr.js",
   "browser": "dist/components.esm.js",
   "module": "dist/components.esm.js",
@@ -56,6 +56,7 @@
     "node": ">=12"
   },
   "dependencies": {
+    "@enjine/themes": "^0.0.1",
     "vue-property-decorator": "^9.1.2"
   }
 }

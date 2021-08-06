@@ -8,7 +8,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({ name: 'Card' })
-export default class Card extends Layer {}
+export default class Card extends Vue {}
 </script>
 
 <style scoped>

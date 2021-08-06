@@ -1,18 +1,48 @@
+<template>
+  <App>
+    <Layout>
+      <Nav slot="nav">
+        <div slot="left">
+          Left Nav
+        </div>
+        <div slot="middle">
+          Middle Nav
+        </div>
+        <div slot="right">
+          Right Nav
+          <Settings/>
+        </div>
+      </Nav>
+      <Main slot="main">
+        <Container>
+          Container
+          <Card>
+            Card
+          </Card>
+        </Container>
+      </Main>
+      <Menu slot="menu">Menu</Menu>
+    </Layout>
+  </App>
+</template>
+
 <script lang="ts">
 import Vue from 'vue';
-// Uncomment import and local "components" registration if library is not registered globally.
-// import { ComponentsSample } from '@/entry.esm';
+import { App, Layout, Main, Nav, Menu, Container, Card, Settings } from '@/entry.esm';
+
+// import '@enjine/themes/basic/index.css'
 
 export default Vue.extend({
   name: 'ServeDev',
-  // components: {
-  //  ComponentsSample,
-  // }
+  components: {
+   App,
+   Layout,
+   Main,
+   Nav,
+   Menu,
+   Container,
+   Card,
+   Settings
+  }
 });
 </script>
-
-<template>
-  <div id="app">
-    <components-sample />
-  </div>
-</template>
