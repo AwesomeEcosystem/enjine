@@ -20,3 +20,5 @@
 
 @tailwind components;
 @tailwind utilities;
+
+@import 'line-awesome/dist/line-awesome/css/line-awesome.min.css'

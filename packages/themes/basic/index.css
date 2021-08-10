@@ -31871,6 +31871,8 @@ h5 {
   --tw-backdrop-sepia: sepia(100%);
 }
 
+@import 'line-awesome/dist/line-awesome/css/line-awesome.min.css';
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
