@@ -1,8 +1,8 @@
-import { Gateway, authMiddleware } from '@ecosis/core';
+import { Gateway, authMiddleware } from '@enjine/core';
 import { endpoints } from './media.endpoints';
 
 export class MediaGateway extends Gateway {
-  constructor(name: any, db: any) {
-    super(name, db, endpoints)
+  constructor(config: any) {
+    super(config.name, endpoints, config.db)
   }
 }

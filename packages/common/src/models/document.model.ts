@@ -1,8 +1,8 @@
-import { Model } from '@ecosis/database';
+import { Data } from '@enjine/database';
 
 // TODO Transform Group into Identity
 
-export class Document extends Model {
+export class Document extends Data {
   author: string;
   data: any;
 

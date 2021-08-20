@@ -1,4 +1,4 @@
-import { Manager } from '@ecosis/database';
+import { Manager } from '@enjine/database';
 
 export async function endpoints(context: any) {
 

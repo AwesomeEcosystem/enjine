@@ -1,4 +1,4 @@
-import { AuthService } from '@ecosis/core';
+import { AuthService } from '@enjine/core';
 
 export async function endpoints(context: any) { // context Interface
 
@@ -19,7 +19,7 @@ export async function endpoints(context: any) { // context Interface
     }
   })
 
-  socket.on('auth', async (data: any, callback: any) => {
+  socket.on('validate', async (data: any, callback: any) => {
     try {
       const validated: any = await authService.validateToken(data.token, data._id, data.ip) // TODO Interface
 

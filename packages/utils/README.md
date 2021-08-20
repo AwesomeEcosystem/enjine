@@ -1,3 +1,3 @@
-# `@ecosis/utils`
+# `@enjine/utils`
 
 > scale Instance Native Utilities

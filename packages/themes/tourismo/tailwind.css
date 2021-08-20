@@ -1,0 +1,24 @@
+@import 'line-awesome/dist/line-awesome/css/line-awesome.min.css';
+
+@tailwind base;
+
+@layer base {
+  h1 {
+    @apply text-4xl py-2 mb-4;
+  }
+  h2 {
+    @apply text-3xl py-2 mb-4;
+  }
+  h3 {
+    @apply text-2xl py-2 mb-4;
+  }
+  h4 {
+    @apply text-xl py-2 mb-4;
+  }
+  h5 {
+    @apply text-lg py-2 mb-4;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;

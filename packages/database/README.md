@@ -1,11 +1,11 @@
-# `@ecosis/database`
+# `@enjine/database`
 
 > Simple to use Level Database Manager.
 
 ## Usage
 
 ```js
-const { Manager } = require('@ecosis/database');
+const { Manager } = require('@enjine/database');
 
 const manager = new Manager('.db')
 

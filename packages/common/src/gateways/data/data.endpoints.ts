@@ -2,72 +2,69 @@ import { Document } from '../../models/document.model';
 
 export async function endpoints(context: any) {
 
-  const { socket, space, database } = context;
+  const { socket, namespace, database } = context;
 
   socket.on('all', async (callback: any) => {
     try {
       const res: any = await database.all()
-      callback(null, res)
+      callback(res)
     } catch (err) {
-      callback(new Error(err), null)
+      namespace.emit('error', new Error(err))
     }
   });
 
-  socket.on('post', async (data: any, callback: any) => {
-    const doc: any = new Document('data', socket.handshake.auth.ticket.user, data) // TODO Dyn Author
+  socket.on('post', async (data: any) => {
+    const doc: any = new Document('data', socket.handshake.auth.ticket.user || 'undefined', data) // TODO Dyn Author
     try {
       const res: any = await database.post(doc)
-      callback(null, res)
-      space.emit('post', doc)
+      namespace.emit('post', doc)
     } catch (err) {
-      callback(new Error(err), null)
+      namespace.emit('error', new Error(err))
     }
   });
 
-  socket.on('update', async (doc: any, callback: any) => {
+  socket.on('update', async (doc: any) => {
     try {
       const res: any = await database.put(doc._id, doc)  // TODO updated Author
-      callback(null, res)
-      space.emit('update', doc)
+      namespace.emit('update', doc)
     } catch (err) {
-      callback(new Error(err), null)
+      socket.emit('error', new Error(err))
     }
   });
 
   socket.on('get', async (id: any, callback: any) => {
     try {
       const res: any = await database.get(id)
-      callback(null, res)
+      callback(res)
     } catch (err) {
-      callback(new Error(err), null)
+      socket.emit('error', new Error(err))
     }
   });
 
   socket.on('find', async (fn: any, callback: any) => {
     try {
       const res: any = await database.find(fn)
-      callback(null, res)
+      callback(res)
     } catch (err) {
-      callback(new Error(err), null)
+      socket.emit('error', new Error(err))
     }
   });
 
   socket.on('filter', async (fn: any, callback: any) => {
     try {
       const res: any = await database.filter(fn)
-      callback(null, res)
+      callback(res)
     } catch (err) {
-      callback(new Error(err), null)
+      socket.emit('error', new Error(err))
     }
   });
 
-  socket.on('remove', async (id: string, callback: any) => {
+  socket.on('remove', async (id: string) => {
     try {
       const res: any = await database.remove(id)
-      callback(null, res)
-      space.emit('remove', id)
+      namespace.emit('remove', id)
     } catch (err) {
-      callback(new Error(err), null)
+      socket.emit('error', new Error(err))
     }
   });
 }

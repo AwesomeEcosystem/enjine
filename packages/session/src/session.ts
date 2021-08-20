@@ -1,35 +1,32 @@
+import { EventEmitter } from 'events'
 import { io } from 'socket.io-client'
-// import { axios } from 'axios';
+import axios from 'axios';
+// import { isBrowser } from '@enjine/utils';
 import { Auth } from './auth';
+import { Connection } from './connection';
 
-export class Session { // TODO Exent EventErmitter or SocketIO Manager
-  public ticket: any = null;
-  public config: any = null;
-  public gateway: any = {}; // Interfaces
+export class Session extends EventEmitter {
+  public ticket: any = {};
+  public config: any = {};
+  public connection: any = {};
 
-  constructor(config: any) {
-    this.config = config
+  constructor(config?: any) {
+    super()
+    this.config = config || {}
   }
 
-  public async init() { // Make it multi sessionable
-    return new Promise(async (resolve: any, reject: any) => {
-      if (localStorage && localStorage.getItem('ticket_token')) {
-        try {
-          this.ticket = {
-            token: localStorage.getItem('ticket_token'),
-            expiresAt: localStorage.getItem('ticket_expiresAt'),
-            ip: localStorage.getItem('ticket_ip'),
-            user: localStorage.getItem('ticket_user'),
-            _id: localStorage.getItem('ticket__id')
-          }
-          resolve(true);
-        } catch (e) {
-          reject(e);
-        }
-      } else {
-        resolve(true);
+  public init(config?: any) { // Make it multi sessionable
+    this.config = config || this.config || {};
+
+    if (localStorage && localStorage.getItem(`${this.config.host}_ticket_token`)) {
+      this.ticket = {
+        token: localStorage.getItem(`${this.config.host}_ticket_token`),
+        expiresAt: localStorage.getItem(`${this.config.host}_ticket_expiresAt`),
+        ip: localStorage.getItem(`${this.config.host}_ticket_ip`),
+        user: localStorage.getItem(`${this.config.host}_ticket_user`),
+        _id: localStorage.getItem(`${this.config.host}_ticket__id`)
       }
-    })
+    }
   }
 
   public async login(credentials: any) { // TODO Creds Interface
@@ -41,42 +38,35 @@ export class Session { // TODO Exent EventErmitter or SocketIO Manager
         })
 
         this.ticket = await auth.login(credentials)
+
         if (localStorage) {
-          localStorage.setItem('ticket_token', this.ticket.token)
-          localStorage.setItem('ticket_expiresAt', this.ticket.expiresAt)
-          localStorage.setItem('ticket_ip', this.ticket.ip)
-          localStorage.setItem('ticket_user', this.ticket.user)
-          localStorage.setItem('ticket__id', this.ticket._id)
+          localStorage.setItem(`${this.config.host}_ticket_token`, this.ticket.token)
+          localStorage.setItem(`${this.config.host}_ticket_expiresAt`, this.ticket.expiresAt)
+          localStorage.setItem(`${this.config.host}_ticket_ip`, this.ticket.ip)
+          localStorage.setItem(`${this.config.host}_ticket_user`, this.ticket.user)
+          localStorage.setItem(`${this.config.host}_ticket__id`, this.ticket._id)
         }
 
-        resolve(true);
+        resolve(this.ticket);
       } catch (e) {
         reject(e);
+        this.emit('error', e)
       }
     })
   }
 
+  // TODO Logout
+
   public add(config: any) {
-    this.gateway[config.gateway] = io(`${config.host}/${config.gateway}`, {
-      auth: {
-        ticket: this.ticket
-      }
+    const host = config.host || this.config.host
+    const gateway = config.gateway || config.name
+    const controller = config.controller || config.name
+
+    this.connection[config.name || config.gateway || config.controller] = new Connection({
+      ticket: this.ticket,
+      host: config.host,
+      gateway,
+      controller
     })
   }
-  // TODO Add RESTful API
-  // public post() {
-  //
-  // }
-  //
-  // public put() {
-  //
-  // }
-  //
-  // public get() {
-  //
-  // }
-  //
-  // public delete() {
-  //
-  // }
 }

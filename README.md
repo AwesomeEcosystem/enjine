@@ -1,60 +1,85 @@
-# scale
+# enjine
 
 > Progressive Interoperable Full Stack Application Data Management Framework
 
+**enjine** bundles everything you need to build interoperable apps out of the box!
+
+The ***ultimate*** extension for re-usability, scalability and interoperability.  
+
 > Lets build a digital global data flow infrastructure for an open, transparent and efficient future!
 
-**scale** is a real time data management framework.
+Its good for beginners, because of the easy to use bundled standards - all necessary tools at once! And its good for advanced, because it safes much time!
+
+# Documentation
+
+Read the Dos [here](https://docs.ecosis,io)
+
+## Node Modules
+
+- [Core]()
+- [Common]()
+- [Session]()
+- [Components]()
+- [Database]()
+- [Utils]()
+
+## Boilerplates
+
+###  Single Page Application
+
+- [Minimal]()
+- [Basic]()
+- [Advanced]()
+
+### Fullstack
+
+- [Minimal]()
+- [Basic]()
+- [Advanced]()
 
 # Concept
 
-> Lets build Data Cities with links which are like streets :)
+- **Network** `Ecosystem between Instances and Components`
 
-Parts of a full *data management backend* with implemented *authentication* are designed into classes for scalable architecture, which safes much time!
+- **Instances** `Node Instances as Backend with Gateway and Controller APIs for Data Interaction`
+  - **Gateway** `Realtime Websocket APIs`
+  - **Controller** `RESTful APIs`
+
+- **Components** `Ready to use Application UI Components`
+  - **Session** `Ticket Container for multiple Connections`
+  - **Connection** `Gateway & Controller APIs`
+
+Like Lego - you only need to combine your ***Components*** and ***Instances*** the right way you need. Because of the *interoperability APIs* its possible to share and operate data in ***Networks***
+
+> Extended NuxtJS shipped with a real time Data Management System including ready to use VueJS Components.
+
 
 # Usage
 
+## Core Functionality
+
+Design your Data Instances and embed them into your host.
+
 ```js
 // Server
-const { Host, Instance, Gateway, authMiddleware, User } = require('@ecosis/core');
-const { AuthGateway, UserGateway, DataGateway, MediaGateway } = require('@ecosis/common');
-const { Manager } = require('@ecosis/database');
+import { Host, Instance, Controller, Gateway } from '@enjine/core'
 
+const controller = new Controller('/api', ({ router }) => {
+  router.get('/', (req, res) => {
+    res.send('Hi')
+  })
+})
 
-const database = new Manager('.database'),
+const instance = new Instance({
+  controller: [ controller ]
+})
 
-      datadb = database.create('data'),
-      userdb = database.create('user'),
-      mediadb = database.create('media'),
+const host = new Host({ port: 4000 })
 
-      auth = new AuthGateway('auth', database),
-      data = new DataGateway('data', datadb), // XXX /([^\s]+)/
+host.add(instance)
 
-      user = new UserGateway('user', userdb),
-      media = new MediaGateway('media', mediadb),
+host.bootstrap()
 
-      host = new Host({
-        cors: { origin: '*', credentials: false },
-        transports: ['websocket', 'htmlfile', 'xhr-polling', 'jsonp-polling', 'polling']
-      });
-
-
-data.use(authMiddleware);
-
-user.use(authMiddleware);
-media.use(authMiddleware);
-
-
-host.add([
-  new Instance('', [
-    auth,
-    user,
-    data,
-    media
-  ])
-]);
-
-host.listen(4000);
 ```
 
 ```js
@@ -62,26 +87,22 @@ host.listen(4000);
 
 const { Session } = require('session');
 
-const session = new Session({
-  host: 'localhost:4000',
-  gateway: 'auth'
-})
-
-session.init()
-
-await session.login({ username, password })
+const session = new Session()
 
 session.add({
   host: 'localhost:4000',
-  gateway: 'database'
+  controller: 'api'
 })
+
+session.api.get('/')
 ```
 
+# Proof of Concept
 
-# Why still Alpha Version?
+```shell
+npm i
 
-The Framework is as secure as modern standards are, so I would use it ready for the production. But the concept of the vision is to have this library more dynamic and shipped with more features, which makes this so functional.
+npm run test
 
-# Vision
-
-***Decentralization*** means *security*, *stability* and *scalability*. The concept of the tweak- and extendable ***dynamic*** **Instance**
+npm run dev
+```

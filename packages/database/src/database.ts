@@ -1,5 +1,5 @@
 import Levelts from 'level-ts';
-import { mkdir } from '@ecosis/utils'
+import { mkdir } from '@enjine/utils'
 
 export class Database extends Levelts {
   name: string;

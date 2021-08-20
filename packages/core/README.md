@@ -1,12 +1,12 @@
-# `@ecosis/core`
+# `@enjine/core`
 
 > Core Modules to build *scale Instances*
 
 ## Usage
 
 ```js
-const { Host, Instance, Gateway } = require('@ecosis/core');
-const { Database } = require('@ecosis/database');
+const { Host, Instance, Gateway } = require('@enjine/core');
+const { Database } = require('@enjine/database');
 
 const db = new Database('.db')
 

@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Exception } from '../exceptions/exception';
-import { compareCrypto } from '@ecosis/utils';
+import { compareCrypto } from '@enjine/utils';
 
 export class AuthService {
   public users: any;
@@ -42,7 +42,7 @@ export class AuthService {
 
   public async validateToken(token: string, user_id: string, ip: string) {// TODO AuthToken Interface
     const authToken: any = await this.sessions.find((auth: any) => auth.token === token);
-    if (!authToken) {
+    if (!authToken) { // TODO ExpireDate
       throw new Error('Token not found');
     }
     return this.users.get(authToken.user);

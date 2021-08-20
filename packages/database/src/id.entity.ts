@@ -1,8 +1,8 @@
 import { appendAsyncConstructor } from 'async-constructor'
-import { createCrypto } from '@ecosis/utils';
-import { Model } from './model';
+import { createCrypto } from '@enjine/utils';
+import { Data } from './data';
 
-export class Identity extends Model {
+export class Identity extends Data {
   password: any; // TODO Password Interface
 
   constructor(data: any) {
