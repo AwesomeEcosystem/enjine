@@ -2,7 +2,7 @@
 title: Instance
 description: ''
 position: 5
-category: concept
+category: interfaces
 ---
 
 An **Instance** wraps your ***Gateways*** and ***Controllers*** into the ***Host***.
@@ -12,8 +12,8 @@ An **Instance** wraps your ***Gateways*** and ***Controllers*** into the ***Host
 
 ## Under the Hood
 
-```js
-class Instance {
+```ts
+interface Instance {
   io: socketio,
   app: express.Router,
   server: {

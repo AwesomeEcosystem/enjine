@@ -2,12 +2,10 @@
 title: Session
 description: ''
 position: 12
-category: 'guide'
+category: 'client'
 ---
 
-One **Session** holds one ticket for its ***Connections***
-
-> You can use Session client and server side
+One **Session** holds one ticket for its ***Connections*** to **enjine** ***nodes***
 
 > You can add gateway or controller connections or both at once if available on instance
 

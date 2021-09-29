@@ -2,15 +2,15 @@
 title: Gateway
 description: ''
 position: 6
-category: concept
+category: interfaces
 ---
 
 The **Gateway** enables Websocket for your ***Instances***
 
 ## Under the Hood
 
-```js
-class Gateway {
+```ts
+interface Gateway {
   database,
   middleware,
   endpoints,

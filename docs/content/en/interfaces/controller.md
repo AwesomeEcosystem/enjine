@@ -2,15 +2,15 @@
 title: Controller
 description: ''
 position: 7
-category: concept
+category: interfaces
 ---
 
 The **Controller** enables RESTful APIs for your ***Instances***
 
 ## Under the Hood
 
-```js
-class Controller {
+```ts
+interface Controller {
   database,
   middleware,
   endpoints,

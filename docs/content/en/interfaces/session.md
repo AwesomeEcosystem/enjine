@@ -2,15 +2,15 @@
 title: Session
 description: ''
 position: 8
-category: concept
+category: interfaces
 ---
 
 The **Session** is the manager for your ***Ticket*** and its **Connections** to *Instance* ***Gateways*** and ***Controllers***.
 
 ## Under the Hood
 
-```js
-class Session {
+```ts
+interface Session {
   ticket,
   config,
   connection: {

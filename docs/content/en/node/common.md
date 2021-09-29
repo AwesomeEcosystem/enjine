@@ -183,7 +183,7 @@ await connection.get('/find', (obj) => obj._id === 'any-key' )
 await connection.get('/filter', (obj) => obj.created < Date )
 await connection.remove('/any-key')
 ```
-
+<!-- 
 ## AuthInstance
 
 > Coming soon
@@ -206,4 +206,4 @@ await connection.remove('/any-key')
 
 ## MediaController
 
-> Coming soon
+> Coming soon -->

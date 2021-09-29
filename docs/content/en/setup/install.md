@@ -11,7 +11,7 @@ category: Setup
 
 > Coming soon
 
-## Modules
+## Noce
 
 ### Core
 > Serverside
@@ -82,6 +82,8 @@ The integrable document based database with no need to install external ones
 </code-group>
 
 [Learn more about the Usage here](/guide/database)
+
+## Client
 
 ### Session
 > Serverside & Clientside

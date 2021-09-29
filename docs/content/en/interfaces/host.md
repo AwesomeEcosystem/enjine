@@ -2,7 +2,7 @@
 title: Host
 description: ''
 position: 4
-category: concept
+category: interfaces
 ---
 
 The **Host** maintains your ***Instances***
@@ -10,8 +10,8 @@ The **Host** maintains your ***Instances***
 
 ## Under the Hood
 
-```js
-class Host {
+```ts
+interface Host {
   config,
   app: express,
   server: {

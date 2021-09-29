@@ -10,44 +10,51 @@
         <div class="flex flex-wrap justify-around items-center">
 
           <div class="">
-
+            <p>Build Frontends. Build Backends. Build Fullstack. Build Scalable.</p>
+            <p></p>
           </div>
 
         </div>
       </div>
 
-      <!-- <div class="py-4 my-8">
+      <div class="py-4 my-8">
         <div class="w-full text-center">
-          <h1>Vision</h1>
+          <h1>Integtrations</h1>
         </div>
         <div class="flex flex-wrap justify-around">
 
           <div class="flex flex-col justify-around items-center md:w-1/5 m-2 p-2">
             <img src="~/assets/imgs/finance.png" class="w-32">
-            <h2>Passive Liquidity</h2>
+            <h2>NuxtJS</h2>
             <p></p>
           </div>
 
           <div class="flex flex-col justify-around items-center md:w-1/5 m-2 p-2">
             <img src="~/assets/imgs/security.png" class="w-32">
-            <h2>Entity Insurance</h2>
+            <h2>VueJS</h2>
             <p></p>
           </div>
 
           <div class="flex flex-col justify-around items-center md:w-1/5 m-2 p-2">
             <img src="~/assets/imgs/business.png" class="w-32">
-            <h2>Community Enterprise</h2>
+            <h2>TailwindCSS</h2>
             <p></p>
           </div>
 
           <div class="flex flex-col justify-around items-center md:w-1/5 m-2 p-2">
-            <img src="~/assets/imgs/monitoring.png" class="w-32">
-            <h2>User Adoption</h2>
+            <img src="~/assets/imgs/business.png" class="w-32">
+            <h2>Express</h2>
+            <p></p>
+          </div>
+
+          <div class="flex flex-col justify-around items-center md:w-1/5 m-2 p-2">
+            <img src="~/assets/imgs/business.png" class="w-32">
+            <h2>SocketIO</h2>
             <p></p>
           </div>
 
         </div>
-      </div> -->
+      </div>
     </div>
   </section>
 </template>

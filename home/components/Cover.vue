@@ -4,9 +4,10 @@
     <div class="flex flex-wrap justify-around items-center md:absolute md:bottom-2 md:left-2 md:bottom-32 md:left-64">
       <img src="~/assets/logos/ecosis.png" class="w-12 md:w-16 rounded-full" alt="ecosis">
       <div class="flex flex-col p-2">
-        <h1>ecosis</h1>
-        <p>Distributed Economies</p>
+        <h1>enjine</h1>
+        <p>Build Applications.</p>
       </div>
+      <button>Documentation</button>
     </div>
   </div>
 </template>

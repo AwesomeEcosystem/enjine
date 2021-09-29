@@ -3,7 +3,7 @@
     <Cover/>
     <About/>
     <Network/>
-    <Footer/>
+    <!-- <Footer/> -->
   </div>
 </template>
 

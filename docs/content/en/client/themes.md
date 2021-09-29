@@ -1,19 +1,21 @@
 ---
-title: Themes
+title: Application
 description: ''
 position: 14
-category: 'guide'
+category: 'client'
 ---
 
-> Requires `@enjine/common` & `@enjine/themes`
+> Requires `@enjine/nuxt`
+
+Launch a Nuxt Application with configured  Theme including Vue Components
 
 <code-group>
   <code-block label="es6" active>
 
   ```js
-  import { App } from '@enjine/common'
+  import { app } from '@enjine/nuxt'
 
-  export default new App({
+  export default app({
     theme: '@enjine/themes/basic'
   })
   ```
@@ -22,9 +24,9 @@ category: 'guide'
   <code-block label="commonjs">
 
   ```js
-  const { App } = require('@enjine/common')
+  const { app } = require('@enjine/nuxt')
 
-  module.exports = new App({
+  module.exports = app({
     theme: '@enjine/themes/basic'
   })
   ```
