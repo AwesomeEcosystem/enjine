@@ -13,9 +13,9 @@ Launch a Nuxt Application with configured  Theme including Vue Components
   <code-block label="es6" active>
 
   ```js
-  import { base } from '@enjine/template'
+  import { docs } from '@enjine/templates'
 
-  export default base({
+  export default docs({
     theme: '@enjine/themes/basic'
   })
   ```
@@ -24,9 +24,9 @@ Launch a Nuxt Application with configured  Theme including Vue Components
   <code-block label="commonjs">
 
   ```js
-  const { base } = require('@enjine/template')
+  const { docs } = require('@enjine/template')
 
-  module.exports = base({
+  module.exports = docs({
     theme: '@enjine/themes/basic'
   })
   ```
