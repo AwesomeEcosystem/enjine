@@ -1,7 +1,7 @@
 {
   "name": "<%= name %>.app",
   "version": "0.0.1",
-  "description": "enjine Project",
+  "description": "<%= description %>",
   "author": {
     "name": "<%= author %>"
   },

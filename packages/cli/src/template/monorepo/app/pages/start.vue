@@ -20,10 +20,10 @@
       </Card>
     </div>
 
-    <!-- <Card class="flex flex-wrap justify-around items-center">
+    <Card class="flex flex-wrap justify-around items-center">
       <div class="hidden md:block flex-1" v-if="metamask">
         <button class="flex flex-wrap justify-around items-center w-32 h-32 bg-gray-500 py-2 p-4 m-2 rounded font-bold" @click="metamask()">
-            <img class="w-full" src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="Metamaski">
+            <img class="w-full" src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" alt="Metamask">
             Metamask
         </button>
       </div>
@@ -44,7 +44,7 @@
       </div>
       <div class="">
       </div>
-    </Card> -->
+    </Card>
 
   </Container>
 </template>

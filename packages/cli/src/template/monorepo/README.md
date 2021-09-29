@@ -1,4 +1,4 @@
-# {{ name }}
+# <%= name %>
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -6,7 +6,7 @@
 [![Codecov][codecov-src]][codecov-href]
 [![License][license-src]][license-href]
 
-> {{ description }}
+> <%= description %>
 
 [📖 **Release Notes**](./CHANGELOG.md)
 
@@ -21,4 +21,4 @@ npm run prepare # or yarn prepare
 
 [MIT License](./LICENSE)
 
-Copyright (c) {{ author }}
+Copyright (c) <%= author %>

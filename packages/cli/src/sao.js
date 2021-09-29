@@ -9,12 +9,13 @@ const move = (from, to = '') => {
   const result = {}
   const options = { cwd: join(rootDir, 'template'), nodir: true, dot: true }
   for (const file of glob.sync(`${from}/**`, options)) {
-    result[file] = (to ? to + '/' : '') + file.replace(`${from}/`, '')
+    result[file] = (to ? to + './' : '') + file.replace(`${from}/`, '')
   }
   return result
 }
 
 const moveLanguage = (answer, to = '') => {
+  console.log(rootDir);
   console.log(`${answer}`)
   return answer !== 'none' && move(`${answer}`, to)
 }
@@ -62,7 +63,7 @@ module.exports = {
         console.error('Error:', err)
       })
     validation.errors && validation.errors.length && process.exit(1)
-    return Object.assign(moveLanguage(answers.language))
+    return Object.assign(moveLanguage(answers.type))
   },
   post(
     {

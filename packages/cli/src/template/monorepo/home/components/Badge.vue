@@ -7,7 +7,7 @@
       <Card>
         Links...
       </Card>
-    <h1 class="text-6xl p-2">ecosis.app</h1>
+    <h1 class="text-6xl p-2"><%= name %></h1>
   </div>
 </template>
 
