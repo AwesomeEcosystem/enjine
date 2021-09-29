@@ -41,6 +41,7 @@ const defaultConfig = docsOptions => ({
     __dirname // transpile node_modules/@nuxt/content-theme-docs
   ],
   css: [
+    docsOptions.theme + '/index.css'
   ],
   plugins: [
     // '@/plugins/init',
@@ -66,9 +67,10 @@ const defaultConfig = docsOptions => ({
   tailwindcss: {}
 })
 
-export default (userConfig) => {
+export const template = (userConfig) => {
   userConfig.docs = defu(userConfig.docs, {
-    primaryColor: '#00CD81'
+    primaryColor: '#00CD81',
+    theme: '@enjine/themes/basic'
   })
 
   const config = defu.arrayFn(userConfig, defaultConfig(userConfig.docs))
