@@ -4,6 +4,7 @@ description: ''
 position: 12
 category: 'client'
 ---
+> Attention: The Session SDK is for the Connection between your enjine Node and enjine Client. If you are interested in Web 3 take a look [here](https://authic.ecosis.io) 
 
 One **Session** holds one ticket for its ***Connections*** to **enjine** ***nodes***
 
