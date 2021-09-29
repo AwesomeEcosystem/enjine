@@ -8,14 +8,9 @@
 
 > <%= description %>
 
-[📖 **Release Notes**](./CHANGELOG.md)
-
 ## Usage
 
-```bash
-npm i # or yarn add
-npm run prepare # or yarn prepare
-```
+[ave a look into the Documentation](https://enjine.ecosis.io)
 
 ## License
 
