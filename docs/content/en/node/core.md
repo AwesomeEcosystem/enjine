@@ -2,7 +2,7 @@
 title: Core
 description: ''
 position: 9
-category: 'guide'
+category: 'node'
 ---
 
 **Core Module** defines the platform as a ***Host*** for *injectable* ***Instances***

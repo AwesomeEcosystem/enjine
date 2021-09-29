@@ -67,7 +67,7 @@ const defaultConfig = docsOptions => ({
   tailwindcss: {}
 })
 
-export const template = (userConfig) => {
+export const base = (userConfig) => {
   userConfig.docs = defu(userConfig.docs, {
     primaryColor: '#00CD81',
     theme: '@enjine/themes/basic'

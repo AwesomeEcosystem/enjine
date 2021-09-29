@@ -2,7 +2,7 @@
 title: Database
 description: ''
 position: 11
-category: 'guide'
+category: 'node'
 ---
 
 > Serverside Database

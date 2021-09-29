@@ -9,9 +9,11 @@ category: Setup
 
 ## Cli
 
-> Coming soon
+> Extendes Functionalities Coming soon
 
-## Noce
+[Learn more here in the Guide Section](/guide/start)
+
+## Node
 
 ### Core
 > Serverside

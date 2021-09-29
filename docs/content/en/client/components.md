@@ -2,7 +2,7 @@
 title: Components
 description: ''
 position: 13
-category: 'guide'
+category: 'client'
 ---
 
 > Requires `enjine` or `VueJS` or `NuxtJS`

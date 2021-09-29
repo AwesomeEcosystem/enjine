@@ -1,5 +1,5 @@
 ---
-title: Application
+title: Template
 description: ''
 position: 14
 category: 'client'
@@ -13,9 +13,9 @@ Launch a Nuxt Application with configured  Theme including Vue Components
   <code-block label="es6" active>
 
   ```js
-  import { app } from '@enjine/nuxt'
+  import { base } from '@enjine/template'
 
-  export default app({
+  export default base({
     theme: '@enjine/themes/basic'
   })
   ```
@@ -24,9 +24,9 @@ Launch a Nuxt Application with configured  Theme including Vue Components
   <code-block label="commonjs">
 
   ```js
-  const { app } = require('@enjine/nuxt')
+  const { base } = require('@enjine/template')
 
-  module.exports = app({
+  module.exports = base({
     theme: '@enjine/themes/basic'
   })
   ```

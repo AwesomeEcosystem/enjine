@@ -2,7 +2,7 @@
 title: Common
 description: ''
 position: 10
-category: 'guide'
+category: 'node'
 ---
 
 If you want to use basic data management APIs, you can do so.
@@ -183,7 +183,7 @@ await connection.get('/find', (obj) => obj._id === 'any-key' )
 await connection.get('/filter', (obj) => obj.created < Date )
 await connection.remove('/any-key')
 ```
-<!-- 
+<!--
 ## AuthInstance
 
 > Coming soon

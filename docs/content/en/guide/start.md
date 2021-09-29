@@ -2,51 +2,199 @@
 title: Get Started
 description: ''
 position: 1
-category: guide
+category: 'guide'
 ---
 
 > Requires latest `node` & `git` & `npm` or `yarn`
 
-## Cli
-
-> Coming soon
-
 ## Start new Project
 
-### Monorepository Boilerplate
+For developing a full project including the *Homepage*, *Documentation*, reusable *Modules* and the *Application* itself, we recommend to use the **Project Monorepository Template**
 
-For developing a full project including the *Homepage*, *Documentation*, reusable *Modules* and the *Application* itself, we recommend to use the **Monorepository Template**
-
-```bash
-git clone https://github.com/AwesomeEcosystem/project-monorepo-template.git
-```
-
-> Rename your Project
+> More options coming soon
 
 ```bash
-cd project-monorepo-template
-npm run init
+npx create-enjine-app <Your Project Name>
+cd <Your Project Name>
 ```
+Once the monorepository is initialized, you can work on the fallowing repositories
 
+### Application
 
-
-<!-- [Learn more about the Usage here](/guide/themes) -->
-
-<!-- <code-group>
+<code-group>
   <code-block label="npm" active>
 
   ```bash
-  npm install @enjine/core
+  cd app
+  # You can find the REAME.md File here for further explanations
+
+  # Install Dependencies
+  npm i
+
+  # Build Development
+  npm run dev
+
+  # Build Production
+  npm run build
+  npm run generate # Optional: Building Static Version of your Progressive Web App
+
+  # Start Production
+  npm run start
   ```
 
   </code-block>
-  <code-block label="Yarn">
+  <code-block label="yarn">
 
   ```bash
-  yarn add @enjine/core
+  cd app
+  # You can find the REAME.md File here for further explanations
+  yarn install
+
+  # Build Development
+  yarn dev
+
+  # Build Production
+  yarn build
+  yarn generate # Optional: Building Static Version of your Progressive Web App
+
+  # Start Production
+  yarn start
   ```
 
   </code-block>
 </code-group>
 
-[Learn more about the Usage here](/guide/core) -->
+### Documentation
+
+<code-group>
+  <code-block label="npm" active>
+
+  ```bash
+  cd docs
+  # You can find the REAME.md File here for further explanations
+
+  # Install Dependencies
+  npm i
+
+  # Build Development
+  npm run dev
+
+  # Build Production
+  npm run build
+  npm run generate # Optional: Building Static Version of your Progressive Web App
+
+  # Start Production
+  npm run start
+  ```
+
+  </code-block>
+  <code-block label="yarn">
+
+  ```bash
+  cd docs
+  # You can find the REAME.md File here for further explanations
+  yarn install
+
+  # Build Development
+  yarn dev
+
+  # Build Production
+  yarn build
+  yarn generate # Optional: Building Static Version of your Progressive Web App
+
+  # Start Production
+  yarn start
+  ```
+
+  </code-block>
+</code-group>
+
+### Homepage
+
+<code-group>
+  <code-block label="npm" active>
+
+  ```bash
+  cd home
+  # You can find the REAME.md File here for further explanations
+
+  # Install Dependencies
+  npm i
+
+  # Build Development
+  npm run dev
+
+  # Build Production
+  npm run build
+  npm run generate # Optional: Building Static Version of your Progressive Web App
+
+  # Start Production
+  npm run start
+  ```
+
+  </code-block>
+  <code-block label="yarn">
+
+  ```bash
+  cd home
+  # You can find the REAME.md File here for further explanations
+  yarn install
+
+  # Build Development
+  yarn dev
+
+  # Build Production
+  yarn build
+  yarn generate # Optional: Building Static Version of your Progressive Web App
+
+  # Start Production
+  yarn start
+  ```
+
+  </code-block>
+</code-group>
+
+### Packages
+
+<code-group>
+  <code-block label="npm" active>
+
+  ```bash
+  cd packages
+  # You can find the REAME.md File here for further explanations
+
+  # Install Dependencies
+  npm i
+
+  # Build Development
+  npm run dev
+
+  # Build Production
+  npm run build
+  npm run generate # Optional: Building Static Version of your Progressive Web App
+
+  # Start Production
+  npm run start
+  ```
+
+  </code-block>
+  <code-block label="yarn">
+
+  ```bash
+  cd packages
+  # You can find the REAME.md File here for further explanations
+  yarn install
+
+  # Build Development
+  yarn dev
+
+  # Build Production
+  yarn build
+  yarn generate # Optional: Building Static Version of your Progressive Web App
+
+  # Start Production
+  yarn start
+  ```
+
+  </code-block>
+</code-group>

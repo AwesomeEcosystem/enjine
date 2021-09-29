@@ -2,7 +2,7 @@
 title: Configuration
 description: ''
 position: 3
-category: Setup
+category: 'guide'
 ---
 
 ## App Template
