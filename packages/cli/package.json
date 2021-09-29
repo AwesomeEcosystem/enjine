@@ -1,47 +1,27 @@
 {
-  "name": "@enjine/cli",
-  "version": "0.0.1",
-  "description": "Cli for making ecosis & enjine Repositories",
-  "main": "dist/index",
-  "types": "dist/index",
+  "name": "create-enjine-app",
+  "description": "Create enjine Project in seconds.",
+  "version": "0.4.2",
+  "main": "src/index.js",
+  "bin": "src/index.js",
+  "license": "MIT",
+  "repository": "ssh://git@github.com/AwesomeEcosystem/enjine.git",
+  "author": {
+    "name": "equaliser (@equaliser0 on Github)",
+    "url": "https://equaliser.ecosis.io"
+  },
   "scripts": {
-    "dev": "tsc -w",
-    "build": "tsc",
-    "test": "jest"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AwesomeEcosystem/enjine.git"
-  },
-  "bugs": {
-    "url": "https://github.com/AwesomeEcosystem/enjine/issues"
+    "start": "node ./cli/index.js",
+    "format": "prettier ./**/*.{js,ts,vue,json} --write"
   },
   "dependencies": {
-    "arg": "^4.1.0",
-    "chalk": "^2.4.2",
-    "covgen": "^3.1.0",
-    "esm": "^3.2.18",
-    "execa": "^1.0.0",
-    "gitignore": "^0.6.0",
-    "inquirer": "^6.2.2",
-    "listr": "^0.14.3",
-    "ncp": "^2.0.0",
-    "pkg-install": "^0.2.0",
-    "spdx-license-list": "^5.0.0"
+    "minimist": "^1.2.0",
+    "sao": "^0.22.5",
+    "superb": "^3.0.0",
+    "validate-npm-package-name": "^3.0.0"
   },
-  "files": [
-    "bin/",
-    "src/",
-    "templates/"
-  ],
-  "keywords": [
-    "cli",
-    "enjine",
-    "ecosis"
-  ],
-  "author": "equaliser0",
-  "license": "MIT"
+  "devDependencies": {
+    "prettier": "^1.16.3",
+    "standard-version": "^4.4.0"
+  }
 }
