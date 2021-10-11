@@ -1,10 +1,9 @@
 {
-  "name": "@enjine/nuxt",
+  "name": "@enjine/templates",
   "version": "0.0.3",
   "description": "NuxtJS Themer to build ecosis & enjine applications out of the box",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
   "files": [
     "src",
     "dist"

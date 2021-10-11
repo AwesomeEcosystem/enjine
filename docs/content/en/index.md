@@ -25,8 +25,11 @@ and is written in Typescript.
 
 - [equaliser](https://equaliser.ecosis.io)
 
-<!-- ### Bakers
-
 ### Partners
+
+- [eLABs](https://elabs.ecosis.io)
+- [cunoro](https://cunoro.ecosis.io)
+
+<!-- ### Bakers
 
 ### Angels -->

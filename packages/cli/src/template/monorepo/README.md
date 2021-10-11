@@ -10,7 +10,7 @@
 
 ## Usage
 
-[ave a look into the Documentation](https://enjine.ecosis.io)
+[Have a look into the Documentation](https://enjine.ecosis.io)
 
 ## License
 

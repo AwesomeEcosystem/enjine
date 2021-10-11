@@ -2,6 +2,7 @@
 export { default as App } from './App.vue';
 export { default as Card } from './Card.vue';
 export { default as Container } from './Container.vue';
+export { default as Icon } from './Icon.vue';
 export { default as Layout } from './Layout.vue';
 export { default as Main } from './Main.vue';
 export { default as Menu } from './Menu.vue';
