@@ -1,6 +1,6 @@
 {
-  "title": "enjine Documentation",
-  "url": "enjine.ecosis.io",
+  "title": "<%= name %> Documentation",
+  "url": "",
   "logo": {
     "light": "/logo.png",
     "dark": "/logo.png"

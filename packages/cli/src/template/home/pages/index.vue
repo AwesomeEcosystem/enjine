@@ -1,8 +1,8 @@
 <template>
-  <div class="text-white">
+  <div>
     <Cover/>
     <About/>
-    <Network/>
+    <Products/>
     <Footer/>
   </div>
 </template>

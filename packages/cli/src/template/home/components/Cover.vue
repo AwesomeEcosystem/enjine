@@ -1,15 +1,18 @@
 <template>
-  <div class="flex flex-wrap justify-around items-center w-full bg-gray-800 md:relative">
-    <img src="~/assets/imgs/Cover.png" class="w-4/5 rounded-b-xl">
-    <div class="flex flex-wrap justify-around items-center md:absolute md:bottom-2 md:left-2 md:bottom-32 md:left-64">
-      <img src="~/assets/logos/logo.png" class="w-12 md:w-16 rounded-full" alt="ecosis">
-      <div class="flex flex-col p-2">
+  <section class="flex flex-col justify-around items-center container mx-auto">
+    <div class="flex flex-col justify-start items-center py-32">
+      <img
+        class="w-32 rounded-full m-8"
+        src="~/assets/logos/logo.png"/>
+      <div class="flex flex-col justify-around items-center text-center w-full">
         <h1><%= name %></h1>
         <p><%= description %></p>
       </div>
     </div>
-  </div>
+    <!-- <ColorModePicker/> -->
+  </section>
 </template>
+
 
 <script>
 export default {
@@ -17,11 +20,4 @@ export default {
 </script>
 
 <style lang="css" scoped>
-h1 {
-  @apply py-0 mb-0;
-}
-
-p {
-  @apply pl-4
-}
 </style>

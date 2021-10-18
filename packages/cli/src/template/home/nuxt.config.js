@@ -36,6 +36,8 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    // https://color-mode.nuxtjs.org/
+    '@nuxtjs/color-mode'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -44,6 +46,8 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // https://color-mode.nuxtjs.org/
+    // '@nuxtjs/color-mode' // Injected twice for the flexibility for SSR or Non-SSR > https://color-mode.nuxtjs.org/#setup
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
