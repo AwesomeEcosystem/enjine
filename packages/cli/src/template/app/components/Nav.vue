@@ -135,7 +135,7 @@
             <Avatar class="w-12" :address="'proto'" v-else/>
           </div>
           <div class="ml-3">
-            <div class="text-base font-medium leading-none text-white">{{ profile.name }}</div>
+            <div class="text-base font-medium leading-none text-white" v-if="profile.name">{{ profile.name }}</div>
           </div>
         </div>
         <div class="mt-3 px-2">
