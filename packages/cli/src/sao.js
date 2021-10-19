@@ -33,7 +33,7 @@ module.exports = {
     type: {
       message: 'Choose Project Type',
       type: 'list',
-      choices: ['monorepo'],
+      choices: ['app', 'docs', 'home', 'monorepo'],
       default: 'monorepo'
     },
     author: {
