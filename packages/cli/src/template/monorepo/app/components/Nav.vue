@@ -59,10 +59,10 @@
               >
                 <div
                   v-show="isOpen"
-                  class="origin-top-right bg-gray-800 absolute right-0 m-2 w-48 rounded-md shadow-lg"
+                  class="origin-top-right absolute bg-gray-900 right-0 m-2 w-48 rounded-md shadow-lg"
                 >
                   <div
-                    class="py-1 rounded-md bg-white shadow-xs"
+                    class="p-4 rounded-md shadow-xs"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="user-menu"
@@ -74,7 +74,16 @@
                         role="menuitem"
                       >{{ option }}</a>
                     </div>
-                    <button class="w-full hover:bg-gray-700 text-center rounded-lg p-2" @click="logout()">
+                      <div class="flex items-center px-5 py-8">
+                        <div class="flex-shrink-0">
+                          <img :src="profile.img" v-if="profile.img">
+                          <Avatar class="w-12" :address="'proto'" v-else/>
+                        </div>
+                        <div class="ml-3">
+                          <div class="text-base font-medium leading-none text-white" v-if="profile.name">{{ profile.name }}</div>
+                        </div>
+                      </div>
+                    <button class="w-full hover:bg-gray-800 text-center rounded-lg p-2" @click="logout()">
                       <p>Sign Out</p>
                       <i class="las la-sign-out-alt text-3xl"></i>
                     </button>
@@ -127,11 +136,11 @@
           class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700"
         >{{ page }}</a>
       </div>
-      <div class="pt-4 pb-3 border-t border-gray-700">
+      <div class="p-4  border-t border-gray-700">
         <div class="flex items-center px-5">
           <div class="flex-shrink-0">
             <img :src="profile.img" v-if="profile.img">
-            <Avatar class="w-12" :address="'proto'" v-else/>
+            <Avatar class="w-12" :address="profile.name" v-else/>
           </div>
           <div class="ml-3">
             <div class="text-base font-medium leading-none text-white" v-if="profile.name">{{ profile.name }}</div>
@@ -163,7 +172,7 @@ export default {
   data() {
     return {
       profile: {
-        name: 'proto',
+        name: '',
         img: ''
       },
       isOpen: false

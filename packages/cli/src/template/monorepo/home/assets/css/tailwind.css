@@ -22,15 +22,15 @@
   }
 
   body {
-    @apply base dark:text-white text-gray-900;
+    @apply base text-white;
   }
 
   .base {
-    @apply dark:bg-gray-800 bg-gray-200
+    @apply bg-gray-800;
   }
 
   .layer {
-    @apply dark:bg-gray-900 bg-gray-100
+    @apply bg-gray-900;
   }
 
   h1 {

@@ -1,5 +1,7 @@
 # <%= name %>.home
 
+Project Homepage
+
 ## Build Setup
 
 ```bash

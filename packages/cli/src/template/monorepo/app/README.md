@@ -1,5 +1,7 @@
 # <%= name %>.app
 
+Project Application
+
 ## Build Setup
 
 ```bash

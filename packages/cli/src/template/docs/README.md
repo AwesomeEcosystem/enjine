@@ -1,5 +1,7 @@
 # <%= name %>.docs
 
+Project Documentation
+
 ## Setup
 
 Install dependencies:
