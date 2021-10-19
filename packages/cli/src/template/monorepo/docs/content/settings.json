@@ -1,10 +1,9 @@
 {
-  "title": "enjine Documentation",
-  "url": "enjine.ecosis.io",
+  "title": "<%= name %> Documentation",
+  "url": "",
   "logo": {
     "light": "/logo.png",
     "dark": "/logo.png"
   },
-  "github": "AwesomeEcosystem/enjine",
-  "twitter": "@enjine10"
+  "github": "Profile-or-organization-name/your-repo-name"
 }

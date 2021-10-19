@@ -1,15 +1,14 @@
 <template>
-  <Container>
-    <!-- Code here -->
-  </Container>
+  <div class="">
+    
+  </div>
 </template>
 
 <script>
-import Vue from 'vue'
-
 export default {
-  layout: 'app',
-  mounted() {
-  }
+  layout: 'app'
 }
 </script>
+
+<style lang="css" scoped>
+</style>

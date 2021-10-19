@@ -15,6 +15,10 @@
   },
   "dependencies": {
     "@capacitor/core": "^3.2.4",
+    "@dicebear/avatars": "^4.10.0",
+    "@dicebear/avatars-gridy-sprites": "^4.10.0",
+    "@enjine/components": "^0.0.15",
+    "@enjine/themes": "^0.0.3",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/markdownit": "^2.0.0",
     "@nuxtjs/pwa": "^3.3.5",
@@ -28,6 +32,7 @@
     "@capacitor/cli": "^3.2.4",
     "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.1.0",
+    "@nuxtjs/color-mode": "^2.1.1",
     "@nuxtjs/tailwindcss": "^4.2.0",
     "@wdio/cli": "^7.7.4",
     "@wdio/local-runner": "^7.7.4",
