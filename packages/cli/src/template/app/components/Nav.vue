@@ -10,7 +10,7 @@
             >
           </div>
           <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline" v-for="page in pages" :key="page">
+            <div class="ml-10 flex items-baseline" v-for="page in pages" :key="page" v-if="pages">
               <a
                 href="#"
                 class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700"
@@ -36,11 +36,11 @@
             </button> -->
 
             <!-- Profile dropdown -->
-            <div class="ml-3 relative">
+            <div class="ml-3 relative bg-gray-800">
               <div>
                 <button
                   @click="toggle"
-                  class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid"
+                  class="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:shadow-solid"
                   id="user-menu"
                   aria-label="User menu"
                   aria-haspopup="true"
@@ -59,26 +59,34 @@
               >
                 <div
                   v-show="isOpen"
-                  class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg"
+                  class="origin-top-right absolute bg-gray-900 right-0 m-2 w-48 rounded-md shadow-lg"
                 >
                   <div
-                    class="py-1 rounded-md bg-white shadow-xs"
+                    class="p-4 rounded-md shadow-xs"
                     role="menu"
                     aria-orientation="vertical"
                     aria-labelledby="user-menu"
                   >
-                    <div class="" v-for="option in options" :key="option">
+                    <div class="" v-for="option in options" :key="option" v-if="options">
                       <a
                         href="#"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                         role="menuitem"
                       >{{ option }}</a>
                     </div>
-                    <a
-                      href="#"
-                      class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      role="menuitem"
-                    >Sign out</a>
+                      <div class="flex items-center px-5 py-8">
+                        <div class="flex-shrink-0">
+                          <img :src="profile.img" v-if="profile.img">
+                          <Avatar class="w-12" :address="'proto'" v-else/>
+                        </div>
+                        <div class="ml-3">
+                          <div class="text-base font-medium leading-none text-white" v-if="profile.name">{{ profile.name }}</div>
+                        </div>
+                      </div>
+                    <button class="w-full hover:bg-gray-800 text-center rounded-lg p-2" @click="logout()">
+                      <p>Sign Out</p>
+                      <i class="las la-sign-out-alt text-3xl"></i>
+                    </button>
                   </div>
                 </div>
               </transition>
@@ -122,33 +130,33 @@
       </div>
     </div>
     <div :class="[isOpen ? '' : 'hidden', 'md:hidden']">
-      <div class="px-2 pt-2 pb-3 sm:px-3" v-for="page in pages">
+      <div class="px-2 pt-2 pb-3 sm:px-3" v-for="page in pages" v-if="pages">
         <a
           href="#"
           class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700"
         >{{ page }}</a>
       </div>
-      <div class="pt-4 pb-3 border-t border-gray-700">
+      <div class="p-4  border-t border-gray-700">
         <div class="flex items-center px-5">
           <div class="flex-shrink-0">
             <img :src="profile.img" v-if="profile.img">
-            <Avatar class="w-12" :address="'proto'" v-else/>
+            <Avatar class="w-12" :address="profile.name" v-else/>
           </div>
           <div class="ml-3">
             <div class="text-base font-medium leading-none text-white" v-if="profile.name">{{ profile.name }}</div>
           </div>
         </div>
         <div class="mt-3 px-2">
-          <div class="" v-for="option in options" :key="option">
+          <div class="" v-for="option in options" :key="option" v-if="options">
             <a
             href="#"
             class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
             >{{ option }}</a>
           </div>
-          <a
-            href="#"
-            class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-            >{{ option }}</a>
+          <button class="w-full hover:bg-gray-700 text-center rounded-lg p-2 m-2" @click="logout()">
+            <p>Sign Out</p>
+            <i class="las la-sign-out-alt text-3xl"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -164,7 +172,7 @@ export default {
   data() {
     return {
       profile: {
-        name: 'proto',
+        name: '',
         img: ''
       },
       isOpen: false
@@ -173,6 +181,9 @@ export default {
   methods: {
     toggle () {
       this.isOpen = !this.isOpen
+    },
+    async logout() {
+      this.$router.push('start')
     }
   }
 }

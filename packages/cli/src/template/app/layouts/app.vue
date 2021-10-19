@@ -14,11 +14,11 @@ export default {
   data() {
     return {
       pages: [
-        'Home'
+        // 'Home'
       ],
       options: [
-        'Profile',
-        'Settings'
+        // 'Profile',
+        // 'Settings'
       ]
     }
   },
