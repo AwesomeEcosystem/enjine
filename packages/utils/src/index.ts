@@ -1,6 +1,19 @@
-export * from './mkdir';
-export * from './crypto';
-export * from './isEmptyObject';
-export * from './validateEnv';
-export * from './env'
-export * from './helpers'
+import './mkdir';
+import './crypto';
+import './isEmptyObject';
+import './validateEnv';
+import './env'
+import './dirManagement'
+import './helpers'
+
+export default class Utils {
+  createCrypto
+  compareCrypto
+  encrypt
+  decrypt
+  serialize
+  deserialize
+  generateKey
+  mkdir
+  isEmptyObject
+}

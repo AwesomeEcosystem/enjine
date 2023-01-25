@@ -27,3 +27,21 @@ export function extendArrayPrototypes() {
   //   }
   // }
 }
+
+export function serialize(data: any): any {
+  return JSON.stringify(data)
+}
+
+export function deserialize(data: any): any {
+  return JSON.parse(data)
+}
+
+export function generateKey(): string {
+  var timestamp = Date.now();
+  var rand = Math.random();
+  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = (timestamp + rand + Math.random() * 16) % 16 | 0;
+    return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+  });
+  return uuid;
+}
