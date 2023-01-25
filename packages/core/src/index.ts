@@ -1,3 +1,4 @@
+export * from './container'
 export * from './components/host'
 export * from './components/gateway'
 export * from './components/controller'
