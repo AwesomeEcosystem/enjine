@@ -3,6 +3,7 @@ import { AsyncConstructor } from 'async-constructor'
 
 export default class Container extends AsyncConstructor {
   initialized: boolean = false
+  events = new EventEmitter()
   constructor(config?: object) {
     super(async () => {
       this.emit('initialized')
