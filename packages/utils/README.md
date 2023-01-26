@@ -1,3 +1,3 @@
-# `@enjine/utils`
+# @enjine/utils
 
-> scale Instance Native Utilities
+Instance Utilities for rapid App Development
