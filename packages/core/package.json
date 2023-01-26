@@ -1,6 +1,6 @@
 {
   "name": "@enjine/core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Core modules to build customized Hosts and Apps on the fly",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
