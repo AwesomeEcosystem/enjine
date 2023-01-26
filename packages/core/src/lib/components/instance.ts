@@ -1,4 +1,4 @@
-import { Server, Socket } from 'socket.io';
+import { Server } from 'socket.io';
 import { Application, Router } from 'express';
 import cors from 'cors';
 import consola from 'consola';
@@ -66,7 +66,9 @@ export class Instance {
 
   public client(path: any) {
     this.app.get('/', (req: any, res: any) => {
-      res.sendFile(path.join(__dirname, path))
+      if (req) {
+        res.sendFile(path.join(__dirname, path))
+      }
     })
   }
 }

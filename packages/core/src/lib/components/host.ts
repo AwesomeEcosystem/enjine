@@ -1,10 +1,10 @@
-import path from 'path'
+// import path from 'path'
 import { createServer as createHttp } from 'http';
 import { createServer as createHttps } from 'https';
 import express from 'express';
-import proxy from 'express-http-proxy';
-import subdomain from 'express-subdomain';
-import { Nuxt, Builder } from 'nuxt';
+// import proxy from 'express-http-proxy';
+// import subdomain from 'express-subdomain';
+// import { Nuxt, Builder } from 'nuxt';
 import consola from 'consola';
 
 const cors = { origin: '*', credentials: false };
@@ -19,10 +19,10 @@ export class Host {
   public instances: any[] = []; // TODO Interface Gateways
   public config: any = {}; // TODO Interface Config
 
-  constructor(config: any) {
+  constructor(config?: any) {
     this.config = config || {
-      cors: config.cors || cors,
-      transports: config.transports || transports
+      cors: (config)? config.cors : cors,
+      transports: (config)? config.transports : transports
     }
   }
 
@@ -43,21 +43,21 @@ export class Host {
       https: (this.config.secure) ? createHttps(this.config.secure, this.app) : null
     }
 
-    if (this.middlewares) {
-      for (const middleware of this.middlewares) {
-        // this.app.use((req: any, res: any, next) => middleware(req, res, next)) // TODO multimiddleware
-        // this.io.use((socket, next) => middleware(socket.request, {}, next))
-      }
-      // TODO Real Passport Session
-      // app.use(wrap(passport.initialize()));
-      // app.use(wrap(passport.session()));
-    }
+    // if (this.middlewares) { // TODO Middleware injection method
+    //   for (const middleware of this.middlewares) {
+    //     // this.app.use((req: any, res: any, next) => middleware(req, res, next)) // TODO multimiddleware
+    //     // this.io.use((socket, next) => middleware(socket.request, {}, next))
+    //   }
+    //   // TODO Real Passport Session
+    //   // app.use(wrap(passport.initialize()));
+    //   // app.use(wrap(passport.session()));
+    // }
 
-    if (this.proxies) {
-      for (let route of this.proxies) {
-        this.app.use(subdomain(route.from, proxy(route.to)))
-      }
-    }
+    // if (this.proxies) { TODO enable proxies
+    //   for (let route of this.proxies) {
+    //     this.app.use(subdomain(route.from, proxy(route.to)))
+    //   }
+    // }
 
     if (this.instances) {
       for (const instance of this.instances) {
@@ -70,25 +70,25 @@ export class Host {
 
   public async bootstrap() {
 
-    const isDev = process.env.NODE_ENV !== 'production'
+    // const isDev = process.env.NODE_ENV !== 'production'
 
     this.initialize()
 
-    if (this.config.nuxt) {
-      const config: any = (typeof this.config.nuxt === 'object') ? this.config.nuxt : path.join(__dirname, 'nuxt.config');
-
-      const nuxt: any = new Nuxt(config)
-      await nuxt.ready()
-
-      // Render every route with Nuxt.js
-      this.app.use(nuxt.render)
-
-      // Build only in dev mode with hot-reloading
-      if (isDev) {
-        const builder: any = new Builder(nuxt)
-        await builder.build()
-      }
-    }
+    // if (this.config.nuxt) { // TODO implement Nuxt 3
+    //   const config: any = (typeof this.config.nuxt === 'object') ? this.config.nuxt : path.join(__dirname, 'nuxt.config');
+    //
+    //   const nuxt: any = new Nuxt(config)
+    //   await nuxt.ready()
+    //
+    //   // Render every route with Nuxt.js
+    //   this.app.use(nuxt.render)
+    //
+    //   // Build only in dev mode with hot-reloading
+    //   if (isDev) {
+    //     const builder: any = new Builder(nuxt)
+    //     await builder.build()
+    //   }
+    // }
 
     this.server.http.listen(this.config.port || 80, this.config.host || 'localhost');
 
