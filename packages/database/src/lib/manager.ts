@@ -1,5 +1,5 @@
 import { Database } from './database';
-import { Data } from './data';
+// import { Data } from './data';
 
 // class DatabaseModel extends Model { // TODO too ugly - Declaration Dilemma
 //   name: string;
