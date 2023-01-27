@@ -4,10 +4,10 @@ import { AsyncConstructor } from 'async-constructor'
 export class Container extends AsyncConstructor {
   initialized: boolean = false
   events = new EventEmitter()
-  constructor() {
-    super(async () => {
-      this.emit('initialized')
-    })
+  constructor(asyncFunction) {
+    super(asyncFunction)
+    
+    this.emit('initialized')
 
     this.on('initialized', () => {
       this.initialized = true
