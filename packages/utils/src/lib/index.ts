@@ -1,18 +1,18 @@
-import './mkdir';
-import './crypto';
-import './isEmptyObject';
-import './validateEnv';
-import './dirManagement'
-import './helpers'
+import { createCrypto, compareCrypto, encrypt, decrypt } from './crypto';
+import { serialize, deserialize, generateKey } from './helpers'
+import { isEmptyObject } from './isEmptyObject';
+import { validateEnv } from './validateEnv';
+import { mkdir } from './dirManagement'
 
 export default class Utils {
-  createCrypto
-  compareCrypto
-  encrypt
-  decrypt
-  serialize
-  deserialize
-  generateKey
-  mkdir
-  isEmptyObject
+  public createCrypto = createCrypto;
+  public compareCrypto = compareCrypto;
+  public encrypt = encrypt;
+  public decrypt = decrypt;
+  public serialize = serialize;
+  public deserialize = deserialize;
+  public generateKey = generateKey;
+  public isEmptyObject = isEmptyObject;
+  public validateEnv = validateEnv;
+  public mkdir = mkdir;
 }
