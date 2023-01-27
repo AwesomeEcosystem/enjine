@@ -541,10 +541,10 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@enjine/core@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@enjine/core/-/core-0.0.5.tgz#c127c71428c07e3c0793931622db01c8f832b303"
-  integrity sha512-s5POCvlkSEqTgRBm7KM3fTg/XmAhJ3M3WJX9FHyBNro1LA6cXa2s/r/Z+hv2vrU9grLzi87Wtfvtl2hUrU/S/g==
+"@enjine/core@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@enjine/core/-/core-0.0.6.tgz#55f375863e14e12a386412e2ec6dbdf555befd1b"
+  integrity sha512-qEi0dUchrq0HiZk3oXCKt/lKZCJl9qUdzcDQPjqQFH0G8gticLH+Hgl2YMHOsjvYudFg+RkfSoin5Nfg+ogxJA==
   dependencies:
     "@bitauth/libauth" "^1.17.1"
     "@enjine/utils" "^0.0.6"
