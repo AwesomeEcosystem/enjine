@@ -9,9 +9,11 @@ category: Setup
 
 ## Cli
 
-> Coming soon
+> Extended Functionalities Coming soon
 
-## Modules
+[Learn more here in the Guide Section](/guide/start)
+
+## Node
 
 ### Core
 > Serverside
@@ -82,6 +84,8 @@ The integrable document based database with no need to install external ones
 </code-group>
 
 [Learn more about the Usage here](/guide/database)
+
+## Client
 
 ### Session
 > Serverside & Clientside
@@ -238,15 +242,15 @@ Because of *Tailwindcss*, its possible to adopt themes. **enjine** has some read
   </code-block>
 </code-group>
 
-If you use the `App Config Template` by `@enjine/common`:
+If you use the `App Config Template` by `@enjine/template`:
 
 <code-group>
   <code-block label="es6" active>
 
   ```js
-  import { App } from '@enjine/common'
+  import { base } from '@enjine/common'
 
-  export default new App({
+  export default base({
     theme: '@enjine/theme/basic'
   })
   ```
@@ -255,9 +259,9 @@ If you use the `App Config Template` by `@enjine/common`:
   <code-block label="commonjs">
 
   ```js
-  const { App } = require('@enjine/common')
+  const { base } = require('@enjine/common')
 
-  module.exports = new App({
+  module.exports = base({
     theme: '@enjine/theme/basic'
   })
   ```

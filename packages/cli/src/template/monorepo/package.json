@@ -1,0 +1,9 @@
+{
+  "name": "<%= name %>",
+  "scripts": {
+    "bootstrap": "lerna bootstrap"
+  },
+  "dependencies": {
+    "lerna": "^4.0.0"
+  }
+}

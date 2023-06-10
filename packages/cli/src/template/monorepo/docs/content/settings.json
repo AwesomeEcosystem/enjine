@@ -1,0 +1,9 @@
+{
+  "title": "<%= name %> Documentation",
+  "url": "",
+  "logo": {
+    "light": "/logo.png",
+    "dark": "/logo.png"
+  },
+  "github": "Profile-or-organization-name/your-repo-name"
+}
